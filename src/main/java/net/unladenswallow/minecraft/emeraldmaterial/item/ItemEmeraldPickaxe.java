@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.emeraldmaterial.item;
 
 import net.minecraft.item.ItemPickaxe;
+import net.unladenswallow.minecraft.emeraldmaterial.EmeraldMaterials;
 
 /**
  * It would be easier to simply instantiate ItemPickaxe with the Emerald material,
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemPickaxe;
 public class ItemEmeraldPickaxe extends ItemPickaxe {
 
 	public ItemEmeraldPickaxe() {
-		super(ItemEmeraldTool.material);
+		super(EmeraldMaterials.toolMaterial);
 		setUnlocalizedName("emeraldPickaxe");
 	}
 }

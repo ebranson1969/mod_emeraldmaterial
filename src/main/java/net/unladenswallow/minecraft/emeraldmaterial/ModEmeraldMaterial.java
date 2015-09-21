@@ -15,9 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldArmor;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldAxe;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
-import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBroadsword;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldPickaxe;
-import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldTool;
 
 
 @Mod(modid = ModEmeraldMaterial.MODID, name = ModEmeraldMaterial.MODNAME,
@@ -51,13 +49,13 @@ public class ModEmeraldMaterial {
 		emeraldChest = new ItemEmeraldArmor("emeraldChest", 1, 1);
 		emeraldPants = new ItemEmeraldArmor("emeraldPants", 2, 2);
 		emeraldBoots = new ItemEmeraldArmor("emeraldBoots", 1, 3);
-		emeraldBroadsword = new ItemEmeraldBroadsword();
-		emeraldSword = (new ItemSword(ItemEmeraldTool.material)).setUnlocalizedName("emeraldSword");
+		emeraldBroadsword = (new ItemSword(EmeraldMaterials.broadswordMaterial)).setUnlocalizedName("emeraldBroadsword");
+		emeraldSword = (new ItemSword(EmeraldMaterials.toolMaterial)).setUnlocalizedName("emeraldSword");
 		emeraldBow = new ItemEmeraldBow();
 		emeraldPickaxe = new ItemEmeraldPickaxe();
 		emeraldAxe = new ItemEmeraldAxe();
-		(emeraldSpade = new ItemSpade(ItemEmeraldTool.material)).setUnlocalizedName("emeraldSpade"); // new ItemEmeraldSpade();
-		(emeraldHoe = new ItemHoe(ItemEmeraldTool.material)).setUnlocalizedName("emeraldHoe"); // new ItemEmeraldHoe();
+		(emeraldSpade = new ItemSpade(EmeraldMaterials.toolMaterial)).setUnlocalizedName("emeraldSpade"); // new ItemEmeraldSpade();
+		(emeraldHoe = new ItemHoe(EmeraldMaterials.toolMaterial)).setUnlocalizedName("emeraldHoe"); // new ItemEmeraldHoe();
 		GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
 		GameRegistry.registerItem(emeraldChest, "emerald_chest");
 		GameRegistry.registerItem(emeraldPants, "emerald_pants");

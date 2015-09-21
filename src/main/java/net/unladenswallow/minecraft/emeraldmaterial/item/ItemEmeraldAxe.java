@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.emeraldmaterial.item;
 
 import net.minecraft.item.ItemAxe;
+import net.unladenswallow.minecraft.emeraldmaterial.EmeraldMaterials;
 
 /**
  * It would be easier to simply instantiate ItemAxe with the Emerald material,
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemAxe;
 public class ItemEmeraldAxe extends ItemAxe {
 
 public ItemEmeraldAxe() {
-		super(ItemEmeraldTool.material);
+		super(EmeraldMaterials.toolMaterial);
 		setUnlocalizedName("emeraldAxe");
 	}
 
