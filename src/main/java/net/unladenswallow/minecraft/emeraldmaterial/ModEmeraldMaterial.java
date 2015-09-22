@@ -1,5 +1,6 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
@@ -12,6 +13,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldDoubleSlab;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldHalfSlab;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldStairs;
+import net.unladenswallow.minecraft.emeraldmaterial.block.ItemBlockEmeraldSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldArmor;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldAxe;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
@@ -41,6 +46,10 @@ public class ModEmeraldMaterial {
 	public static Item emeraldSpade;
 	public static Item emeraldHoe;
 	
+	public static Block emeraldStairs;
+	public static Block emeraldHalfSlab;
+	public static Block emeraldDoubleSlab;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
 		ModEmeraldMaterial.proxy.preInit(preInitEvent);
@@ -56,6 +65,11 @@ public class ModEmeraldMaterial {
 		emeraldAxe = new ItemEmeraldAxe();
 		(emeraldSpade = new ItemSpade(EmeraldMaterials.toolMaterial)).setUnlocalizedName("emeraldSpade"); // new ItemEmeraldSpade();
 		(emeraldHoe = new ItemHoe(EmeraldMaterials.toolMaterial)).setUnlocalizedName("emeraldHoe"); // new ItemEmeraldHoe();
+		
+		emeraldStairs = new BlockEmeraldStairs();
+		emeraldHalfSlab = new BlockEmeraldHalfSlab();
+		emeraldDoubleSlab = new BlockEmeraldDoubleSlab();
+		
 		GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
 		GameRegistry.registerItem(emeraldChest, "emerald_chest");
 		GameRegistry.registerItem(emeraldPants, "emerald_pants");
@@ -67,6 +81,10 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerItem(emeraldAxe, "emerald_axe");
 		GameRegistry.registerItem(emeraldSpade, "emerald_spade");
 		GameRegistry.registerItem(emeraldHoe, "emerald_hoe");
+		
+		GameRegistry.registerBlock(emeraldStairs, "emerald_stairs");
+		GameRegistry.registerBlock(emeraldHalfSlab, ItemBlockEmeraldSlab.class, "emerald_half_slab", emeraldHalfSlab, emeraldDoubleSlab);
+		GameRegistry.registerBlock(emeraldDoubleSlab, ItemBlockEmeraldSlab.class, "emerald_double_slab", emeraldHalfSlab, emeraldDoubleSlab);
 	}
 	
 	@EventHandler

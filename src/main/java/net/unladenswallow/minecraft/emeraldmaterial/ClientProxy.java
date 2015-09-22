@@ -3,6 +3,7 @@ package net.unladenswallow.minecraft.emeraldmaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -47,7 +48,12 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(ModEmeraldMaterial.emeraldHoe, 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_hoe"), "inventory"));
 
-		MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(Item.getItemFromBlock(ModEmeraldMaterial.emeraldStairs), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_stairs"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(Item.getItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_half_slab"), "inventory"));
+
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
     }
 
     @Override

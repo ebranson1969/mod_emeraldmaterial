@@ -9,3 +9,5 @@ item.emeraldPickaxe.name=Emerald Pickaxe
 item.emeraldAxe.name=Emerald Axe
 item.emeraldSpade.name=Emerald Spade
 item.emeraldHoe.name=Emerald Hoe
+tile.emeraldStairs.name=Emerald Stairs
+tile.emeraldHalfSlab.name=Emerald Slab
