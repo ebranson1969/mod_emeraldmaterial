@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
@@ -171,6 +172,33 @@ public class ModEmeraldMaterial {
 				'E', Items.emerald,
 				'S', Items.stick,
 				'I', Items.string);
+		
+		GameRegistry.addRecipe(new ItemStack(emeraldHalfSlab, 6),
+				"EEE",
+				"   ",
+				"   ",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldHalfSlab, 6),
+				"   ",
+				"EEE",
+				"   ",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldHalfSlab, 6),
+				"   ",
+				"   ",
+				"EEE",
+				'E', Blocks.emerald_block);
+
+		GameRegistry.addRecipe(new ItemStack(emeraldStairs, 4),
+				"E  ",
+				"EE ",
+				"EEE",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldStairs, 4),
+				"  E",
+				" EE",
+				"EEE",
+				'E', Blocks.emerald_block);
 		
 	}
 	
