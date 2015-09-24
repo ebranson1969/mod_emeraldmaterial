@@ -9,11 +9,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 
 /**
  * Wall block made from the emerald block.  This class extends BlockWall to get
@@ -30,6 +30,7 @@ public class BlockEmeraldWall extends BlockWall {
     public BlockEmeraldWall()
     {
         super(Blocks.emerald_block);
+        this.setUnlocalizedName("emeraldWall");
         this.overrideBlockState = createOverrideBlockState();
         this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
     }
@@ -37,10 +38,11 @@ public class BlockEmeraldWall extends BlockWall {
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item itemIn, CreativeTabs tab, @SuppressWarnings("rawtypes") List list)
     {
-        // Do nothing
+    	list.add(new ItemStack(itemIn, 1, 0));
     }
 
     /**
