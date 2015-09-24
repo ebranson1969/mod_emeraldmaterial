@@ -27,13 +27,10 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldPickaxe;
 
 
-@Mod(modid = ModEmeraldMaterial.MODID, name = ModEmeraldMaterial.MODNAME,
-	version = ModEmeraldMaterial.VERSION, useMetadata = true)
+@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true)
 public class ModEmeraldMaterial {
 
 	public static final String MODID = "mod_emeraldmaterial";
-	public static final String MODNAME = "Emerald Material Mod";
-	public static final String VERSION = "1.8-0.1";
 	
 	@SidedProxy(clientSide="net.unladenswallow.minecraft.emeraldmaterial.ClientProxy", serverSide="net.unladenswallow.minecraft.emeraldmaterial.ServerProxy")
 	public static CommonProxy proxy;
@@ -104,7 +101,7 @@ public class ModEmeraldMaterial {
 	@EventHandler
 	public void init (FMLInitializationEvent event) {
 		ModEmeraldMaterial.proxy.init(event);
-		EMLogger.info("Initializing " + ModEmeraldMaterial.MODNAME);
+		EMLogger.info("Initializing " + ModEmeraldMaterial.MODID);
 		addRecipes();
 		addSmelting();
 	}

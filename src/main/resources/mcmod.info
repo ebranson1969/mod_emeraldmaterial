@@ -2,7 +2,7 @@
 {
   "modid": "mod_emeraldmaterial",
   "name": "Emerald Material Mod",
-  "description": "Construct tools, weapons and armor from Emeralds.",
+  "description": "Construct tools, weapons, armor and blocks from Emeralds.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
