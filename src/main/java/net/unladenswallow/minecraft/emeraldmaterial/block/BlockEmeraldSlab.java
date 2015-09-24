@@ -3,13 +3,13 @@ package net.unladenswallow.minecraft.emeraldmaterial.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -28,7 +28,7 @@ public abstract class BlockEmeraldSlab extends BlockSlab {
 	private static final PropertyBool VARIANT_PROPERTY = PropertyBool.create("variant");
 	
 	public BlockEmeraldSlab() {
-		super(Material.rock);
+		super(Blocks.emerald_block.getMaterial());
 		setHardness(5f);
 		setResistance(30f);
 		IBlockState iblockstate = this.blockState.getBaseState();
