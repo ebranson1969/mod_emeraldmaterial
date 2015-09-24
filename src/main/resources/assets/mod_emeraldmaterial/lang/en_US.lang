@@ -11,3 +11,5 @@ item.emeraldSpade.name=Emerald Spade
 item.emeraldHoe.name=Emerald Hoe
 tile.emeraldStairs.name=Emerald Stairs
 tile.emeraldHalfSlab.name=Emerald Slab
+tile.emeraldDoor.name=Emerald Door
+tile.emeraldWall.name=Emerald Wall

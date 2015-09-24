@@ -14,9 +14,11 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldDoor;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldDoubleSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldHalfSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldStairs;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldWall;
 import net.unladenswallow.minecraft.emeraldmaterial.block.ItemBlockEmeraldSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldArmor;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldAxe;
@@ -50,6 +52,8 @@ public class ModEmeraldMaterial {
 	public static Block emeraldStairs;
 	public static Block emeraldHalfSlab;
 	public static Block emeraldDoubleSlab;
+	public static Block emeraldWall;
+	public static Block emeraldDoor;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
@@ -70,6 +74,8 @@ public class ModEmeraldMaterial {
 		emeraldStairs = new BlockEmeraldStairs();
 		emeraldHalfSlab = new BlockEmeraldHalfSlab();
 		emeraldDoubleSlab = new BlockEmeraldDoubleSlab();
+		emeraldWall = new BlockEmeraldWall();
+//		emeraldDoor = new BlockEmeraldDoor();
 		
 		GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
 		GameRegistry.registerItem(emeraldChest, "emerald_chest");
@@ -86,6 +92,8 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerBlock(emeraldStairs, "emerald_stairs");
 		GameRegistry.registerBlock(emeraldHalfSlab, ItemBlockEmeraldSlab.class, "emerald_half_slab", emeraldHalfSlab, emeraldDoubleSlab);
 		GameRegistry.registerBlock(emeraldDoubleSlab, ItemBlockEmeraldSlab.class, "emerald_double_slab", emeraldHalfSlab, emeraldDoubleSlab);
+		GameRegistry.registerBlock(emeraldWall, "emerald_wall");
+//		GameRegistry.registerBlock(emeraldDoor, "emerald_door");
 	}
 	
 	@EventHandler
