@@ -19,6 +19,12 @@ import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
 public abstract class BlockEmeraldSlab extends BlockSlab {
 	
+	/* The Emerald Slab does not have any variants, but if we want to inherit behaviors of BlockSlab and ItemSlab,
+	 * we need to conform to their expectations.  Specifically, ItemSlab will only place a half slab on another
+	 * half slab if it is the same variant. So we create a dummy boolean variant that is always false.
+	 * The alternative is probably to have ItemBlockEmeraldSlab override everything in it's parent class
+	 * that refers to variants.
+	 */
 	private static final PropertyBool VARIANT_PROPERTY = PropertyBool.create("variant");
 	
 	public BlockEmeraldSlab() {
