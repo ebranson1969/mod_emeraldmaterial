@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
@@ -48,12 +49,13 @@ public class ModEmeraldMaterial {
 	public static Item emeraldAxe;
 	public static Item emeraldSpade;
 	public static Item emeraldHoe;
+	public static Item emeraldDoor;
 	
 	public static Block emeraldStairs;
 	public static Block emeraldHalfSlab;
 	public static Block emeraldDoubleSlab;
 	public static Block emeraldWall;
-	public static Block emeraldDoor;
+	public static Block emeraldDoorBlock;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
@@ -75,7 +77,9 @@ public class ModEmeraldMaterial {
 		emeraldHalfSlab = new BlockEmeraldHalfSlab();
 		emeraldDoubleSlab = new BlockEmeraldDoubleSlab();
 		emeraldWall = new BlockEmeraldWall();
-//		emeraldDoor = new BlockEmeraldDoor();
+
+		emeraldDoorBlock = new BlockEmeraldDoor();
+		(emeraldDoor = new ItemDoor(emeraldDoorBlock)).setUnlocalizedName("emeraldDoor"); //new ItemEmeraldDoor();
 		
 		GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
 		GameRegistry.registerItem(emeraldChest, "emerald_chest");
@@ -88,12 +92,13 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerItem(emeraldAxe, "emerald_axe");
 		GameRegistry.registerItem(emeraldSpade, "emerald_spade");
 		GameRegistry.registerItem(emeraldHoe, "emerald_hoe");
+		GameRegistry.registerItem(emeraldDoor, "emerald_door");
 		
 		GameRegistry.registerBlock(emeraldStairs, "emerald_stairs");
 		GameRegistry.registerBlock(emeraldHalfSlab, ItemBlockEmeraldSlab.class, "emerald_half_slab", emeraldHalfSlab, emeraldDoubleSlab);
 		GameRegistry.registerBlock(emeraldDoubleSlab, ItemBlockEmeraldSlab.class, "emerald_double_slab", emeraldHalfSlab, emeraldDoubleSlab);
 		GameRegistry.registerBlock(emeraldWall, "emerald_wall");
-//		GameRegistry.registerBlock(emeraldDoor, "emerald_door");
+		GameRegistry.registerBlock(emeraldDoorBlock, "emerald_door_block");
 	}
 	
 	@EventHandler
@@ -206,6 +211,26 @@ public class ModEmeraldMaterial {
 				"  E",
 				" EE",
 				"EEE",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldWall, 6),
+				"   ",
+				"EEE",
+				"EEE",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldWall, 6),
+				"EEE",
+				"EEE",
+				"   ",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldDoor, 3),
+				" EE",
+				" EE",
+				" EE",
+				'E', Blocks.emerald_block);
+		GameRegistry.addRecipe(new ItemStack(emeraldDoor, 3),
+				"EE ",
+				"EE ",
+				"EE ",
 				'E', Blocks.emerald_block);
 		
 	}

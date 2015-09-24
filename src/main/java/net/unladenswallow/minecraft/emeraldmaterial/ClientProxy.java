@@ -54,8 +54,8 @@ public class ClientProxy extends CommonProxy {
     		.register(Item.getItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_half_slab"), "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(Item.getItemFromBlock(ModEmeraldMaterial.emeraldWall), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_wall"), "inventory"));
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-//    		.register(Item.getItemFromBlock(ModEmeraldMaterial.emeraldDoor), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_door"), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+    		.register(ModEmeraldMaterial.emeraldDoor, 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_door"), "inventory"));
 
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
     }
