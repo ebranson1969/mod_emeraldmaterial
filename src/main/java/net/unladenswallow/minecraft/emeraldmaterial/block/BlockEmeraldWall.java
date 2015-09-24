@@ -32,8 +32,6 @@ public class BlockEmeraldWall extends BlockWall {
         super(Blocks.emerald_block);
         this.overrideBlockState = createOverrideBlockState();
         this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
-        EMLogger.info("BlockEmeraldWall <init>: getDefaultState() = " + this.getDefaultState().toString());
-        EMLogger.info("BlockEmeraldWall <init>: getBlockState() = " + this.getBlockState().toString());
     }
 
     /**
