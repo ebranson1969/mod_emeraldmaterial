@@ -1,0 +1,8 @@
+1.8-1.1
+=======
+Regenerate all textures and models from their diamond counterparts
+(to ensure that no "borrowed" placeholder images made it into the release) 
+
+1.8-1.0
+=======
+Initial release of the Emerald Material Mod
