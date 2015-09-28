@@ -17,7 +17,6 @@ public class BlockEmeraldDoor extends BlockDoor {
 		this.setUnlocalizedName("emeraldDoor");
 		this.setHardness(6.0f);
 		this.setStepSound(Block.soundTypeStone);
-		this.setCreativeTab(CreativeTabs.tabRedstone);
 	}
 
 	@Override
