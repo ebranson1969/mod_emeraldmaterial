@@ -1,6 +1,8 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class EmeraldMaterials {
@@ -22,5 +24,9 @@ public class EmeraldMaterials {
 			4.0f,
 			30
 			);
+	static {
+		toolMaterial.setRepairItem(new ItemStack(Items.emerald));
+		broadswordMaterial.setRepairItem(new ItemStack(Items.emerald));
+	}
 
 }
