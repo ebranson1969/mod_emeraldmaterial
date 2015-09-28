@@ -2,6 +2,7 @@ package net.unladenswallow.minecraft.emeraldmaterial.item;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -18,6 +19,9 @@ public class ItemEmeraldArmor extends ItemArmor {
 			20,
 			new int[] {3, 7, 5, 3},
 			30);
+	static {
+		material.customCraftingMaterial = Items.emerald;
+	}
 	
 	public ItemEmeraldArmor(String unlocalizedName, int renderIndex, int armorType) {
 		super(material, renderIndex, armorType);
