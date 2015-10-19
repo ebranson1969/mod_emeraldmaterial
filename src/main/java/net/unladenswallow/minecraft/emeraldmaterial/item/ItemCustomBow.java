@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
-public abstract class ItemCustomBow extends ItemBow {
+public class ItemCustomBow extends ItemBow {
 
 	private String modelBaseName = "custom_bow";
 	private int modelVariantCount = 3;
