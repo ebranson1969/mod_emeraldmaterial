@@ -1,0 +1,6 @@
+{
+    "parent":"mod_emeraldmaterial:item/standard_item",
+    "textures": {
+        "layer0":"mod_emeraldmaterial:items/helmet.obsidian"
+    }
+}
