@@ -10,14 +10,12 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
-import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
 public abstract class BlockCustomSlab extends BlockSlab {
 	
@@ -31,13 +29,13 @@ public abstract class BlockCustomSlab extends BlockSlab {
 	
 	public BlockCustomSlab(Block sourceBlock) {
 		super(sourceBlock.getMaterial());
-		EMLogger.info("BlockCustomSlab <init>: %s guesses: hardness = %f; resistance = %f",
-				(new ItemStack(sourceBlock)).getDisplayName(),
-				sourceBlock.getExplosionResistance(null),
-				sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
+//		EMLogger.info("BlockCustomSlab <init>: %s guesses: hardness = %f; resistance = %f",
+//				(new ItemStack(sourceBlock)).getDisplayName(),
+//				Math.min(15.0f, sourceBlock.getExplosionResistance(null)),
+//				sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
 		/* Best guess reverse-engineered values of hardness and resistance values based on the explosion
-		 * resistance of the given source block */
-		setHardness(sourceBlock.getExplosionResistance(null));
+		 * resistance of the given source block, without allowing hardness to be absurdly high */
+		setHardness(Math.min(15.0f, sourceBlock.getExplosionResistance(null)));
 		setResistance(sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
 		IBlockState iblockstate = this.blockState.getBaseState();
 		iblockstate = iblockstate.withProperty(VARIANT_PROPERTY, false);
@@ -116,7 +114,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
 	@Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab);
+        return Item.getItemFromBlock(this);
     }
 
 }
