@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_bottom",
+    "textures": {
+        "bottom": "mod_emeraldmaterial:blocks/door.obsidian_lower",
+        "top": "mod_emeraldmaterial:blocks/door.obsidian_upper"
+    }
+}

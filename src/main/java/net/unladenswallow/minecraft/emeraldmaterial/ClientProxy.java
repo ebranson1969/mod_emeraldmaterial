@@ -59,7 +59,10 @@ public class ClientProxy extends CommonProxy {
         registerItemModelWithVariants(ModEmeraldMaterial.obsidianBow, ModEmeraldMaterial.MODID + ":obsidian_bow", ModEmeraldMaterial.MODID + ":obsidian_bow", 3);
 
         registerItemFromBlock(ModEmeraldMaterial.obsidianStairs, "obsidian_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab, "obsidian_half_slab");
         registerItemFromBlock(ModEmeraldMaterial.obsidianWall, "obsidian_wall");
+        registerItem(ModEmeraldMaterial.obsidianDoor, "obsidian_door");
+
         registerItemFromBlock(ModEmeraldMaterial.polishedObsidian, "polished_obsidian");
 
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);

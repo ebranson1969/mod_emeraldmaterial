@@ -23,3 +23,7 @@ item.obsidianPickaxe.name=Obsidian Pickaxe
 item.obsidianAxe.name=Obsidian Axe
 item.obsidianSpade.name=Obsidian Spade
 item.obsidianHoe.name=Obsidian Hoe
+tile.obsidianStairs.name=Obsidian Stairs
+tile.obsidianWall.name=Obsidian Wall
+tile.obsidianHalfSlab.name=Obsidian Slab
+item.obsidianDoor.name=Obsidian Door

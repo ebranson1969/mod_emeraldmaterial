@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.unladenswallow.minecraft.emeraldmaterial.block.BlockEmeraldDoor;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoor;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoubleSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomHalfSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomStairs;
@@ -56,10 +56,10 @@ public class ModEmeraldMaterial {
 	public static Item emeraldHorseArmor;
 	
 	public static Block emeraldStairs;
-	public static Block emeraldHalfSlab;
+	public static BlockCustomHalfSlab emeraldHalfSlab;
 	public static Block emeraldDoubleSlab;
 	public static Block emeraldWall;
-	public static Block emeraldDoorBlock;
+	public static BlockCustomDoor emeraldDoorBlock;
 	
 	public static Item obsidianBoots;
 	public static Item obsidianHelmet;
@@ -73,7 +73,13 @@ public class ModEmeraldMaterial {
 	public static Item obsidianBow;
 
 	public static Block obsidianStairs;
+	public static BlockCustomHalfSlab obsidianHalfSlab;
+	public static Block obsidianDoubleSlab;
 	public static Block obsidianWall;
+
+	public static BlockCustomDoor obsidianDoorBlock;
+	public static Item obsidianDoor;
+
 	public static Block polishedObsidian;
 	
 	private static int nextModEntityId = 0;
@@ -99,11 +105,12 @@ public class ModEmeraldMaterial {
 		
 		emeraldStairs = new BlockCustomStairs(Blocks.emerald_block, "emeraldStairs");
 		emeraldHalfSlab = new BlockCustomHalfSlab(Blocks.emerald_block, "emeraldHalfSlab");
-		emeraldDoubleSlab = new BlockCustomDoubleSlab(Blocks.emerald_block, "emeraldDoubleSlab");
+		emeraldDoubleSlab = new BlockCustomDoubleSlab(Blocks.emerald_block, emeraldHalfSlab, "emeraldDoubleSlab");
 		emeraldWall = new BlockCustomWall(Blocks.emerald_block, "emeraldWall");
 
-		emeraldDoorBlock = new BlockEmeraldDoor();
-		(emeraldDoor = new ItemDoor(emeraldDoorBlock)).setUnlocalizedName("emeraldDoor"); //new ItemEmeraldDoor();
+		emeraldDoorBlock = new BlockCustomDoor(Blocks.emerald_block, "emeraldDoor");
+		(emeraldDoor = new ItemDoor(emeraldDoorBlock)).setUnlocalizedName("emeraldDoor");
+		emeraldDoorBlock.setDropItem(emeraldDoor);
 
 		obsidianHelmet = new ItemCustomArmor("obsidianHelmet", 1, 0, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
 		obsidianChest = new ItemCustomArmor("obsidianChest", 1, 1, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
@@ -117,7 +124,14 @@ public class ModEmeraldMaterial {
 		(obsidianBow = new ItemCustomBow("obsidianBow", "obsidian_bow")).setMaxDamage(600);
 		
 		obsidianStairs = new BlockCustomStairs(Blocks.obsidian, "obsidianStairs");
+		obsidianHalfSlab = new BlockCustomHalfSlab(Blocks.obsidian, "obsidianHalfSlab");
+		obsidianDoubleSlab = new BlockCustomDoubleSlab(Blocks.obsidian, obsidianHalfSlab, "obsidianDoubleSlab");
 		obsidianWall = new BlockCustomWall(Blocks.obsidian, "obsidianWall");
+
+		obsidianDoorBlock = new BlockCustomDoor(Blocks.obsidian, "obsidianDoor").setInteractive(true);
+		(obsidianDoor = new ItemDoor(obsidianDoorBlock)).setUnlocalizedName("obsidianDoor");
+		obsidianDoorBlock.setDropItem(obsidianDoor);
+
 		(polishedObsidian = new Block(Blocks.obsidian.getMaterial())).setUnlocalizedName("polishedObsidian").setCreativeTab(CreativeTabs.tabBlock);
 		
 		GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
@@ -152,7 +166,12 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerItem(obsidianBow, "obsidian_bow");
 
 		GameRegistry.registerBlock(obsidianStairs, "obsidian_stairs");
+		GameRegistry.registerBlock(obsidianHalfSlab, ItemBlockCustomSlab.class, "obsidian_half_slab", obsidianHalfSlab, obsidianDoubleSlab);
+		GameRegistry.registerBlock(obsidianDoubleSlab, ItemBlockCustomSlab.class, "obsidian_double_slab", obsidianHalfSlab, obsidianDoubleSlab);
 		GameRegistry.registerBlock(obsidianWall, "obsidian_wall");
+		GameRegistry.registerItem(obsidianDoor, "obsidian_door");
+		GameRegistry.registerBlock(obsidianDoorBlock, "obsidian_door_block");
+		
 		GameRegistry.registerBlock(polishedObsidian, "polished_obsidian");
 
 		/* This is probably a dangerous way of doing this.  We could conflict with another mod or future
