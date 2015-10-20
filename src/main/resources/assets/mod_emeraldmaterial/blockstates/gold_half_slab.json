@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom,variant=false": { "model": "mod_emeraldmaterial:gold_half_slab" },
+        "half=top,variant=false": { "model": "mod_emeraldmaterial:gold_upper_slab" }
+    }
+}

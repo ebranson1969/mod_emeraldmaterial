@@ -11,13 +11,11 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoor;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoubleSlab;
@@ -25,12 +23,12 @@ import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomHalfSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomStairs;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomWall;
 import net.unladenswallow.minecraft.emeraldmaterial.block.ItemBlockCustomSlab;
-import net.unladenswallow.minecraft.emeraldmaterial.entity.EntityCustomHorse;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomArmor;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomAxe;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomPickaxe;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
+import net.unladenswallow.minecraft.emeraldmaterial.item.ItemGoldBow;
 
 
 @Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true)
@@ -111,6 +109,17 @@ public class ModEmeraldMaterial {
 
 	public static BlockCustomDoor lapisDoorBlock;
 	public static Item lapisDoor;
+
+	public static Item goldBroadsword;
+	public static Item goldBow;
+	
+	public static Block goldStairs;
+	public static BlockCustomHalfSlab goldHalfSlab;
+	public static Block goldDoubleSlab;
+	public static Block goldWall;
+
+	public static BlockCustomDoor goldDoorBlock;
+	public static Item goldDoor;
 
 	private static int nextModEntityId = 0;
 	
@@ -267,6 +276,30 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerItem(lapisDoor, "lapis_door");
 		GameRegistry.registerBlock(lapisDoorBlock, "lapis_door_block");
 		
+		
+		/* **************    Gold Blocks   ********************* */
+		goldBroadsword = (new ItemSword(ItemMaterials.goldBroadswordMaterial)).setUnlocalizedName("goldBroadsword");
+		goldBow = new ItemGoldBow();
+
+		goldStairs = new BlockCustomStairs(Blocks.gold_block, "goldStairs");
+		goldWall = new BlockCustomWall(Blocks.gold_block, "goldWall");
+		goldHalfSlab = new BlockCustomHalfSlab(Blocks.gold_block, "goldHalfSlab");
+		goldDoubleSlab = new BlockCustomDoubleSlab(Blocks.gold_block, goldHalfSlab, "goldDoubleSlab");
+
+		goldDoorBlock = new BlockCustomDoor(Blocks.gold_block, "goldDoor").setInteractive(true);
+		(goldDoor = new ItemDoor(goldDoorBlock)).setUnlocalizedName("goldDoor");
+		goldDoorBlock.setDropItem(goldDoor);
+
+		GameRegistry.registerItem(goldBroadsword, "gold_broadsword");
+		GameRegistry.registerItem(goldBow, "gold_bow");
+
+		GameRegistry.registerBlock(goldStairs, "gold_stairs");
+		GameRegistry.registerBlock(goldWall, "gold_wall");
+		GameRegistry.registerBlock(goldHalfSlab, ItemBlockCustomSlab.class, "gold_half_slab", goldHalfSlab, goldDoubleSlab);
+		GameRegistry.registerBlock(goldDoubleSlab, ItemBlockCustomSlab.class, "gold_double_slab", goldHalfSlab, goldDoubleSlab);
+
+		GameRegistry.registerItem(goldDoor, "gold_door");
+		GameRegistry.registerBlock(goldDoorBlock, "gold_door_block");
 		
 //		EntityRegistry.registerModEntity(EntityCustomHorse.class, "CustomHorse", ++nextModEntityId, MODID,
 //					80, 3, false);

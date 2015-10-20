@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=false": { "model": "mod_emeraldmaterial:gold_double_slab" },
+        "variant=true": { "model": "mod_emeraldmaterial:gold_double_slab" }
+    }
+}

@@ -88,6 +88,16 @@ public class ClientProxy extends CommonProxy {
         registerItem(ModEmeraldMaterial.lapisDoor, "lapis_door");
 
 
+        registerItem(ModEmeraldMaterial.goldBroadsword, "gold_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.goldBow, ModEmeraldMaterial.MODID + ":gold_bow", ModEmeraldMaterial.MODID + ":gold_bow", 3);
+
+        registerItemFromBlock(ModEmeraldMaterial.goldStairs, "gold_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.goldWall, "gold_wall");
+        registerItemFromBlock(ModEmeraldMaterial.goldHalfSlab, "gold_half_slab");
+
+        registerItem(ModEmeraldMaterial.goldDoor, "gold_door");
+
+
         
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
     }

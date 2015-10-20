@@ -2,9 +2,9 @@ package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -94,4 +94,16 @@ public class ItemMaterials {
 		lapisArmorMaterial.customCraftingMaterial = Item.getItemFromBlock(Blocks.obsidian);
 	}
 	
+	/* This is a copy of ToolMaterial.GOLD values with damage increased by 1.0 */
+	public static ToolMaterial goldBroadswordMaterial = EnumHelper.addToolMaterial(
+			"GoldWeapon",
+			0,
+			32,
+			12.0f,
+			1.0f,
+			22
+			);
+	static {
+		goldBroadswordMaterial.setRepairItem(new ItemStack(Items.gold_ingot));
+	}
 }
