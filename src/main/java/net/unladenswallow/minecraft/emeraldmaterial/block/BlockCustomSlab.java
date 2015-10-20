@@ -2,6 +2,7 @@ package net.unladenswallow.minecraft.emeraldmaterial.block;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -15,9 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
-public abstract class BlockEmeraldSlab extends BlockSlab {
+public abstract class BlockCustomSlab extends BlockSlab {
 	
 	/* The Emerald Slab does not have any variants, but if we want to inherit behaviors of BlockSlab and ItemSlab,
 	 * we need to conform to their expectations.  Specifically, ItemSlab will only place a half slab on another
@@ -27,10 +29,16 @@ public abstract class BlockEmeraldSlab extends BlockSlab {
 	 */
 	private static final PropertyBool VARIANT_PROPERTY = PropertyBool.create("variant");
 	
-	public BlockEmeraldSlab() {
-		super(Blocks.emerald_block.getMaterial());
-		setHardness(5f);
-		setResistance(30f);
+	public BlockCustomSlab(Block sourceBlock) {
+		super(sourceBlock.getMaterial());
+		EMLogger.info("BlockCustomSlab <init>: %s guesses: hardness = %f; resistance = %f",
+				(new ItemStack(sourceBlock)).getDisplayName(),
+				sourceBlock.getExplosionResistance(null),
+				sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
+		/* Best guess reverse-engineered values of hardness and resistance values based on the explosion
+		 * resistance of the given source block */
+		setHardness(sourceBlock.getExplosionResistance(null));
+		setResistance(sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
 		IBlockState iblockstate = this.blockState.getBaseState();
 		iblockstate = iblockstate.withProperty(VARIANT_PROPERTY, false);
 		if (!this.isDouble()) {

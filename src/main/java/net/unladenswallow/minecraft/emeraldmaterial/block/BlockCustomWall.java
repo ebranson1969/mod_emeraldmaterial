@@ -2,12 +2,12 @@ package net.unladenswallow.minecraft.emeraldmaterial.block;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -16,21 +16,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Wall block made from the emerald block.  This class extends BlockWall to get
+ * Wall block made from a full block.  This class extends BlockWall to get
  * its functionality for free, then overrides some methods, mainly to take out
  * the unnecessary VARIANT property.
  * 
  * @author FreneticFeline
  *
  */
-public class BlockEmeraldWall extends BlockWall {
+public class BlockCustomWall extends BlockWall {
 
 	protected final BlockState overrideBlockState;
 	
-    public BlockEmeraldWall()
+    public BlockCustomWall(Block sourceBlock, String unlocalizedName)
     {
-        super(Blocks.emerald_block);
-        this.setUnlocalizedName("emeraldWall");
+        super(sourceBlock);
+        this.setUnlocalizedName(unlocalizedName);
         this.overrideBlockState = createOverrideBlockState();
         this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
     }
