@@ -23,7 +23,7 @@ public class ItemMaterials {
 			0,
 			1000,
 			10.0f,
-			4.0f,
+			3.5f,
 			30
 			);
 	public static ArmorMaterial emeraldArmorMaterial = EnumHelper.addArmorMaterial(
@@ -39,11 +39,19 @@ public class ItemMaterials {
 	}
 
 	public static ToolMaterial obsidianToolMaterial = EnumHelper.addToolMaterial(
-			"EmeraldTool",
+			"ObsidianTool",
 			3,
 			2500,
 			6.0f,
 			2.0f,
+			30
+			);
+	public static ToolMaterial obsidianBroadswordMaterial = EnumHelper.addToolMaterial(
+			"ObsidianWeapon",
+			3,
+			2500,
+			6.0f,
+			3.0f,
 			30
 			);
 	public static ArmorMaterial obsidianArmorMaterial = EnumHelper.addArmorMaterial(
@@ -54,7 +62,36 @@ public class ItemMaterials {
 			30);
 	static {
 		obsidianToolMaterial.setRepairItem(new ItemStack(Blocks.obsidian));
+		obsidianBroadswordMaterial.setRepairItem(new ItemStack(Blocks.obsidian));
 		obsidianArmorMaterial.customCraftingMaterial = Item.getItemFromBlock(Blocks.obsidian);
+	}
+	
+	public static ToolMaterial lapisToolMaterial = EnumHelper.addToolMaterial(
+			"LapisTool",
+			2,
+			131,
+			4.0f,
+			1.0f,
+			30
+			);
+	public static ToolMaterial lapisBroadswordMaterial = EnumHelper.addToolMaterial(
+			"LapisWeapon",
+			2,
+			131,
+			4.0f,
+			2.0f,
+			30
+			);
+	public static ArmorMaterial lapisArmorMaterial = EnumHelper.addArmorMaterial(
+			"LapisArmor",
+			"mod_emeraldmaterial:armor.lapis",
+			15,
+			new int[] {2, 5, 4, 1},
+			30);
+	static {
+		lapisToolMaterial.setRepairItem(new ItemStack(Blocks.obsidian));
+		lapisBroadswordMaterial.setRepairItem(new ItemStack(Blocks.obsidian));
+		lapisArmorMaterial.customCraftingMaterial = Item.getItemFromBlock(Blocks.obsidian);
 	}
 	
 }

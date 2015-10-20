@@ -1,0 +1,7 @@
+{
+    "parent": "block/door_top_rh",
+    "textures": {
+        "bottom": "mod_emeraldmaterial:blocks/door.lapis_lower",
+        "top": "mod_emeraldmaterial:blocks/door.lapis_upper"
+    }
+}

@@ -25,46 +25,70 @@ public class ClientProxy extends CommonProxy {
         registerItem(ModEmeraldMaterial.emeraldChest, "emerald_chest");
         registerItem(ModEmeraldMaterial.emeraldPants, "emerald_pants");
         registerItem(ModEmeraldMaterial.emeraldBoots, "emerald_boots");
-        registerItem(ModEmeraldMaterial.emeraldBroadsword, "emerald_broadsword");
+
         registerItem(ModEmeraldMaterial.emeraldSword, "emerald_sword");
+        registerItem(ModEmeraldMaterial.emeraldBroadsword, "emerald_broadsword");
         registerItemModelWithVariants(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow", ModEmeraldMaterial.MODID + ":emerald_bow", 4);
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-//    		.register(ModEmeraldMaterial.emeraldBow, 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, "emerald_bow"), "inventory"));
-//        ModelBakery.addVariantName(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow");
-//        ModelBakery.addVariantName(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow_pulling_0");
-//        ModelBakery.addVariantName(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow_pulling_1");
-//        ModelBakery.addVariantName(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow_pulling_2");
-//        ModelBakery.addVariantName(ModEmeraldMaterial.emeraldBow, ModEmeraldMaterial.MODID + ":emerald_bow_pulling_3");
-        registerItem(ModEmeraldMaterial.emeraldPickaxe, "emerald_pickaxe");
+        
         registerItem(ModEmeraldMaterial.emeraldAxe, "emerald_axe");
-        registerItem(ModEmeraldMaterial.emeraldSpade, "emerald_spade");
         registerItem(ModEmeraldMaterial.emeraldHoe, "emerald_hoe");
-        registerItem(ModEmeraldMaterial.emeraldHorseArmor, "emerald_horse_armor");
+        registerItem(ModEmeraldMaterial.emeraldPickaxe, "emerald_pickaxe");
+        registerItem(ModEmeraldMaterial.emeraldSpade, "emerald_spade");
 
         registerItemFromBlock(ModEmeraldMaterial.emeraldStairs, "emerald_stairs");
-        registerItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab, "emerald_half_slab");
         registerItemFromBlock(ModEmeraldMaterial.emeraldWall, "emerald_wall");
+        registerItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab, "emerald_half_slab");
 
         registerItem(ModEmeraldMaterial.emeraldDoor, "emerald_door");
 
+        registerItem(ModEmeraldMaterial.emeraldHorseArmor, "emerald_horse_armor");
+
+        
         registerItem(ModEmeraldMaterial.obsidianHelmet, "obsidian_helmet");
         registerItem(ModEmeraldMaterial.obsidianChest, "obsidian_chest");
         registerItem(ModEmeraldMaterial.obsidianPants, "obsidian_pants");
         registerItem(ModEmeraldMaterial.obsidianBoots, "obsidian_boots");
+        
         registerItem(ModEmeraldMaterial.obsidianSword, "obsidian_sword");
-        registerItem(ModEmeraldMaterial.obsidianPickaxe, "obsidian_pickaxe");
-        registerItem(ModEmeraldMaterial.obsidianAxe, "obsidian_axe");
-        registerItem(ModEmeraldMaterial.obsidianSpade, "obsidian_spade");
-        registerItem(ModEmeraldMaterial.obsidianHoe, "obsidian_hoe");
+        registerItem(ModEmeraldMaterial.obsidianBroadsword, "obsidian_broadsword");
         registerItemModelWithVariants(ModEmeraldMaterial.obsidianBow, ModEmeraldMaterial.MODID + ":obsidian_bow", ModEmeraldMaterial.MODID + ":obsidian_bow", 3);
+        
+        registerItem(ModEmeraldMaterial.obsidianAxe, "obsidian_axe");
+        registerItem(ModEmeraldMaterial.obsidianHoe, "obsidian_hoe");
+        registerItem(ModEmeraldMaterial.obsidianPickaxe, "obsidian_pickaxe");
+        registerItem(ModEmeraldMaterial.obsidianSpade, "obsidian_spade");
 
         registerItemFromBlock(ModEmeraldMaterial.obsidianStairs, "obsidian_stairs");
-        registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab, "obsidian_half_slab");
         registerItemFromBlock(ModEmeraldMaterial.obsidianWall, "obsidian_wall");
+        registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab, "obsidian_half_slab");
+
         registerItem(ModEmeraldMaterial.obsidianDoor, "obsidian_door");
 
         registerItemFromBlock(ModEmeraldMaterial.polishedObsidian, "polished_obsidian");
 
+        
+        registerItem(ModEmeraldMaterial.lapisHelmet, "lapis_helmet");
+        registerItem(ModEmeraldMaterial.lapisChest, "lapis_chest");
+        registerItem(ModEmeraldMaterial.lapisPants, "lapis_pants");
+        registerItem(ModEmeraldMaterial.lapisBoots, "lapis_boots");
+        
+        registerItem(ModEmeraldMaterial.lapisSword, "lapis_sword");
+        registerItem(ModEmeraldMaterial.lapisBroadsword, "lapis_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.lapisBow, ModEmeraldMaterial.MODID + ":lapis_bow", ModEmeraldMaterial.MODID + ":lapis_bow", 3);
+        
+        registerItem(ModEmeraldMaterial.lapisAxe, "lapis_axe");
+        registerItem(ModEmeraldMaterial.lapisHoe, "lapis_hoe");
+        registerItem(ModEmeraldMaterial.lapisPickaxe, "lapis_pickaxe");
+        registerItem(ModEmeraldMaterial.lapisSpade, "lapis_spade");
+
+        registerItemFromBlock(ModEmeraldMaterial.lapisStairs, "lapis_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.lapisWall, "lapis_wall");
+        registerItemFromBlock(ModEmeraldMaterial.lapisHalfSlab, "lapis_half_slab");
+
+        registerItem(ModEmeraldMaterial.lapisDoor, "lapis_door");
+
+
+        
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
     }
 
