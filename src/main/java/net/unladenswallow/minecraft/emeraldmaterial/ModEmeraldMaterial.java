@@ -11,6 +11,8 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -124,6 +126,8 @@ public class ModEmeraldMaterial {
 	private static int nextModEntityId = 0;
 	
 	public static ModEmeraldMaterial instance = new ModEmeraldMaterial();
+
+	public static EMEventHandler eventHandler = new EMEventHandler();
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
@@ -303,7 +307,7 @@ public class ModEmeraldMaterial {
 		
 //		EntityRegistry.registerModEntity(EntityCustomHorse.class, "CustomHorse", ++nextModEntityId, MODID,
 //					80, 3, false);
-//		MinecraftForge.EVENT_BUS.register(new EMEventHandler());
+		
 	}
 	
 	@EventHandler

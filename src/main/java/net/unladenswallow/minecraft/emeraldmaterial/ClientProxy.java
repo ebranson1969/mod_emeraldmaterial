@@ -7,6 +7,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -100,6 +101,9 @@ public class ClientProxy extends CommonProxy {
 
         
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
+		MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.eventHandler);
+		FMLCommonHandler.instance().bus().register(ModEmeraldMaterial.eventHandler);
+
     }
 
 	protected void registerItem(Item item, String name) {
