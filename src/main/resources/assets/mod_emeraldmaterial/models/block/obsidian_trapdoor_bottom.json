@@ -1,0 +1,6 @@
+{
+    "parent": "block/trapdoor_bottom",
+    "textures": {
+        "texture": "mod_emeraldmaterial:blocks/trapdoor.obsidian"
+    }
+}

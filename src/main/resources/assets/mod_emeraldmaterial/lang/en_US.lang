@@ -13,6 +13,7 @@ tile.emeraldStairs.name=Emerald Stairs
 tile.emeraldWall.name=Emerald Wall
 tile.emeraldHalfSlab.name=Emerald Slab
 item.emeraldDoor.name=Emerald Door
+item.emeraldTrapdoor.name=Emerald Trapdoor
 
 item.obsidianHelmet.name=Obsidian Helmet
 item.obsidianChest.name=Obsidian Chestplate
@@ -29,6 +30,7 @@ tile.obsidianStairs.name=Obsidian Stairs
 tile.obsidianWall.name=Obsidian Wall
 tile.obsidianHalfSlab.name=Obsidian Slab
 item.obsidianDoor.name=Obsidian Door
+item.obsidianTrapdoor.name=Obsidian Trapdoor
 tile.polishedObsidian.name=Polished Obsidian
 
 item.lapisHelmet.name=Lapis Helmet
@@ -37,6 +39,7 @@ item.lapisPants.name=Lapis Leggings
 item.lapisBoots.name=Lapis Boots
 item.lapisSword.name=Lapis Sword
 item.lapisBroadsword.name=Lapis Broadsword
+item.lapisBow.name=Lapis Bow
 item.lapisAxe.name=Lapis Axe
 item.lapisHoe.name=Lapis Hoe
 item.lapisPickaxe.name=Lapis Pickaxe
@@ -45,6 +48,24 @@ tile.lapisStairs.name=Lapis Stairs
 tile.lapisWall.name=Lapis Wall
 tile.lapisHalfSlab.name=Lapis Slab
 item.lapisDoor.name=Lapis Door
+item.lapisTrapdoor.name=Lapis Trapdoor
+
+item.redstoneHelmet.name=Redstone Helmet
+item.redstoneChest.name=Redstone Chestplate
+item.redstonePants.name=Redstone Leggings
+item.redstoneBoots.name=Redstone Boots
+item.redstoneSword.name=Redstone Sword
+item.redstoneBroadsword.name=Redstone Broadsword
+item.redstoneBow.name=Redstone Bow
+item.redstoneAxe.name=Redstone Axe
+item.redstoneHoe.name=Redstone Hoe
+item.redstonePickaxe.name=Redstone Pickaxe
+item.redstoneSpade.name=Redstone Spade
+tile.redstoneStairs.name=Redstone Stairs
+tile.redstoneWall.name=Redstone Wall
+tile.redstoneHalfSlab.name=Redstone Slab
+item.redstoneDoor.name=Redstone Door
+item.redstoneTrapdoor.name=Redstone Trapdoor
 
 item.goldBroadsword.name=Gold Broadsword
 item.goldBow.name=Gold Bow
@@ -52,3 +73,18 @@ tile.goldStairs.name=Gold Stairs
 tile.goldWall.name=Gold Wall
 tile.goldHalfSlab.name=Gold Slab
 item.goldDoor.name=Gold Door
+item.goldTrapdoor.name=Gold Trapdoor
+
+item.ironBroadsword.name=Iron Broadsword
+item.ironBow.name=Iron Bow
+tile.ironStairs.name=Iron Stairs
+tile.ironWall.name=Iron Wall
+tile.ironHalfSlab.name=Iron Slab
+
+item.diamondBroadsword.name=Diamond Broadsword
+item.diamondBow.name=Diamond Bow
+tile.diamondStairs.name=Diamond Stairs
+tile.diamondWall.name=Diamond Wall
+tile.diamondHalfSlab.name=Diamond Slab
+item.diamondDoor.name=Diamond Door
+item.diamondTrapdoor.name=Diamond Trapdoor

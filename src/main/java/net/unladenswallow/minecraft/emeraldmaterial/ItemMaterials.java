@@ -68,7 +68,7 @@ public class ItemMaterials {
 	
 	public static ToolMaterial lapisToolMaterial = EnumHelper.addToolMaterial(
 			"LapisTool",
-			2,
+			1,
 			131,
 			4.0f,
 			1.0f,
@@ -76,7 +76,7 @@ public class ItemMaterials {
 			);
 	public static ToolMaterial lapisBroadswordMaterial = EnumHelper.addToolMaterial(
 			"LapisWeapon",
-			2,
+			1,
 			131,
 			4.0f,
 			2.0f,
@@ -94,6 +94,34 @@ public class ItemMaterials {
 		lapisArmorMaterial.customCraftingMaterial = Item.getItemFromBlock(Blocks.obsidian);
 	}
 	
+	public static ToolMaterial redstoneToolMaterial = EnumHelper.addToolMaterial(
+			"RedstoneTool",
+			1,
+			131,
+			4.0f,
+			1.0f,
+			30
+			);
+	public static ToolMaterial redstoneBroadswordMaterial = EnumHelper.addToolMaterial(
+			"RedstoneWeapon",
+			1,
+			131,
+			4.0f,
+			2.0f,
+			30
+			);
+	public static ArmorMaterial redstoneArmorMaterial = EnumHelper.addArmorMaterial(
+			"RedstoneArmor",
+			"mod_emeraldmaterial:armor.redstone",
+			15,
+			new int[] {2, 5, 4, 1},
+			30);
+	static {
+		redstoneToolMaterial.setRepairItem(new ItemStack(Items.redstone));
+		redstoneBroadswordMaterial.setRepairItem(new ItemStack(Items.redstone));
+		redstoneArmorMaterial.customCraftingMaterial = Items.redstone;
+	}
+	
 	/* This is a copy of ToolMaterial.GOLD values with damage increased by 1.0 */
 	public static ToolMaterial goldBroadswordMaterial = EnumHelper.addToolMaterial(
 			"GoldWeapon",
@@ -106,4 +134,33 @@ public class ItemMaterials {
 	static {
 		goldBroadswordMaterial.setRepairItem(new ItemStack(Items.gold_ingot));
 	}
+
+
+	/* This is a copy of ToolMaterial.IRON values with damage increased by 1.0 */
+	public static ToolMaterial ironBroadswordMaterial = EnumHelper.addToolMaterial(
+			"IronWeapon",
+			2,
+			250,
+			6.0f,
+			3.0f,
+			14
+			);
+	static {
+		ironBroadswordMaterial.setRepairItem(new ItemStack(Items.iron_ingot));
+	}
+
+
+	/* This is a copy of ToolMaterial.DIAMOND values with damage increased by 1.0 */
+	public static ToolMaterial diamondBroadswordMaterial = EnumHelper.addToolMaterial(
+			"DiamondWeapon",
+			3,
+			1561,
+			8.0f,
+			4.0f,
+			10
+			);
+	static {
+		diamondBroadswordMaterial.setRepairItem(new ItemStack(Items.diamond));
+	}
+
 }

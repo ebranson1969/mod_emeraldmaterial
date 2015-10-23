@@ -28,7 +28,7 @@ public class BlockCustomDoor extends BlockDoor {
 		/* Best guess reverse-engineered value of hardness value based on the explosion
 		 * resistance of the given source block, without allowing hardness to be absurdly high */
 		setHardness(Math.min(15.0f, sourceBlock.getExplosionResistance(null)));
-		this.setStepSound(Block.soundTypeStone);
+		this.setStepSound(sourceBlock.stepSound);
         if (this.blockMaterial == Material.iron)
         {
             this.interactive = true;

@@ -41,6 +41,7 @@ public class ClientProxy extends CommonProxy {
         registerItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab, "emerald_half_slab");
 
         registerItem(ModEmeraldMaterial.emeraldDoor, "emerald_door");
+        registerItemFromBlock(ModEmeraldMaterial.emeraldTrapdoor, "emerald_trapdoor");
 
         registerItem(ModEmeraldMaterial.emeraldHorseArmor, "emerald_horse_armor");
 
@@ -64,6 +65,7 @@ public class ClientProxy extends CommonProxy {
         registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab, "obsidian_half_slab");
 
         registerItem(ModEmeraldMaterial.obsidianDoor, "obsidian_door");
+        registerItemFromBlock(ModEmeraldMaterial.obsidianTrapdoor, "obsidian_trapdoor");
 
         registerItemFromBlock(ModEmeraldMaterial.polishedObsidian, "polished_obsidian");
 
@@ -87,6 +89,29 @@ public class ClientProxy extends CommonProxy {
         registerItemFromBlock(ModEmeraldMaterial.lapisHalfSlab, "lapis_half_slab");
 
         registerItem(ModEmeraldMaterial.lapisDoor, "lapis_door");
+        registerItemFromBlock(ModEmeraldMaterial.lapisTrapdoor, "lapis_trapdoor");
+
+
+        registerItem(ModEmeraldMaterial.redstoneHelmet, "redstone_helmet");
+        registerItem(ModEmeraldMaterial.redstoneChest, "redstone_chest");
+        registerItem(ModEmeraldMaterial.redstonePants, "redstone_pants");
+        registerItem(ModEmeraldMaterial.redstoneBoots, "redstone_boots");
+        
+        registerItem(ModEmeraldMaterial.redstoneSword, "redstone_sword");
+        registerItem(ModEmeraldMaterial.redstoneBroadsword, "redstone_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.redstoneBow, ModEmeraldMaterial.MODID + ":redstone_bow", ModEmeraldMaterial.MODID + ":redstone_bow", 3);
+        
+        registerItem(ModEmeraldMaterial.redstoneAxe, "redstone_axe");
+        registerItem(ModEmeraldMaterial.redstoneHoe, "redstone_hoe");
+        registerItem(ModEmeraldMaterial.redstonePickaxe, "redstone_pickaxe");
+        registerItem(ModEmeraldMaterial.redstoneSpade, "redstone_spade");
+
+        registerItemFromBlock(ModEmeraldMaterial.redstoneStairs, "redstone_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.redstoneWall, "redstone_wall");
+        registerItemFromBlock(ModEmeraldMaterial.redstoneHalfSlab, "redstone_half_slab");
+
+        registerItem(ModEmeraldMaterial.redstoneDoor, "redstone_door");
+        registerItemFromBlock(ModEmeraldMaterial.redstoneTrapdoor, "redstone_trapdoor");
 
 
         registerItem(ModEmeraldMaterial.goldBroadsword, "gold_broadsword");
@@ -97,7 +122,26 @@ public class ClientProxy extends CommonProxy {
         registerItemFromBlock(ModEmeraldMaterial.goldHalfSlab, "gold_half_slab");
 
         registerItem(ModEmeraldMaterial.goldDoor, "gold_door");
+        registerItemFromBlock(ModEmeraldMaterial.goldTrapdoor, "gold_trapdoor");
 
+
+        registerItem(ModEmeraldMaterial.ironBroadsword, "iron_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.ironBow, ModEmeraldMaterial.MODID + ":iron_bow", ModEmeraldMaterial.MODID + ":iron_bow", 3);
+
+        registerItemFromBlock(ModEmeraldMaterial.ironStairs, "iron_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.ironWall, "iron_wall");
+        registerItemFromBlock(ModEmeraldMaterial.ironHalfSlab, "iron_half_slab");
+
+        
+        registerItem(ModEmeraldMaterial.diamondBroadsword, "diamond_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.diamondBow, ModEmeraldMaterial.MODID + ":diamond_bow", ModEmeraldMaterial.MODID + ":diamond_bow", 3);
+
+        registerItemFromBlock(ModEmeraldMaterial.diamondStairs, "diamond_stairs");
+        registerItemFromBlock(ModEmeraldMaterial.diamondWall, "diamond_wall");
+        registerItemFromBlock(ModEmeraldMaterial.diamondHalfSlab, "diamond_half_slab");
+
+        registerItem(ModEmeraldMaterial.diamondDoor, "diamond_door");
+        registerItemFromBlock(ModEmeraldMaterial.diamondTrapdoor, "diamond_trapdoor");
 
         
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "variant=false": { "model": "mod_emeraldmaterial:redstone_double_slab" },
+        "variant=true": { "model": "mod_emeraldmaterial:redstone_double_slab" }
+    }
+}

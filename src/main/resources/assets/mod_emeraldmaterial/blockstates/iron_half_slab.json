@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom,variant=false": { "model": "mod_emeraldmaterial:iron_half_slab" },
+        "half=top,variant=false": { "model": "mod_emeraldmaterial:iron_upper_slab" }
+    }
+}
