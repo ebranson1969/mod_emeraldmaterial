@@ -1,7 +1,6 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,6 +17,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomBlock;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoor;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoubleSlab;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomHalfSlab;
@@ -67,6 +67,7 @@ public class ModEmeraldMaterial {
 	public static Item emeraldHorseArmor;
 	
 
+	public static Item obsidianIngot;
 	public static Item obsidianHelmet;
 	public static Item obsidianChest;
 	public static Item obsidianPants;
@@ -174,6 +175,25 @@ public class ModEmeraldMaterial {
 	public static Block diamondTrapdoor;
 
 	
+	public static Block diamondObsidianBlock;
+	public static Item diamondObsidianIngot;
+	public static Item diamondObsidianHelmet;
+	public static Item diamondObsidianChest;
+	public static Item diamondObsidianPants;
+	public static Item diamondObsidianBoots;
+
+	public static Item diamondObsidianSword;
+	public static Item diamondObsidianBroadsword;
+	public static Item diamondObsidianBow;
+
+	public static Item diamondObsidianAxe;
+	public static Item diamondObsidianHoe;
+	public static Item diamondObsidianPickaxe;
+	public static Item diamondObsidianSpade;
+
+	
+	
+	
 	private static int nextModEntityId = 0;
 	
 	public static ModEmeraldMaterial instance = new ModEmeraldMaterial();
@@ -183,7 +203,11 @@ public class ModEmeraldMaterial {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
 		ModEmeraldMaterial.proxy.preInit(preInitEvent);
-		
+
+		/* Items that are referenced by ItemMaterials must be defined before we use ItemMaterials */
+		obsidianIngot = (new Item()).setUnlocalizedName("obsidianIngot").setCreativeTab(CreativeTabs.tabMaterials);
+		diamondObsidianIngot = (new Item()).setUnlocalizedName("diamondObsidianIngot").setCreativeTab(CreativeTabs.tabMaterials);
+
 		/* **************    Emerald Items and Blocks   ********************* */
 		emeraldHelmet = new ItemCustomArmor("emeraldHelmet", 1, 0, ItemMaterials.emeraldArmorMaterial, Potion.moveSpeed);
 		emeraldChest = new ItemCustomArmor("emeraldChest", 1, 1, ItemMaterials.emeraldArmorMaterial, Potion.moveSpeed);
@@ -245,7 +269,13 @@ public class ModEmeraldMaterial {
 
 		obsidianAxe = new ItemCustomAxe(ItemMaterials.obsidianToolMaterial, "obsidianAxe");
 		(obsidianHoe = new ItemHoe(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianHoe");
-		obsidianPickaxe = new ItemCustomPickaxe(ItemMaterials.obsidianToolMaterial, "obsidianPickaxe");
+		obsidianPickaxe = new ItemCustomPickaxe(ItemMaterials.obsidianToolMaterial, "obsidianPickaxe") {
+			@Override
+		    public float getStrVsBlock(ItemStack stack, Block block)
+		    {
+		        return block == Blocks.obsidian ? 12.0f : super.getStrVsBlock(stack, block);
+		    }
+		};
 		(obsidianSpade = new ItemSpade(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianSpade");
 
 		obsidianSword = (new ItemSword(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianSword");
@@ -264,6 +294,7 @@ public class ModEmeraldMaterial {
 
 		(polishedObsidian = new Block(Blocks.obsidian.getMaterial())).setUnlocalizedName("polishedObsidian").setCreativeTab(CreativeTabs.tabBlock);
 		
+		GameRegistry.registerItem(obsidianIngot, "obsidian_ingot");
 		GameRegistry.registerItem(obsidianHelmet, "obsidian_helmet");
 		GameRegistry.registerItem(obsidianChest, "obsidian_chest");
 		GameRegistry.registerItem(obsidianPants, "obsidian_pants");
@@ -291,7 +322,7 @@ public class ModEmeraldMaterial {
 
 		
 		/* **************    Lapis Items and Blocks   ********************* */
-		lapisHelmet = new ItemCustomArmor("lapisHelmet", 1, 0, ItemMaterials.lapisArmorMaterial, null);
+		lapisHelmet = new ItemCustomArmor("lapisHelmet", 1, 0, ItemMaterials.lapisArmorMaterial, Potion.waterBreathing);
 		lapisChest = new ItemCustomArmor("lapisChest", 1, 1, ItemMaterials.lapisArmorMaterial, null);
 		lapisPants = new ItemCustomArmor("lapisPants", 2, 2, ItemMaterials.lapisArmorMaterial, null);
 		lapisBoots = new ItemCustomArmor("lapisBoots", 1, 3, ItemMaterials.lapisArmorMaterial, null);
@@ -340,7 +371,7 @@ public class ModEmeraldMaterial {
 		
 		
 		/* **************    Redstone Items and Blocks   ********************* */
-		redstoneHelmet = new ItemCustomArmor("redstoneHelmet", 1, 0, ItemMaterials.redstoneArmorMaterial, null);
+		redstoneHelmet = new ItemCustomArmor("redstoneHelmet", 1, 0, ItemMaterials.redstoneArmorMaterial, Potion.nightVision);
 		redstoneChest = new ItemCustomArmor("redstoneChest", 1, 1, ItemMaterials.redstoneArmorMaterial, null);
 		redstonePants = new ItemCustomArmor("redstonePants", 2, 2, ItemMaterials.redstoneArmorMaterial, null);
 		redstoneBoots = new ItemCustomArmor("redstoneBoots", 1, 3, ItemMaterials.redstoneArmorMaterial, null);
@@ -359,7 +390,7 @@ public class ModEmeraldMaterial {
 		redstoneHalfSlab = new BlockCustomHalfSlab(Blocks.redstone_block, "redstoneHalfSlab");
 		redstoneDoubleSlab = new BlockCustomDoubleSlab(Blocks.redstone_block, redstoneHalfSlab, "redstoneDoubleSlab");
 
-		redstoneDoorBlock = new BlockCustomDoor(Blocks.lapis_block, "redstoneDoor").setInteractive(true);
+		redstoneDoorBlock = new BlockCustomDoor(Blocks.redstone_block, "redstoneDoor").setInteractive(true);
 		(redstoneDoor = new ItemDoor(redstoneDoorBlock)).setUnlocalizedName("redstoneDoor");
 		redstoneDoorBlock.setDropItem(redstoneDoor);
 		redstoneTrapdoor = new BlockCustomTrapDoor(Blocks.redstone_block, "redstoneTrapdoor");
@@ -461,7 +492,47 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerBlock(diamondTrapdoor, "diamond_trapdoor");
 
 		
-//		EntityRegistry.registerModEntity(EntityCustomHorse.class, "CustomHorse", ++nextModEntityId, MODID,
+		/* **************    Diamond-Infused Obsidian Items and Blocks   ********************* */
+		diamondObsidianBlock = (new BlockCustomBlock(Blocks.obsidian.getMaterial())).setUnlocalizedName("diamondObsidianBlock").setCreativeTab(CreativeTabs.tabBlock);
+		diamondObsidianHelmet = new ItemCustomArmor("diamondObsidianHelmet", 1, 0, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
+		diamondObsidianChest = new ItemCustomArmor("diamondObsidianChest", 1, 1, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
+		diamondObsidianPants = new ItemCustomArmor("diamondObsidianPants", 2, 2, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
+		diamondObsidianBoots = new ItemCustomArmor("diamondObsidianBoots", 1, 3, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
+
+		diamondObsidianAxe = new ItemCustomAxe(ItemMaterials.diamondObsidianToolMaterial, "diamondObsidianAxe");
+		(diamondObsidianHoe = new ItemHoe(ItemMaterials.diamondObsidianToolMaterial)).setUnlocalizedName("diamondObsidianHoe");
+		diamondObsidianPickaxe = new ItemCustomPickaxe(ItemMaterials.diamondObsidianToolMaterial, "diamondObsidianPickaxe") {
+			@Override
+		    public float getStrVsBlock(ItemStack stack, Block block)
+		    {
+		        return block == Blocks.obsidian ? 16.0f : super.getStrVsBlock(stack, block);
+		    }
+		};
+		(diamondObsidianSpade = new ItemSpade(ItemMaterials.diamondObsidianToolMaterial)).setUnlocalizedName("diamondObsidianSpade");
+
+		diamondObsidianSword = (new ItemSword(ItemMaterials.diamondObsidianToolMaterial)).setUnlocalizedName("diamondObsidianSword");
+		diamondObsidianBroadsword = (new ItemSword(ItemMaterials.diamondObsidianBroadswordMaterial)).setUnlocalizedName("diamondObsidianBroadsword");
+		(diamondObsidianBow = new ItemCustomBow("diamondObsidianBow", "diamond-obsidian_bow")).setMaxDamage(600);
+
+		GameRegistry.registerBlock(diamondObsidianBlock, "diamond-obsidian_block");
+		GameRegistry.registerItem(diamondObsidianIngot, "diamond-obsidian_ingot");
+		GameRegistry.registerItem(diamondObsidianHelmet, "diamond-obsidian_helmet");
+		GameRegistry.registerItem(diamondObsidianChest, "diamond-obsidian_chest");
+		GameRegistry.registerItem(diamondObsidianPants, "diamond-obsidian_pants");
+		GameRegistry.registerItem(diamondObsidianBoots, "diamond-obsidian_boots");
+		
+		GameRegistry.registerItem(diamondObsidianSword, "diamond-obsidian_sword");
+		GameRegistry.registerItem(diamondObsidianBroadsword, "diamond-obsidian_broadsword");
+		GameRegistry.registerItem(diamondObsidianBow, "diamond-obsidian_bow");
+
+		GameRegistry.registerItem(diamondObsidianAxe, "diamond-obsidian_axe");
+		GameRegistry.registerItem(diamondObsidianHoe, "diamond-obsidian_hoe");
+		GameRegistry.registerItem(diamondObsidianPickaxe, "diamond-obsidian_pickaxe");
+		GameRegistry.registerItem(diamondObsidianSpade, "diamond-obsidian_spade");
+
+
+
+		//		EntityRegistry.registerModEntity(EntityCustomHorse.class, "CustomHorse", ++nextModEntityId, MODID,
 //					80, 3, false);
 		
 	}
@@ -481,11 +552,11 @@ public class ModEmeraldMaterial {
 		addBlockRecipes(Blocks.emerald_block, emeraldStairs, emeraldWall, emeraldHalfSlab);
 		addMiscRecipes(Items.emerald, emeraldDoor);
 		
-		addArmorRecipes(Blocks.obsidian, obsidianHelmet, obsidianChest, obsidianPants, obsidianBoots);
-		addToolRecipes(Blocks.obsidian, obsidianAxe, obsidianHoe, obsidianPickaxe, obsidianSpade);
-		addWeaponRecipes(Blocks.obsidian, obsidianSword, obsidianBroadsword, obsidianBow);
+		addArmorRecipes(obsidianIngot, obsidianHelmet, obsidianChest, obsidianPants, obsidianBoots);
+		addToolRecipes(obsidianIngot, obsidianAxe, obsidianHoe, obsidianPickaxe, obsidianSpade);
+		addWeaponRecipes(obsidianIngot, obsidianSword, obsidianBroadsword, obsidianBow);
 		addBlockRecipes(Blocks.obsidian, obsidianStairs, obsidianWall, obsidianHalfSlab);
-		addMiscRecipes(Blocks.obsidian, obsidianDoor);
+		addMiscRecipes(obsidianIngot, obsidianDoor);
 		
 		ItemStack lapis = new ItemStack(Items.dye, 1, 4);
 		addArmorRecipes(lapis, lapisHelmet, lapisChest, lapisPants, lapisBoots);
@@ -504,6 +575,12 @@ public class ModEmeraldMaterial {
 
 		addWeaponRecipes(Items.diamond, null, diamondBroadsword, diamondBow);
 
+		addArmorRecipes(diamondObsidianIngot, diamondObsidianHelmet, diamondObsidianChest, diamondObsidianPants, diamondObsidianBoots);
+		addToolRecipes(diamondObsidianIngot, diamondObsidianAxe, diamondObsidianHoe, diamondObsidianPickaxe, diamondObsidianSpade);
+		addWeaponRecipes(diamondObsidianIngot, diamondObsidianSword, diamondObsidianBroadsword, diamondObsidianBow);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(diamondObsidianBlock), Blocks.obsidian, Items.diamond, Items.quartz);
+		
 	}
 	
 	private void addMiscRecipes(Item recipeItem, Item door) {
@@ -709,6 +786,8 @@ public class ModEmeraldMaterial {
 	}
 
 	private void addSmelting() {
+		GameRegistry.addSmelting(Blocks.obsidian, new ItemStack(obsidianIngot), 1.0f);
+		GameRegistry.addSmelting(diamondObsidianBlock, new ItemStack(diamondObsidianIngot), 1.2f);
 	}
 
 }

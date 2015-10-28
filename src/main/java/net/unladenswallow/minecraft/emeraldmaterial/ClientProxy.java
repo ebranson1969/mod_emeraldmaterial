@@ -46,6 +46,7 @@ public class ClientProxy extends CommonProxy {
         registerItem(ModEmeraldMaterial.emeraldHorseArmor, "emerald_horse_armor");
 
         
+        registerItem(ModEmeraldMaterial.obsidianIngot, "obsidian_ingot");
         registerItem(ModEmeraldMaterial.obsidianHelmet, "obsidian_helmet");
         registerItem(ModEmeraldMaterial.obsidianChest, "obsidian_chest");
         registerItem(ModEmeraldMaterial.obsidianPants, "obsidian_pants");
@@ -144,6 +145,23 @@ public class ClientProxy extends CommonProxy {
         registerItemFromBlock(ModEmeraldMaterial.diamondTrapdoor, "diamond_trapdoor");
 
         
+        registerItemFromBlock(ModEmeraldMaterial.diamondObsidianBlock, "diamond-obsidian_block");
+        registerItem(ModEmeraldMaterial.diamondObsidianIngot, "diamond-obsidian_ingot");
+        registerItem(ModEmeraldMaterial.diamondObsidianHelmet, "diamond-obsidian_helmet");
+        registerItem(ModEmeraldMaterial.diamondObsidianChest, "diamond-obsidian_chest");
+        registerItem(ModEmeraldMaterial.diamondObsidianPants, "diamond-obsidian_pants");
+        registerItem(ModEmeraldMaterial.diamondObsidianBoots, "diamond-obsidian_boots");
+        
+        registerItem(ModEmeraldMaterial.diamondObsidianSword, "diamond-obsidian_sword");
+        registerItem(ModEmeraldMaterial.diamondObsidianBroadsword, "diamond-obsidian_broadsword");
+        registerItemModelWithVariants(ModEmeraldMaterial.diamondObsidianBow, ModEmeraldMaterial.MODID + ":diamond-obsidian_bow", ModEmeraldMaterial.MODID + ":diamond-obsidian_bow", 3);
+        
+        registerItem(ModEmeraldMaterial.diamondObsidianAxe, "diamond-obsidian_axe");
+        registerItem(ModEmeraldMaterial.diamondObsidianHoe, "diamond-obsidian_hoe");
+        registerItem(ModEmeraldMaterial.diamondObsidianPickaxe, "diamond-obsidian_pickaxe");
+        registerItem(ModEmeraldMaterial.diamondObsidianSpade, "diamond-obsidian_spade");
+
+
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
 		MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.eventHandler);
 		FMLCommonHandler.instance().bus().register(ModEmeraldMaterial.eventHandler);

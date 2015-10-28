@@ -15,6 +15,7 @@ tile.emeraldHalfSlab.name=Emerald Slab
 item.emeraldDoor.name=Emerald Door
 item.emeraldTrapdoor.name=Emerald Trapdoor
 
+item.obsidianIngot.name=Obsidian Ingot
 item.obsidianHelmet.name=Obsidian Helmet
 item.obsidianChest.name=Obsidian Chestplate
 item.obsidianPants.name=Obsidian Leggings
@@ -88,3 +89,17 @@ tile.diamondWall.name=Diamond Wall
 tile.diamondHalfSlab.name=Diamond Slab
 item.diamondDoor.name=Diamond Door
 item.diamondTrapdoor.name=Diamond Trapdoor
+
+tile.diamondObsidianBlock.name=Diamond-Infused Obsidian Ore
+item.diamondObsidianIngot.name=Diamond-Infused Obsidian Ingot
+item.diamondObsidianHelmet.name=Diamond-Infused Obsidian Helmet
+item.diamondObsidianChest.name=Diamond-Infused Obsidian Chestplate
+item.diamondObsidianPants.name=Diamond-Infused Obsidian Leggings
+item.diamondObsidianBoots.name=Diamond-Infused Obsidian Boots
+item.diamondObsidianSword.name=Diamond-Infused Obsidian Sword
+item.diamondObsidianBroadsword.name=Diamond-Infused Obsidian Broadsword
+item.diamondObsidianBow.name=Diamond-Infused Obsidian Bow
+item.diamondObsidianAxe.name=Diamond-Infused Obsidian Axe
+item.diamondObsidianHoe.name=Diamond-Infused Obsidian Hoe
+item.diamondObsidianPickaxe.name=Diamond-Infused Obsidian Pickaxe
+item.diamondObsidianSpade.name=Diamond-Infused Obsidian Spade
