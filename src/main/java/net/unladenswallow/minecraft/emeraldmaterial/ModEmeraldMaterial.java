@@ -11,6 +11,8 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -262,10 +264,10 @@ public class ModEmeraldMaterial {
 		//		GameRegistry.registerItem(emeraldHorseArmor, "emerald_horse_armor");
 
 		/* **************    Obsidian Items and Blocks   ********************* */
-		obsidianHelmet = new ItemCustomArmor("obsidianHelmet", 1, 0, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
-		obsidianChest = new ItemCustomArmor("obsidianChest", 1, 1, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
-		obsidianPants = new ItemCustomArmor("obsidianPants", 2, 2, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
-		obsidianBoots = new ItemCustomArmor("obsidianBoots", 1, 3, ItemMaterials.obsidianArmorMaterial, Potion.fireResistance);
+		obsidianHelmet = new ItemCustomArmor("obsidianHelmet", 1, 0, ItemMaterials.obsidianArmorMaterial, null);
+		obsidianChest = new ItemCustomArmor("obsidianChest", 1, 1, ItemMaterials.obsidianArmorMaterial, null);
+		obsidianPants = new ItemCustomArmor("obsidianPants", 2, 2, ItemMaterials.obsidianArmorMaterial, null);
+		obsidianBoots = new ItemCustomArmor("obsidianBoots", 1, 3, ItemMaterials.obsidianArmorMaterial, null);
 
 		obsidianAxe = new ItemCustomAxe(ItemMaterials.obsidianToolMaterial, "obsidianAxe");
 		(obsidianHoe = new ItemHoe(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianHoe");
@@ -494,10 +496,10 @@ public class ModEmeraldMaterial {
 		
 		/* **************    Diamond-Infused Obsidian Items and Blocks   ********************* */
 		diamondObsidianBlock = (new BlockCustomBlock(Blocks.obsidian.getMaterial())).setUnlocalizedName("diamondObsidianBlock").setCreativeTab(CreativeTabs.tabBlock);
-		diamondObsidianHelmet = new ItemCustomArmor("diamondObsidianHelmet", 1, 0, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
-		diamondObsidianChest = new ItemCustomArmor("diamondObsidianChest", 1, 1, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
-		diamondObsidianPants = new ItemCustomArmor("diamondObsidianPants", 2, 2, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
-		diamondObsidianBoots = new ItemCustomArmor("diamondObsidianBoots", 1, 3, ItemMaterials.diamondObsidianArmorMaterial, Potion.fireResistance);
+		diamondObsidianHelmet = new ItemCustomArmor("diamondObsidianHelmet", 1, 0, ItemMaterials.diamondObsidianArmorMaterial, null);
+		diamondObsidianChest = new ItemCustomArmor("diamondObsidianChest", 1, 1, ItemMaterials.diamondObsidianArmorMaterial, null);
+		diamondObsidianPants = new ItemCustomArmor("diamondObsidianPants", 2, 2, ItemMaterials.diamondObsidianArmorMaterial, null);
+		diamondObsidianBoots = new ItemCustomArmor("diamondObsidianBoots", 1, 3, ItemMaterials.diamondObsidianArmorMaterial, null);
 
 		diamondObsidianAxe = new ItemCustomAxe(ItemMaterials.diamondObsidianToolMaterial, "diamondObsidianAxe");
 		(diamondObsidianHoe = new ItemHoe(ItemMaterials.diamondObsidianToolMaterial)).setUnlocalizedName("diamondObsidianHoe");
@@ -531,10 +533,11 @@ public class ModEmeraldMaterial {
 		GameRegistry.registerItem(diamondObsidianSpade, "diamond-obsidian_spade");
 
 
-
 		//		EntityRegistry.registerModEntity(EntityCustomHorse.class, "CustomHorse", ++nextModEntityId, MODID,
 //					80, 3, false);
 		
+		MinecraftForge.EVENT_BUS.register(eventHandler);
+		FMLCommonHandler.instance().bus().register(eventHandler);
 	}
 	
 	@EventHandler
@@ -786,8 +789,8 @@ public class ModEmeraldMaterial {
 	}
 
 	private void addSmelting() {
-		GameRegistry.addSmelting(Blocks.obsidian, new ItemStack(obsidianIngot), 1.0f);
-		GameRegistry.addSmelting(diamondObsidianBlock, new ItemStack(diamondObsidianIngot), 1.2f);
+		GameRegistry.addSmelting(Blocks.obsidian, new ItemStack(obsidianIngot), 1.2f);
+		GameRegistry.addSmelting(diamondObsidianBlock, new ItemStack(diamondObsidianIngot), 1.5f);
 	}
 
 }

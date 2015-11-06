@@ -7,7 +7,6 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -163,23 +162,21 @@ public class ClientProxy extends CommonProxy {
 
 
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
-		MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.eventHandler);
-		FMLCommonHandler.instance().bus().register(ModEmeraldMaterial.eventHandler);
 
     }
 
-	protected void registerItem(Item item, String name) {
+	public void registerItem(Item item, String name) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(item, 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, name), "inventory"));
     }
     
-    protected void registerItemFromBlock(Block block, String name) {
+    public void registerItemFromBlock(Block block, String name) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(new ResourceLocation(ModEmeraldMaterial.MODID, name), "inventory"));
     	
     }
     
-    private void registerItemModelWithVariants(Item bowAndQuiver, String itemModel, String modelBase, int numVariants) {
+    public void registerItemModelWithVariants(Item bowAndQuiver, String itemModel, String modelBase, int numVariants) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(bowAndQuiver, 0, new ModelResourceLocation(itemModel, "inventory"));
         ModelBakery.addVariantName(bowAndQuiver, itemModel);
@@ -188,6 +185,8 @@ public class ClientProxy extends CommonProxy {
 	        ModelBakery.addVariantName(bowAndQuiver, modelBase + "_pulling_" + i);
         }
     }
+    
+    
     @Override
     public void postInit(FMLPostInitializationEvent e) {
         super.postInit(e);
