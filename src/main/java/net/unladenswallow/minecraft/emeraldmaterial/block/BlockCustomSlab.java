@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 
 public abstract class BlockCustomSlab extends BlockSlab {
 	
