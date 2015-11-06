@@ -167,7 +167,7 @@ public class ItemMaterials {
 			3,
 			2500,
 			8.0f,
-			3.5f,
+			4.0f,
 			30
 			);
 	public static ToolMaterial diamondObsidianBroadswordMaterial = EnumHelper.addToolMaterial(
@@ -175,7 +175,7 @@ public class ItemMaterials {
 			3,
 			2500,
 			8.0f,
-			4.5f,
+			5.0f,
 			30
 			);
 	public static ArmorMaterial diamondObsidianArmorMaterial = EnumHelper.addArmorMaterial(
