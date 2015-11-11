@@ -1,8 +1,8 @@
 [
 {
   "modid": "mod_emeraldmaterial",
-  "name": "Emerald Material Mod",
-  "description": "Construct tools, weapons, armor and blocks from Emeralds.",
+  "name": "mOre Usable Materials Mod",
+  "description": "Construct tools, weapons, armor and blocks from Emeralds, Obsidian, Lapis, Redstone and more.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
