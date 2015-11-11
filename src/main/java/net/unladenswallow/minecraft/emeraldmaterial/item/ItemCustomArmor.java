@@ -28,13 +28,19 @@ public class ItemCustomArmor extends ItemArmor {
 	}
 	
 	private boolean playerIsWearingFullSet(EntityPlayer player) {
-		return (player.inventory.armorItemInSlot(3) != null && ((ItemArmor)(player.inventory.armorItemInSlot(3).getItem())).getArmorMaterial() == this.getArmorMaterial()
-			&& player.inventory.armorItemInSlot(2) != null && ((ItemArmor)(player.inventory.armorItemInSlot(2).getItem())).getArmorMaterial() == this.getArmorMaterial()
-			&& player.inventory.armorItemInSlot(1) != null && ((ItemArmor)(player.inventory.armorItemInSlot(1).getItem())).getArmorMaterial() == this.getArmorMaterial()
-			&& player.inventory.armorItemInSlot(0) != null && ((ItemArmor)(player.inventory.armorItemInSlot(0).getItem())).getArmorMaterial() == this.getArmorMaterial()
+		return (playerIsWearingInSlot(player, 0)
+			&& playerIsWearingInSlot(player, 1)
+			&& playerIsWearingInSlot(player, 2)
+			&& playerIsWearingInSlot(player, 3)
 			   );
 	}
 
+	private boolean playerIsWearingInSlot(EntityPlayer player, int slot) {
+		return player.inventory.armorItemInSlot(slot) != null 
+				&& player.inventory.armorItemInSlot(slot).getItem() instanceof ItemArmor 
+				&& ((ItemArmor)(player.inventory.armorItemInSlot(slot).getItem())).getArmorMaterial() == this.getArmorMaterial();
+	}
+	
 	private void effectPlayer(EntityPlayer player, Potion potion, int amplifier) {
 	    //Always effect for 8 seconds, then refresh
 	    if (player.getActivePotionEffect(potion) == null || player.getActivePotionEffect(potion).getDuration() <= 1)
