@@ -1,3 +1,7 @@
+1.8.9-1.2
+=========
+Update to work on Minecraft 1.8.9.
+
 1.8-1.2
 =======
 Make tools, items and armor repairable with emeralds on an anvil.
