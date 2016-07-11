@@ -195,7 +195,7 @@ public class ItemMaterials {
 	
 
 	public static float getBlockHardness(Block sourceBlock) {
-	    return sourceBlock.getBlockHardness(Minecraft.getMinecraft().theWorld, new BlockPos(1,1,1));
+	    return sourceBlock.getBlockHardness(null, null);
 	}
 	
     /* Best guess reverse-engineered value of resistance value based on the explosion
