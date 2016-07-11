@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.unladenswallow.minecraft.emeraldmaterial.ItemMaterials;
 
 public class BlockCustomDoor extends BlockDoor {
 
@@ -25,9 +26,7 @@ public class BlockCustomDoor extends BlockDoor {
 	public BlockCustomDoor(Block sourceBlock, String unlocalizedName) {
 		super(sourceBlock.getMaterial());
 		this.setUnlocalizedName(unlocalizedName);
-		/* Best guess reverse-engineered value of hardness value based on the explosion
-		 * resistance of the given source block, without allowing hardness to be absurdly high */
-		setHardness(Math.min(15.0f, sourceBlock.getExplosionResistance(null)));
+		setHardness(ItemMaterials.getBlockHardness(sourceBlock));
 		this.setStepSound(sourceBlock.stepSound);
         if (this.blockMaterial == Material.iron)
         {

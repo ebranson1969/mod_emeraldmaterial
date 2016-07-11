@@ -1,8 +1,11 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.util.BlockPos;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -191,4 +194,14 @@ public class ItemMaterials {
 	}
 	
 
+	public static float getBlockHardness(Block sourceBlock) {
+	    return sourceBlock.getBlockHardness(Minecraft.getMinecraft().theWorld, new BlockPos(1,1,1));
+	}
+	
+    /* Best guess reverse-engineered value of resistance value based on the explosion
+     * resistance of the given source block */
+	public static float guessResistance(Block sourceBlock) {
+	    return sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f;
+	}
+	
 }

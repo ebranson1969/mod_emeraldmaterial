@@ -1,6 +1,7 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,6 +12,7 @@ import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +37,7 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemGoldBow;
 
 
-@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true)
+@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.8,1.9)", acceptableRemoteVersions="[1.8,1.9)")
 public class ModEmeraldMaterial {
 
 	public static final String MODID = "mod_emeraldmaterial";
@@ -194,10 +196,6 @@ public class ModEmeraldMaterial {
 	public static Item diamondObsidianSpade;
 
 	
-	
-	
-	private static int nextModEntityId = 0;
-	
 	public static ModEmeraldMaterial instance = new ModEmeraldMaterial();
 
 	public static EMEventHandler eventHandler = new EMEventHandler();
@@ -271,13 +269,7 @@ public class ModEmeraldMaterial {
 
 		obsidianAxe = new ItemCustomAxe(ItemMaterials.obsidianToolMaterial, "obsidianAxe");
 		(obsidianHoe = new ItemHoe(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianHoe");
-		obsidianPickaxe = new ItemCustomPickaxe(ItemMaterials.obsidianToolMaterial, "obsidianPickaxe") {
-			@Override
-		    public float getStrVsBlock(ItemStack stack, Block block)
-		    {
-		        return block == Blocks.obsidian ? 12.0f : super.getStrVsBlock(stack, block);
-		    }
-		};
+		obsidianPickaxe = new ItemCustomPickaxe(ItemMaterials.obsidianToolMaterial, "obsidianPickaxe");
 		(obsidianSpade = new ItemSpade(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianSpade");
 
 		obsidianSword = (new ItemSword(ItemMaterials.obsidianToolMaterial)).setUnlocalizedName("obsidianSword");
@@ -294,7 +286,10 @@ public class ModEmeraldMaterial {
 		obsidianDoorBlock.setDropItem(obsidianDoor);
 		obsidianTrapdoor = new BlockCustomTrapDoor(Blocks.obsidian, "obsidianTrapdoor");
 
-		(polishedObsidian = new Block(Blocks.obsidian.getMaterial())).setUnlocalizedName("polishedObsidian").setCreativeTab(CreativeTabs.tabBlock);
+		(polishedObsidian = new Block(Blocks.obsidian.getMaterial()))
+		    .setUnlocalizedName("polishedObsidian")
+		    .setCreativeTab(CreativeTabs.tabBlock)
+		    .setHardness(ItemMaterials.getBlockHardness(Blocks.obsidian));
 		
 		GameRegistry.registerItem(obsidianIngot, "obsidian_ingot");
 		GameRegistry.registerItem(obsidianHelmet, "obsidian_helmet");

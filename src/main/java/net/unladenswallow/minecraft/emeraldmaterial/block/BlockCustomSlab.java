@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.unladenswallow.minecraft.emeraldmaterial.ItemMaterials;
 
 public abstract class BlockCustomSlab extends BlockSlab {
 	
@@ -30,12 +31,10 @@ public abstract class BlockCustomSlab extends BlockSlab {
 		super(sourceBlock.getMaterial());
 //		EMLogger.info("BlockCustomSlab <init>: %s guesses: hardness = %f; resistance = %f",
 //				(new ItemStack(sourceBlock)).getDisplayName(),
-//				Math.min(15.0f, sourceBlock.getExplosionResistance(null)),
-//				sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
-		/* Best guess reverse-engineered values of hardness and resistance values based on the explosion
-		 * resistance of the given source block, without allowing hardness to be absurdly high */
-		setHardness(Math.min(15.0f, sourceBlock.getExplosionResistance(null)));
-		setResistance(sourceBlock.getExplosionResistance(null) * 5.0f / 3.0f);
+//				ItemMaterials.guessHardness(sourceBlock),
+//				ItemMaterials.guessResistance(sourceBlock));
+		setHardness(ItemMaterials.getBlockHardness(sourceBlock));
+		setResistance(ItemMaterials.guessResistance(sourceBlock));
 		IBlockState iblockstate = this.blockState.getBaseState();
 		iblockstate = iblockstate.withProperty(VARIANT_PROPERTY, false);
 		if (!this.isDouble()) {
