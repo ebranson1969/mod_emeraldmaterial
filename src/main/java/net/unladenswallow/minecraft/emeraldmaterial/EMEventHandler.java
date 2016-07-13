@@ -1,7 +1,6 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -9,14 +8,9 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.unladenswallow.minecraft.emeraldmaterial.entity.EntityCustomHorse;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomArmor;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomBow;
 
@@ -55,7 +49,7 @@ public class EMEventHandler {
 			){
 //			EMLogger.info("EMEventhandler onItemCraftedEvent: Crafting a lapis item: %s [worldTime = %d]",
 //					event.crafting.getDisplayName(), event.player.worldObj.getWorldTime());
-			EnchantmentHelper.addRandomEnchantment(event.player.worldObj.rand, event.crafting, 1);
+			EnchantmentHelper.addRandomEnchantment(event.player.worldObj.rand, event.crafting, 1, false);
 			// TODO: Figure out how to do this so that server and client are in sync
 //			((EntityPlayerMP)(event.player)).playerNetServerHandler.sendPacket(new S43PacketCamera());
 		}
@@ -63,16 +57,16 @@ public class EMEventHandler {
 	
 	@SubscribeEvent
 	public void onLivingAttackEvent(LivingHurtEvent event) {
-		if (event.entityLiving instanceof EntityPlayer) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
 //			EMLogger.info("");
 //			EMLogger.info("EMEventHandler onLivingAttackEvent:  tick = %d; source = %s; amount = %f", 
 //					event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), event.ammount);
-			int numDOArmorPieces = getNumMatchingArmorPieces((EntityPlayer)event.entityLiving, ItemMaterials.diamondObsidianArmorMaterial);
-			int numObsidianArmorPieces = getNumMatchingArmorPieces((EntityPlayer)event.entityLiving, ItemMaterials.obsidianArmorMaterial)
+			int numDOArmorPieces = getNumMatchingArmorPieces((EntityPlayer)event.getEntityLiving(), ItemMaterials.diamondObsidianArmorMaterial);
+			int numObsidianArmorPieces = getNumMatchingArmorPieces((EntityPlayer)event.getEntityLiving(), ItemMaterials.obsidianArmorMaterial)
 					+ numDOArmorPieces;
 //			EMLogger.info("EMEventHanlder onLivingAttachEvent:  tick = %d; numDOArmorPieces = %d; numObsidianArmorPieces = %d",
 //					event.entityLiving.worldObj.getWorldTime(), numDOArmorPieces, numObsidianArmorPieces);
-			float newDamage = event.ammount;
+			float newDamage = event.getAmount();
 			if (numDOArmorPieces > 0) {
 				// Each Diamond-Infused Obsidian Armor piece reduces all damage by 10%, as a workaround to make
 				// it slightly more effective than diamond
@@ -80,7 +74,7 @@ public class EMEventHandler {
 //				EMLogger.info("EMEventHandler onLivingAttackEvent:  tick = %d; DOArmor reduced %s damage to %f", 
 //						event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
 			}
-			if (event.source.isExplosion() || event.source == DamageSource.onFire) { 
+			if (event.getSource().isExplosion() || event.getSource() == DamageSource.onFire) { 
 				// Each Obsidian Armor piece reduces onFire and explosion damage by 22%.  A full set results
 				// in near immunity to onFire and explosions.  Standing in fire and lava will still damage.
 				if (numObsidianArmorPieces > 0) {
@@ -89,7 +83,7 @@ public class EMEventHandler {
 //							event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
 				}
 			}
-			if (event.source == DamageSource.lava) {
+			if (event.getSource() == DamageSource.lava) {
 				// Each Obsidian Armor piece reduces lava damage by 15%.
 				if (numObsidianArmorPieces > 0) {
 					newDamage = newDamage - ((float)numObsidianArmorPieces * 0.15f * newDamage);
@@ -97,10 +91,10 @@ public class EMEventHandler {
 //							event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
 				}
 			}
-			if (newDamage < event.ammount) {
+			if (newDamage < event.getAmount()) {
 //				EMLogger.info("EMEventHandler onLivingAttackEvent:  tick = %d; Updating %s event, newDamage = %f", 
 //						event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
-				event.ammount = newDamage;
+				event.setAmount(newDamage);
 			}
 		}
 	}
@@ -113,32 +107,4 @@ public class EMEventHandler {
 			 ;
 	}
 
-//	@SubscribeEvent
-	public void onEntityJoinWorld(EntityJoinWorldEvent event) {
-//		EMLogger.info("EMEventHandler onEntityJoinWorld(): Handling entiny spawn for " + event.entity.getName());
-		/* Intercept spawning of horses and spawn our custom horses instead */
-		if (!event.world.isRemote) {
-			if (event.entity instanceof EntityHorse && !(event.entity instanceof EntityCustomHorse)) {
-//				EMLogger.info("EMEventHandler onEntityLivingSpawn(): Intercepting horse spawn");
-				EntityHorse h = (EntityHorse) event.entity;
-				if (h.getCanSpawnHere()) {
-					EntityCustomHorse customHorse = new EntityCustomHorse(event.world);
-					customHorse.setLocationAndAngles(h.posX, h.posY, h.posZ, h.rotationYaw, h.rotationPitch);
-					customHorse.setHorseType(h.getHorseType());
-					customHorse.setHorseVariant(h.getHorseVariant());
-					h.setDead();
-					event.world.spawnEntityInWorld(customHorse);
-				}
-			}
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-//	@SubscribeEvent
-	public void onRenderLivingEvent(RenderLivingEvent.Pre event) {
-		if (event.entity instanceof EntityHorse && ((EntityHorse)event.entity).isTame() && ((EntityHorse)event.entity).isHorseSaddled()) {
-//			EMLogger.info("EMEventHandler onRenderLivingEvent(): " + event.entity.getName() + " [" + event.renderer.getClass() + "]");
-		}
-	}
-	
 }

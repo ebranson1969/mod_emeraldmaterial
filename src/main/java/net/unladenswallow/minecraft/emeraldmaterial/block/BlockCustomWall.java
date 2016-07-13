@@ -3,14 +3,16 @@ package net.unladenswallow.minecraft.emeraldmaterial.block;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockWall;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,14 +27,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class BlockCustomWall extends BlockWall {
 
-	protected final BlockState overrideBlockState;
+//	protected final BlockStateContainer overrideBlockState;
 	
     public BlockCustomWall(Block sourceBlock, String unlocalizedName)
     {
         super(sourceBlock);
         this.setUnlocalizedName(unlocalizedName);
-        this.overrideBlockState = createOverrideBlockState();
-        this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setRegistryName(unlocalizedName);
+//        this.overrideBlockState = createOverrideBlockState();
+//        this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
     }
 
     /**
@@ -75,22 +78,40 @@ public class BlockCustomWall extends BlockWall {
      */
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return state.withProperty(UP, Boolean.valueOf(!worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.north()))).withProperty(EAST, Boolean.valueOf(this.canConnectTo(worldIn, pos.east()))).withProperty(SOUTH, Boolean.valueOf(this.canConnectTo(worldIn, pos.south()))).withProperty(WEST, Boolean.valueOf(this.canConnectTo(worldIn, pos.west())));
+        boolean flag = this.canConnectTo(worldIn, pos.north());
+        boolean flag1 = this.canConnectTo(worldIn, pos.east());
+        boolean flag2 = this.canConnectTo(worldIn, pos.south());
+        boolean flag3 = this.canConnectTo(worldIn, pos.west());
+        boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
+        return state.withProperty(UP, Boolean.valueOf(!flag4 || !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
     }
 
-    protected BlockState createOverrideBlockState()
-    {
-        return new BlockState(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH});
-    }
+//    protected BlockStateContainer createOverrideBlockState()
+//    {
+//        return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH});
+//    }
 
-    public BlockState getBlockState()
-    {
-        return this.overrideBlockState;
-    }
+//    public BlockStateContainer getBlockState()
+//    {
+//        return this.overrideBlockState;
+//    }
 
     @Override
-    public boolean canPlaceTorchOnTop(IBlockAccess world, BlockPos pos) {
+    public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
     	return true;
     }
 
+    // Copied from BlockWall, since it is private
+    private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
+        return block == Blocks.barrier ? false : (block != this && !(block instanceof BlockFenceGate) ? (block.getMaterial(block.getDefaultState()).isOpaque() && iblockstate.isFullCube() ? block.getMaterial(block.getDefaultState()) != Material.gourd : false) : true);
+    }
+
+    public ItemBlock getItemBlock() {
+        ItemBlock itemBlock = new ItemBlock(this);
+        itemBlock.setRegistryName(this.getRegistryName());
+        return itemBlock;
+    }
 }

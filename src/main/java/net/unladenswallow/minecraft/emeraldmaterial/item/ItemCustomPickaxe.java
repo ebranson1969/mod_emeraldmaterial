@@ -11,6 +11,7 @@ public class ItemCustomPickaxe extends ItemPickaxe {
 
 	public ItemCustomPickaxe(ToolMaterial toolMaterial, String unlocalizedName) {
 		super(toolMaterial);
-		setUnlocalizedName(unlocalizedName);
+		this.setUnlocalizedName(unlocalizedName);
+		this.setRegistryName(unlocalizedName);
 	}
 }

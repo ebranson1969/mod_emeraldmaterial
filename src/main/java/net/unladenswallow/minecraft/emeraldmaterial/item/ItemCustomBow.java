@@ -1,25 +1,30 @@
 package net.unladenswallow.minecraft.emeraldmaterial.item;
 
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
 public class ItemCustomBow extends ItemBow {
 
-	private String modelBaseName = "custom_bow";
+	private String modelBaseName = ModEmeraldMaterial.MODID + ":" + "custom_bow";
 	private int modelVariantCount = 3;
 
 	public ItemCustomBow(String unlocalizedName, String modelBaseName) {
@@ -27,82 +32,106 @@ public class ItemCustomBow extends ItemBow {
 		this.setUnlocalizedName(unlocalizedName);
 		this.setModelBaseName(modelBaseName);
 		this.setCreativeTab(CreativeTabs.tabCombat);
-//		EMLogger.info("ItemCustomBow <init>: " + getUnlocalizedName() + "; " + getModelBaseName() + "; " + Arrays.toString(bowPullIconNameArray));
+		this.setRegistryName(ModEmeraldMaterial.MODID, unlocalizedName);
+//		MEMLogger.info("ItemCustomBow <init>: " + getUnlocalizedName() + "; " + getModelBaseName() + "; " + Arrays.toString(bowPullIconNameArray));
 	}
 
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        net.minecraftforge.event.entity.player.ArrowNockEvent event = new net.minecraftforge.event.entity.player.ArrowNockEvent(playerIn, itemStackIn);
-        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return event.result;
+        ActionResult<ItemStack> event = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemStackIn, worldIn, playerIn, hand, true);
+        if (event != null) return event;
 
-//        EMLogger.info("ItemCustomBow onItemRightClick(): Do I have " + getItemUsedByBow().getUnlocalizedName() + "? " 
-//        		+ (playerIn.inventory.hasItem(getItemUsedByBow()) ? "yes" : "no"));
-
-        if (playerIn.capabilities.isCreativeMode || playerIn.inventory.hasItem(getItemUsedByBow()))
+        if (isUsableByPlayer(itemStackIn, playerIn))
         {
-            playerIn.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
+            playerIn.setActiveHand(hand);
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+        } else {
+            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
         }
-
-        return itemStackIn;
+        
     }
 
-    /**
+    protected boolean isUsableByPlayer(ItemStack itemStackIn, EntityPlayer playerIn) {
+		return hasInfiniteArrows(itemStackIn, playerIn) || playerIn.inventory.hasItemStack(new ItemStack(getItemUsedByBow()));
+	}
+
+    protected boolean hasInfiniteArrows(ItemStack itemStackIn, EntityPlayer playerIn) {
+    	return (EnchantmentHelper.getEnchantmentLevel(Enchantments.infinity, itemStackIn) > 0)
+    			|| playerIn.capabilities.isCreativeMode;
+    }
+    
+	/**
      * Called when the player stops using an Item (stops holding the right mouse button).
      *  
      * @param timeLeft The amount of ticks left before the using would have been complete
      */
 	@Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase playerIn, int timeLeft)
     {
-        int itemUseDuration = this.getMaxItemUseDuration(stack) - timeLeft;
-        net.minecraftforge.event.entity.player.ArrowLooseEvent event = new net.minecraftforge.event.entity.player.ArrowLooseEvent(playerIn, stack, itemUseDuration);
-        if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return;
-        itemUseDuration = event.charge;
+	    if (playerIn instanceof EntityPlayer) {
+	        EntityPlayer player = (EntityPlayer)playerIn;
 
-        boolean flag = playerIn.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
+	        int itemUseDuration = this.getMaxItemUseDuration(stack) - timeLeft;
+	        itemUseDuration = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, player, itemUseDuration, isUsableByPlayer(stack, (EntityPlayer)playerIn));
 
-        if (flag || playerIn.inventory.hasItem(getItemUsedByBow()))
-        {
-        	float arrowDamage = getArrowDamage(itemUseDuration);
-        	// I don't understand why this is done, but ItemBow does it, so we'll do it
-            if ((double)arrowDamage < 0.1D) {
-                return;
-            }
+	        if (isUsableByPlayer(stack, player))
+	        {
+	            float arrowDamage = getArrowDamage(itemUseDuration);
+	            // I don't understand why this is done, but ItemBow does it, so we'll do it
+	            if ((double)arrowDamage < 0.1D) {
+	                return;
+	            }
 
-//            EMLogger.info("ItemCustomBow onPlayerStoppedUsing(): f = " + arrowDamage + "; j = " + itemUseDuration + "; timeLeft = " + timeLeft);
-            
-            EntityArrow entityarrow = getNewEntityArrow(worldIn, playerIn, arrowDamage * 2.0f, itemUseDuration);
+	            //            MEMLogger.info("ItemCustomBow onPlayerStoppedUsing(): f = " + arrowDamage + "; j = " + itemUseDuration + "; timeLeft = " + timeLeft);
 
-            entityarrow.setIsCritical(shotIsCritical(itemUseDuration, arrowDamage));
-//            if (entityarrow.getIsCritical()) {
-//                EMLogger.info("ItemCustomBow onPlayerStoppedUsing(): PEW! PEW!");
-//            }
+	            EntityArrow entityarrow = getNewEntityArrow(worldIn, player, itemUseDuration);
+//	            FFQLogger.info("Created a(n) " + entityarrow.getName() + " [damage: " + entityarrow.getDamage() + "]");
 
-            applyEnchantments(entityarrow, stack);
-            
-            stack.damageItem(1, playerIn);
-            worldIn.playSoundAtEntity(playerIn, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowDamage * 0.5F);
+	            entityarrow.setIsCritical(shotIsCritical(itemUseDuration, arrowDamage));
+	            //            if (entityarrow.getIsCritical()) {
+	            //                MEMLogger.info("ItemCustomBow onPlayerStoppedUsing(): PEW! PEW!");
+	            //            }
 
-            if (flag)
-            {
-                entityarrow.canBePickedUp = 2;
-            }
-            else
-            {
-                playerIn.inventory.consumeInventoryItem(getItemUsedByBow());
-            }
+	            applyEnchantments(entityarrow, stack);
+	            initializeArrowVelocity(entityarrow, player, arrowDamage);
 
-            playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
+	            takeDamage(1, stack, player);
 
-            if (!worldIn.isRemote)
-            {
-                worldIn.spawnEntityInWorld(entityarrow);
-            }
-        }
+	            worldIn.playSound(player.posX, player.posY, player.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.HOSTILE, 1.0F, (1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowDamage * 0.5F), true);
+
+	            if (hasInfiniteArrows(stack, player))
+	            {
+	                entityarrow.canBePickedUp = EntityArrow.PickupStatus.CREATIVE_ONLY;
+	            }
+	            else
+	            {
+	                this.consumeAmmo(stack, worldIn, player);
+	            }
+
+	            player.addStat(StatList.func_188057_b(this));
+
+	            if (!worldIn.isRemote)
+	            {
+	                worldIn.spawnEntityInWorld(entityarrow);
+	            }
+	        }
+	    }
     }
+
+	protected void initializeArrowVelocity(EntityArrow entityarrow, EntityPlayer player, float arrowDamage) {
+        entityarrow.func_184547_a(player, player.rotationPitch, player.rotationYaw, 0.0F, arrowDamage * 3.0F, 1.0F);
+    }
+
+    protected void consumeAmmo(ItemStack stack, World worldIn, EntityPlayer playerIn) {
+        playerIn.inventory.clearMatchingItems(getItemUsedByBow(), -1, 1, null);
+	}
+
+	protected void takeDamage(int i, ItemStack stack, EntityPlayer playerIn) {
+        stack.damageItem(1, playerIn);
+	}
 
 	/**
  	 * Helper function for onPlayerStoppedUsing() that allows subclasses to easily overwrite
@@ -112,17 +141,22 @@ public class ItemCustomBow extends ItemBow {
 	 * @param stack
 	 */
 	protected void applyEnchantments(EntityArrow entityarrow, ItemStack stack) {
-        int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, stack);
-        if (k > 0) {
-            entityarrow.setDamage(entityarrow.getDamage() + (double)k * 0.5D + 0.5D);
+        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.power, stack);
+
+        if (j > 0)
+        {
+            entityarrow.setDamage(entityarrow.getDamage() + (double)j * 0.5D + 0.5D);
         }
 
-        int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
-        if (l > 0) {
-            entityarrow.setKnockbackStrength(l);
+        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.punch, stack);
+
+        if (k > 0)
+        {
+            entityarrow.setKnockbackStrength(k);
         }
 
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, stack) > 0) {
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.flame, stack) > 0)
+        {
             entityarrow.setFire(100);
         }
 	}
@@ -159,44 +193,47 @@ public class ItemCustomBow extends ItemBow {
 	 * Helper function for onPlayerStoppedUsing() that allows subclasses to easily overwrite custom
 	 * EntityArrow subclass to be spawned by bow release
 	 * 
+	 * Some subclasses may want the stack meta value, while others may not
+	 * 
 	 * @param worldIn
 	 * @param playerIn
 	 * @param damage
 	 * @return
 	 */
-	protected EntityArrow getNewEntityArrow(World worldIn, EntityPlayer playerIn, float damage, int itemUseDuration) {
-		return new EntityArrow(worldIn, playerIn, damage);
+	protected EntityArrow getNewEntityArrow(World worldIn, EntityPlayer playerIn, int itemUseDuration) {
+		return new EntityTippedArrow(worldIn, playerIn);
 	}
 
-	@Override
+/*	@Override
     public ModelResourceLocation getModel(ItemStack stack, EntityPlayer player, int useRemaining)
     {
 		int useTime = getMaxItemUseDuration(stack) - useRemaining;
-//		EMLogger.info("ItemCustomBow getModel(): useRemaining = " + useRemaining);
-//		EMLogger.info("ItemCustomBow getModel(): useTime = " + useTime);
-        ModelResourceLocation modelresourcelocation = new ModelResourceLocation(ModEmeraldMaterial.MODID + ":" + modelBaseName, "inventory");
+//		MEMLogger.info("ItemCustomBow getModel(): useRemaining = " + useRemaining);
+//		MEMLogger.info("ItemCustomBow getModel(): useTime = " + useTime);
+        ModelResourceLocation modelresourcelocation = new ModelResourceLocation(modelBaseName, "inventory");
 
         if(stack.getItem() == this && player.getItemInUse() != null && useRemaining > 0)
         {
         	int modelVariation = getModelVariation(useTime);
         	if (modelVariation < 0 || modelVariation >= getModelVariantCount()) {
-        		EMLogger.warning("ItemCustomBow getModel(): specified model variant " + modelVariation + " is out of range; using default"); 
-        		modelresourcelocation = new ModelResourceLocation(ModEmeraldMaterial.MODID + ":" + modelBaseName + "_pulling_0", "inventory");
+        		FFQLogger.warning("ItemCustomBow getModel(): specified model variant " + modelVariation + " is out of range; using default"); 
+        		modelresourcelocation = new ModelResourceLocation(modelBaseName + "_pulling_0", "inventory");
         	} else {
-        		modelresourcelocation = new ModelResourceLocation(ModEmeraldMaterial.MODID + ":" + modelBaseName + "_pulling_" + modelVariation, "inventory");
+        		modelresourcelocation = new ModelResourceLocation(modelBaseName + "_pulling_" + modelVariation, "inventory");
+//        		FFLogger.info("ItemCustomBow getModel(): modelresourcelocation = " + modelresourcelocation);
         	}
         }
-//        EMLogger.info("ItemCustomBow getModel(): modelResourcelocation is " + modelresourcelocation.getResourceDomain() + ":" + modelresourcelocation.getResourcePath());
+//        FMLRelaunchLog.info("ItemCustomBow getModel(): modelResourcelocation is " + modelresourcelocation.getResourceDomain() + ":" + modelresourcelocation.getResourcePath());
         return modelresourcelocation;
     }
 	
-	/**
+	*//**
 	 * Helper function for getModel() that allows subclasses to easily overwrite custom animation
 	 * sequences for bow pull
 	 * 
 	 * @param useTime
 	 * @return
-	 */
+	 *//*
 	protected int getModelVariation(int useTime) {
     	if(useTime >= 21) {
     		return 2;
@@ -206,16 +243,16 @@ public class ItemCustomBow extends ItemBow {
             return 0;
         }
 	}
-
+*/
 	@SubscribeEvent
 	public void fovUpdate(FOVUpdateEvent event) {
-		if (event.entity instanceof EntityPlayer) {
-			if (event.entity.isUsingItem() && event.entity.getItemInUse().getItem() == this) {
-				float fovModifier = getNewFovModifier(event.entity.getItemInUseDuration());
+		if (event.getEntity() instanceof EntityPlayer) {
+			if (event.getEntity().isHandActive() && event.getEntity().getActiveItemStack().getItem() == this) {
+				float fovModifier = getNewFovModifier(event.getEntity().getItemInUseMaxCount()); // getItemInUseMaxCount() seems to be mis-named.  functionally, it is like the old getItemUseDuration()
 		        float fov = 1.0f;
 		        fov *= 1.0F - fovModifier * 0.15F;
-//				EMLogger.info("ItemCustomBow fovUpdate(): itemUseDuration = " + event.entity.getItemInUseDuration() + "; fovModifier = " + fovModifier + "; newfov = " + fov);
-	            event.newfov = fov;
+//				MEMLogger.info("ItemCustomBow fovUpdate(): itemUseDuration = " + event.entity.getItemInUseDuration() + "; fovModifier = " + fovModifier + "; newfov = " + fov);
+	            event.setNewfov(fov);
 			}
 		}
 	}
@@ -224,8 +261,6 @@ public class ItemCustomBow extends ItemBow {
 	 * Helper function for fovUpdate() that allows subclasses to easily overwrite zoom
 	 * sequences for bow pull
 	 * 
-	 * @param itemInUseDuration
-	 * @return
 	 */
 	protected float getNewFovModifier(int itemInUseDuration) {
         float f = (float)itemInUseDuration / 20.0F;

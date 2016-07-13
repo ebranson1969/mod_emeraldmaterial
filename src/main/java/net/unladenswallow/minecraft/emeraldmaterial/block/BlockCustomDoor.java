@@ -8,8 +8,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.unladenswallow.minecraft.emeraldmaterial.ItemMaterials;
 
@@ -24,10 +24,11 @@ public class BlockCustomDoor extends BlockDoor {
 	private boolean interactive = false;
 	
 	public BlockCustomDoor(Block sourceBlock, String unlocalizedName) {
-		super(sourceBlock.getMaterial());
+		super(sourceBlock.getMaterial(sourceBlock.getDefaultState()));
 		this.setUnlocalizedName(unlocalizedName);
+		this.setRegistryName(unlocalizedName);
 		setHardness(ItemMaterials.getBlockHardness(sourceBlock));
-		this.setStepSound(sourceBlock.stepSound);
+		this.setStepSound(sourceBlock.getStepSound());
         if (this.blockMaterial == Material.iron)
         {
             this.interactive = true;

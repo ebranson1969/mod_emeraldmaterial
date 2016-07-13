@@ -1,11 +1,10 @@
 package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.BlockPos;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -32,7 +31,8 @@ public class ItemMaterials {
 			"mod_emeraldmaterial:armor.emerald",
 			20,
 			new int[] {3, 7, 5, 3},
-			30);
+			30,
+			SoundEvents.item_armor_equip_diamond);
 	static {
 		emeraldToolMaterial.setRepairItem(new ItemStack(Items.emerald));
 		emeraldBroadswordMaterial.setRepairItem(new ItemStack(Items.emerald));
@@ -60,7 +60,8 @@ public class ItemMaterials {
 			"mod_emeraldmaterial:armor.obsidian",
 			60,
 			new int[] {2, 6, 5, 2},
-			30);
+			30,
+            SoundEvents.item_armor_equip_diamond);
 	static {
 		obsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
 		obsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
@@ -88,7 +89,8 @@ public class ItemMaterials {
 			"mod_emeraldmaterial:armor.lapis",
 			15,
 			new int[] {2, 5, 4, 1},
-			30);
+			30,
+            SoundEvents.item_armor_equip_diamond);
 	static {
 		lapisToolMaterial.setRepairItem(new ItemStack(Items.dye, 1, 4));
 		lapisBroadswordMaterial.setRepairItem(new ItemStack(Items.dye, 1, 4));
@@ -116,7 +118,8 @@ public class ItemMaterials {
 			"mod_emeraldmaterial:armor.redstone",
 			15,
 			new int[] {2, 5, 4, 1},
-			30);
+			30,
+            SoundEvents.item_armor_equip_diamond);
 	static {
 		redstoneToolMaterial.setRepairItem(new ItemStack(Items.redstone));
 		redstoneBroadswordMaterial.setRepairItem(new ItemStack(Items.redstone));
@@ -186,7 +189,8 @@ public class ItemMaterials {
 			"mod_emeraldmaterial:armor.diamond-obsidian",
 			60,
 			new int[] {3, 8, 6, 3},
-			30);
+			30,
+            SoundEvents.item_armor_equip_diamond);
 	static {
 		diamondObsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
 		diamondObsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
@@ -195,7 +199,7 @@ public class ItemMaterials {
 	
 
 	public static float getBlockHardness(Block sourceBlock) {
-	    return sourceBlock.getBlockHardness(null, null);
+	    return sourceBlock.getBlockHardness(null, null, null);
 	}
 	
     /* Best guess reverse-engineered value of resistance value based on the explosion

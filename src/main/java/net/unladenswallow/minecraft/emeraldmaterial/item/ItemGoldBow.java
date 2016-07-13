@@ -7,7 +7,7 @@ package net.unladenswallow.minecraft.emeraldmaterial.item;
 public class ItemGoldBow extends ItemCustomBow {
 	
 	public ItemGoldBow() {
-		super("goldBow", "gold_bow");
+		super("gold_bow", "gold_bow");
 		this.setModelVariantCount(3);
 	}
 
@@ -19,17 +19,6 @@ public class ItemGoldBow extends ItemCustomBow {
             f = 1.0F;
         }
         return f;
-	}
-
-	@Override
-	protected int getModelVariation(int useTime) {
-    	if(useTime >= 11) {
-    		return 2;
-        } else if(useTime > 5) {
-            return 1;
-        } else {
-            return 0;
-        }
 	}
 
 }
