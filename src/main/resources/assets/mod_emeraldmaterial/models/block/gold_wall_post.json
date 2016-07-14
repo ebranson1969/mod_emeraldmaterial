@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_post",
     "textures": {
-        "wall": "minecraft:blocks/gold_block"
+        "wall": "blocks/gold_block"
     }
 }

@@ -3,8 +3,7 @@ package net.unladenswallow.minecraft.emeraldmaterial.item;
 public class ItemEmeraldBow extends ItemCustomBow {
 	
 	public ItemEmeraldBow() {
-		super("emerald_bow", "emerald_bow");
-		this.setModelVariantCount(4);
+		super("emerald_bow");
 	}
 
 	@Override

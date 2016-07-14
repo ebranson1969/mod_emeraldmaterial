@@ -1,5 +1,5 @@
 {
-    "parent":"mod_emeraldmaterial:item/tool_item",
+    "parent":"mod_emeraldmaterial:item/diamond_bow",
     "textures": {
         "layer0":"mod_emeraldmaterial:items/bow.diamond_pulling_1"
     }

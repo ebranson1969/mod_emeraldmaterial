@@ -7,10 +7,12 @@ import net.minecraft.item.ItemBlock;
 
 public class BlockCustomBlock extends Block {
 
-	public BlockCustomBlock(Material materialIn, String unlocalizedName) {
+	public BlockCustomBlock(Material materialIn, String unlocalizedName, float hardness, float resistance) {
 		super(materialIn);
 		this.setUnlocalizedName(unlocalizedName);
 		this.setRegistryName(unlocalizedName);
+        this.setHardness(hardness);
+        this.setResistance(resistance);
 		this.setCreativeTab(CreativeTabs.tabBlock);
 	}
 

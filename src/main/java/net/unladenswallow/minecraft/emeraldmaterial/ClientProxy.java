@@ -37,8 +37,8 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.emeraldWall);
 //        registerItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab);
 //
-//        registerItemModel(ModEmeraldMaterial.emeraldDoor);
-//        registerItemFromBlock(ModEmeraldMaterial.emeraldTrapdoor);
+        registerItemModel(ModEmeraldMaterial.emeraldDoor);
+        registerItemModel(ModEmeraldMaterial.emeraldTrapdoor);
 
         registerItemModel(ModEmeraldMaterial.obsidianIngot);
         registerItemModel(ModEmeraldMaterial.obsidianHelmet);
@@ -59,8 +59,8 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.obsidianWall);
 //        registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab);
 //
-//        registerItemModel(ModEmeraldMaterial.obsidianDoor);
-//        registerItemFromBlock(ModEmeraldMaterial.obsidianTrapdoor);
+        registerItemModel(ModEmeraldMaterial.obsidianDoor);
+        registerItemModel(ModEmeraldMaterial.obsidianTrapdoor);
 
         registerItemModel(ModEmeraldMaterial.polishedObsidian);
 
@@ -83,8 +83,8 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.lapisWall);
 //        registerItemFromBlock(ModEmeraldMaterial.lapisHalfSlab);
 //
-//        registerItemModel(ModEmeraldMaterial.lapisDoor);
-//        registerItemFromBlock(ModEmeraldMaterial.lapisTrapdoor);
+        registerItemModel(ModEmeraldMaterial.lapisDoor);
+        registerItemModel(ModEmeraldMaterial.lapisTrapdoor);
 
 
         registerItemModel(ModEmeraldMaterial.redstoneHelmet);
@@ -103,10 +103,10 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.redstoneStairs);
         registerItemModel(ModEmeraldMaterial.redstoneWall);
-//        registerItemFromBlock(ModEmeraldMaterial.redstoneHalfSlab);
+        registerItemModel(ModEmeraldMaterial.redstoneHalfSlab);
 //
-//        registerItemModel(ModEmeraldMaterial.redstoneDoor);
-//        registerItemFromBlock(ModEmeraldMaterial.redstoneTrapdoor);
+        registerItemModel(ModEmeraldMaterial.redstoneDoor);
+        registerItemModel(ModEmeraldMaterial.redstoneTrapdoor);
 
 
         registerItemModel(ModEmeraldMaterial.goldBroadsword);
@@ -116,8 +116,8 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.goldWall);
 //        registerItemFromBlock(ModEmeraldMaterial.goldHalfSlab);
 //
-//        registerItemModel(ModEmeraldMaterial.goldDoor);
-//        registerItemFromBlock(ModEmeraldMaterial.goldTrapdoor);
+        registerItemModel(ModEmeraldMaterial.goldDoor);
+        registerItemModel(ModEmeraldMaterial.goldTrapdoor);
 
 
         registerItemModel(ModEmeraldMaterial.ironBroadsword);
@@ -159,16 +159,23 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.diamondObsidianWall);
 //      registerItemFromBlock(ModEmeraldMaterial.diamondObsidianHalfSlab);
 //
-//      registerItemModel(ModEmeraldMaterial.diamondObsidianDoor);
-//      registerItemFromBlock(ModEmeraldMaterial.diamondObsidianTrapdoor);
+        registerItemModel(ModEmeraldMaterial.diamondObsidianDoor);
+        registerItemModel(ModEmeraldMaterial.diamondObsidianTrapdoor);
 
 
         MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.emeraldBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.obsidianBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.lapisBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.redstoneBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.goldBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.ironBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.diamondBow);
+        MinecraftForge.EVENT_BUS.register(ModEmeraldMaterial.diamondObsidianBow);
 
     }
 
     private void registerItemModel(Item item) {
-        EMLogger.info("Registering item %s", item.getRegistryName());
+//        EMLogger.info("Registering item %s", item.getRegistryName());
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
             .register(item, 
                       0, 
@@ -176,7 +183,7 @@ public class ClientProxy extends CommonProxy {
     }
     
     public void registerItemModel(Block block) {
-        EMLogger.info("Registering block %s", block.getRegistryName());
+//        EMLogger.info("Registering block %s", block.getRegistryName());
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
     		.register(Item.getItemFromBlock(block), 
     		          0, 

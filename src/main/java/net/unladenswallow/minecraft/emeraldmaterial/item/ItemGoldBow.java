@@ -7,8 +7,7 @@ package net.unladenswallow.minecraft.emeraldmaterial.item;
 public class ItemGoldBow extends ItemCustomBow {
 	
 	public ItemGoldBow() {
-		super("gold_bow", "gold_bow");
-		this.setModelVariantCount(3);
+		super("gold_bow");
 	}
 
 	@Override
@@ -19,6 +18,19 @@ public class ItemGoldBow extends ItemCustomBow {
             f = 1.0F;
         }
         return f;
+	}
+
+	@Override
+	protected float getNewFovModifier(int itemInUseDuration) {
+	    float f = (float)itemInUseDuration / 10.0F;
+
+	    if (f > 1.0F) {
+	        f = 1.0F;
+	    } else {
+	        f *= f;
+	    }
+
+	    return f;
 	}
 
 }

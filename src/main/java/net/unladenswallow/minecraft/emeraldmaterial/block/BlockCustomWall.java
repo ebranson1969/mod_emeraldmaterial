@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.unladenswallow.minecraft.emeraldmaterial.ItemMaterials;
 
 /**
  * Wall block made from a full block.  This class extends BlockWall to get
@@ -34,6 +35,8 @@ public class BlockCustomWall extends BlockWall {
         super(sourceBlock);
         this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(unlocalizedName);
+        this.setHardness(ItemMaterials.getBlockHardness(sourceBlock));
+        this.setResistance(ItemMaterials.guessResistance(sourceBlock));
 //        this.overrideBlockState = createOverrideBlockState();
 //        this.setDefaultState(this.overrideBlockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
     }

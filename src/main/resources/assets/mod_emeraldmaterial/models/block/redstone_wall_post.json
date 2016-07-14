@@ -1,6 +1,6 @@
 {
     "parent": "block/wall_post",
     "textures": {
-        "wall": "minecraft:blocks/redstone_block"
+        "wall": "blocks/redstone_block"
     }
 }

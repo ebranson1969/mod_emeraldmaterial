@@ -27,7 +27,8 @@ public class BlockCustomDoor extends BlockDoor {
 		super(sourceBlock.getMaterial(sourceBlock.getDefaultState()));
 		this.setUnlocalizedName(unlocalizedName);
 		this.setRegistryName(unlocalizedName);
-		setHardness(ItemMaterials.getBlockHardness(sourceBlock));
+		this.setHardness(ItemMaterials.getBlockHardness(sourceBlock));
+        this.setResistance(ItemMaterials.guessResistance(sourceBlock));
 		this.setStepSound(sourceBlock.getStepSound());
         if (this.blockMaterial == Material.iron)
         {

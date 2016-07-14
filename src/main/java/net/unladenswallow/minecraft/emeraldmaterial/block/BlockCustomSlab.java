@@ -32,8 +32,8 @@ public abstract class BlockCustomSlab extends BlockSlab {
 //				(new ItemStack(sourceBlock)).getDisplayName(),
 //				ItemMaterials.guessHardness(sourceBlock),
 //				ItemMaterials.guessResistance(sourceBlock));
-		setHardness(ItemMaterials.getBlockHardness(sourceBlock));
-		setResistance(ItemMaterials.guessResistance(sourceBlock));
+		this.setHardness(ItemMaterials.getBlockHardness(sourceBlock));
+		this.setResistance(ItemMaterials.guessResistance(sourceBlock));
 
         IBlockState iblockstate = this.blockState.getBaseState();
 

@@ -2,5 +2,27 @@
     "parent":"mod_emeraldmaterial:item/tool_item",
     "textures": {
         "layer0":"mod_emeraldmaterial:items/bow.lapis"
-    }
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "pulling": 1
+            },
+            "model": "mod_emeraldmaterial:item/lapis_bow_pulling_0"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 0.65
+            },
+            "model": "mod_emeraldmaterial:item/lapis_bow_pulling_1"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 0.9
+            },
+            "model": "mod_emeraldmaterial:item/lapis_bow_pulling_2"
+        }
+    ]
 }

@@ -9,6 +9,7 @@ import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
@@ -16,23 +17,44 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
 public class ItemCustomBow extends ItemBow {
 
-	private String modelBaseName = ModEmeraldMaterial.MODID + ":" + "custom_bow";
-	private int modelVariantCount = 3;
-
-	public ItemCustomBow(String unlocalizedName, String modelBaseName) {
+	public ItemCustomBow(String unlocalizedName) {
 		super();
 		this.setUnlocalizedName(unlocalizedName);
-		this.setModelBaseName(modelBaseName);
+        this.setRegistryName(ModEmeraldMaterial.MODID, unlocalizedName);
 		this.setCreativeTab(CreativeTabs.tabCombat);
-		this.setRegistryName(ModEmeraldMaterial.MODID, unlocalizedName);
+		/*
+		 * The following property override is copied nearly verbatim from ItemBow.  But in ItemBow
+		 * it specifically checks to see if the item in use is Items.bow, so we need to make
+		 * it more broad to match our custom bows.
+		 */
+        this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
+        {
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, World worldIn, EntityLivingBase entityIn)
+            {
+                if (entityIn == null)
+                {
+                    return 0.0F;
+                }
+                else
+                {
+                    ItemStack itemstack = entityIn.getActiveItemStack();
+                    return itemstack != null && itemstack.getItem() instanceof ItemBow ? (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F : 0.0F;
+                }
+            }
+        });
 //		MEMLogger.info("ItemCustomBow <init>: " + getUnlocalizedName() + "; " + getModelBaseName() + "; " + Arrays.toString(bowPullIconNameArray));
 	}
 
@@ -251,7 +273,10 @@ public class ItemCustomBow extends ItemBow {
 				float fovModifier = getNewFovModifier(event.getEntity().getItemInUseMaxCount()); // getItemInUseMaxCount() seems to be mis-named.  functionally, it is like the old getItemUseDuration()
 		        float fov = 1.0f;
 		        fov *= 1.0F - fovModifier * 0.15F;
-//				MEMLogger.info("ItemCustomBow fovUpdate(): itemUseDuration = " + event.entity.getItemInUseDuration() + "; fovModifier = " + fovModifier + "; newfov = " + fov);
+//                EMLogger.info("fovUpdate(): itemUseDuration = %d; fovModifier = %f; newFov = %f,",
+//                        event.getEntity().getItemInUseMaxCount(),
+//                        fovModifier,
+//                        fov);
 	            event.setNewfov(fov);
 			}
 		}
@@ -272,22 +297,6 @@ public class ItemCustomBow extends ItemBow {
         }
 
         return f;
-	}
-
-	public String getModelBaseName() {
-		return modelBaseName;
-	}
-
-	protected void setModelBaseName(String modelBaseName) {
-		this.modelBaseName = modelBaseName;
-	}
-
-	public int getModelVariantCount() {
-		return modelVariantCount;
-	}
-
-	protected void setModelVariantCount(int modelVariantCount) {
-		this.modelVariantCount = modelVariantCount;
 	}
 
 	protected Item getItemUsedByBow() {
