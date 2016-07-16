@@ -11,19 +11,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
+import net.minecraft.item.ItemStack;
 import net.unladenswallow.minecraft.emeraldmaterial.ItemMaterials;
 
 public abstract class BlockCustomSlab extends BlockSlab {
-	
+    
 	/* The Custom Slab does not have any variants, but if we want to inherit behaviors of BlockSlab and ItemSlab,
 	 * we need to conform to their expectations.  Specifically, ItemSlab will only place a half slab on another
 	 * half slab if it is the same variant. So we create a dummy boolean variant that is always false.
 	 */
-    public static final PropertyBool SEAMLESS = PropertyBool.create("seamless");
 	protected static final PropertyBool VARIANT = PropertyBool.create("variant");
 	
 	public BlockCustomSlab(Block sourceBlock) {
@@ -37,11 +33,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
 
         IBlockState iblockstate = this.blockState.getBaseState();
 
-        if (this.isDouble())
-        {
-            iblockstate = iblockstate.withProperty(SEAMLESS, Boolean.valueOf(false));
-        }
-        else
+        if (!this.isDouble())
         {
             iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         }
@@ -54,18 +46,14 @@ public abstract class BlockCustomSlab extends BlockSlab {
 
 	@Override
     protected final BlockStateContainer createBlockState() {
-        return this.isDouble() ? new BlockStateContainer(this, new IProperty[] {SEAMLESS, VARIANT}): new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
+        return this.isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}): new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
     }
 
 	@Override
     public final IBlockState getStateFromMeta(final int meta) {
         IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, false);
 
-        if (this.isDouble())
-        {
-            iblockstate = iblockstate.withProperty(SEAMLESS, Boolean.valueOf((meta & 8) != 0));
-        }
-        else
+        if (!this.isDouble())
         {
             iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
         }
@@ -78,14 +66,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
     {
         int i = 0;
 
-        if (this.isDouble())
-        {
-            if (((Boolean)state.getValue(SEAMLESS)).booleanValue())
-            {
-                i |= 8;
-            }
-        }
-        else if (state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+        if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
         {
             i |= 8;
         }
@@ -106,7 +87,13 @@ public abstract class BlockCustomSlab extends BlockSlab {
 		return VARIANT;
 	}
 
-//	@Override
+    @Override
+    public Comparable<?> getTypeForItem(ItemStack stack)
+    {
+        return false; // VARIANT is always false
+    }
+
+    //	@Override
 //    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
 //		IBlockState blockState = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
 //		return blockState;
@@ -123,18 +110,4 @@ public abstract class BlockCustomSlab extends BlockSlab {
         itemBlock.setRegistryName(this.getRegistryName());
         return itemBlock;
     }
-
-    @Override
-    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
-    {
-        EMLogger.info("canPlaceBlockOnSide: %b", super.canPlaceBlockOnSide(worldIn, pos, side));
-        return super.canPlaceBlockOnSide(worldIn, pos, side);
-    }
-    @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-    {
-        EMLogger.info("canPlaceBlockAt: %b", super.canPlaceBlockAt(worldIn, pos));
-        return super.canPlaceBlockAt(worldIn, pos);
-    }
-
 }

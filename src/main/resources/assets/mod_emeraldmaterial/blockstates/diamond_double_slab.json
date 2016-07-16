@@ -1,6 +1,6 @@
 {
     "variants": {
-        "normal": { "model": "mod_emeraldmaterial:diamond_double_slab" },
-        "all": { "model": "mod_emeraldmaterial:diamond_double_slab" }
+        "variant=false": { "model": "mod_emeraldmaterial:diamond_double_slab" },
+        "variant=true": { "model": "mod_emeraldmaterial:diamond_double_slab" }
     }
 }

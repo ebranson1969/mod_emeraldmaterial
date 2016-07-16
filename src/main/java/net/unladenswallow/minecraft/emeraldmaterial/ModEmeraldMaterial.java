@@ -9,6 +9,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.MinecraftForge;
@@ -60,7 +61,7 @@ public class ModEmeraldMaterial {
 	public static BlockCustomStairs emeraldStairs;
 	public static BlockCustomWall emeraldWall;
 	public static BlockCustomHalfSlab emeraldHalfSlab;
-	public static Block emeraldDoubleSlab;
+	public static BlockCustomDoubleSlab emeraldDoubleSlab;
 
 	public static Item emeraldDoor;
 	public static BlockCustomDoor emeraldDoorBlock;
@@ -84,7 +85,7 @@ public class ModEmeraldMaterial {
 
 	public static BlockCustomStairs obsidianStairs;
 	public static BlockCustomHalfSlab obsidianHalfSlab;
-	public static Block obsidianDoubleSlab;
+	public static BlockCustomDoubleSlab obsidianDoubleSlab;
 	public static BlockCustomWall obsidianWall;
 
 	public static BlockCustomDoor obsidianDoorBlock;
@@ -109,7 +110,7 @@ public class ModEmeraldMaterial {
 
 	public static BlockCustomStairs lapisStairs;
 	public static BlockCustomHalfSlab lapisHalfSlab;
-	public static Block lapisDoubleSlab;
+	public static BlockCustomDoubleSlab lapisDoubleSlab;
 	public static BlockCustomWall lapisWall;
 
 	public static BlockCustomDoor lapisDoorBlock;
@@ -132,7 +133,7 @@ public class ModEmeraldMaterial {
 
 	public static BlockCustomStairs redstoneStairs;
 	public static BlockCustomHalfSlab redstoneHalfSlab;
-	public static Block redstoneDoubleSlab;
+	public static BlockCustomDoubleSlab redstoneDoubleSlab;
 	public static BlockCustomWall redstoneWall;
 
 	public static BlockCustomDoor redstoneDoorBlock;
@@ -145,7 +146,7 @@ public class ModEmeraldMaterial {
 	
 	public static BlockCustomStairs goldStairs;
 	public static BlockCustomHalfSlab goldHalfSlab;
-	public static Block goldDoubleSlab;
+	public static BlockCustomDoubleSlab goldDoubleSlab;
 	public static BlockCustomWall goldWall;
 
 	public static BlockCustomDoor goldDoorBlock;
@@ -159,7 +160,7 @@ public class ModEmeraldMaterial {
 	public static BlockCustomStairs ironStairs;
 	public static BlockCustomWall ironWall;
 	public static BlockCustomHalfSlab ironHalfSlab;
-	public static Block ironDoubleSlab;
+	public static BlockCustomDoubleSlab ironDoubleSlab;
 
 	
 	public static Item diamondBroadsword;
@@ -268,9 +269,10 @@ public class ModEmeraldMaterial {
         GameRegistry.register(emeraldStairs.getItemBlock());
 		GameRegistry.register(emeraldWall);
         GameRegistry.register(emeraldWall.getItemBlock());
-//		GameRegistry.registerBlock(emeraldHalfSlab, ItemBlockCustomSlab.class, "emerald_half_slab", emeraldHalfSlab, emeraldDoubleSlab);
-//		GameRegistry.registerBlock(emeraldDoubleSlab, ItemBlockCustomSlab.class, "emerald_double_slab", emeraldHalfSlab, emeraldDoubleSlab);
-//
+        GameRegistry.register(emeraldHalfSlab);
+        GameRegistry.register(new ItemSlab(emeraldHalfSlab, emeraldHalfSlab, emeraldDoubleSlab).setRegistryName("emerald_half_slab"));
+        GameRegistry.register(emeraldDoubleSlab);
+
 		GameRegistry.register(emeraldDoor);
 		GameRegistry.register(emeraldDoorBlock);
 		GameRegistry.register(emeraldTrapdoor);
@@ -335,9 +337,10 @@ public class ModEmeraldMaterial {
         GameRegistry.register(obsidianStairs.getItemBlock());
 		GameRegistry.register(obsidianWall);
         GameRegistry.register(obsidianWall.getItemBlock());
-//		GameRegistry.registerBlock(obsidianHalfSlab, ItemBlockCustomSlab.class, "obsidian_half_slab", obsidianHalfSlab, obsidianDoubleSlab);
-//		GameRegistry.registerBlock(obsidianDoubleSlab, ItemBlockCustomSlab.class, "obsidian_double_slab", obsidianHalfSlab, obsidianDoubleSlab);
-//
+        GameRegistry.register(obsidianHalfSlab);
+        GameRegistry.register(new ItemSlab(obsidianHalfSlab, obsidianHalfSlab, obsidianDoubleSlab).setRegistryName("obsidian_half_slab"));
+        GameRegistry.register(obsidianDoubleSlab);
+
 		GameRegistry.register(obsidianDoor);
 		GameRegistry.register(obsidianDoorBlock);
 		GameRegistry.register(obsidianTrapdoor);
@@ -395,9 +398,10 @@ public class ModEmeraldMaterial {
         GameRegistry.register(lapisStairs.getItemBlock());
 		GameRegistry.register(lapisWall);
         GameRegistry.register(lapisWall.getItemBlock());
-//		GameRegistry.registerBlock(lapisHalfSlab, ItemBlockCustomSlab.class, "lapis_half_slab", lapisHalfSlab, lapisDoubleSlab);
-//		GameRegistry.registerBlock(lapisDoubleSlab, ItemBlockCustomSlab.class, "lapis_double_slab", lapisHalfSlab, lapisDoubleSlab);
-//
+        GameRegistry.register(lapisHalfSlab);
+        GameRegistry.register(new ItemSlab(lapisHalfSlab, lapisHalfSlab, lapisDoubleSlab).setRegistryName("lapis_half_slab"));
+        GameRegistry.register(lapisDoubleSlab);
+
 		GameRegistry.register(lapisDoor);
 		GameRegistry.register(lapisDoorBlock);
 		GameRegistry.register(lapisTrapdoor);
@@ -453,9 +457,10 @@ public class ModEmeraldMaterial {
         GameRegistry.register(redstoneStairs.getItemBlock());
 		GameRegistry.register(redstoneWall);
         GameRegistry.register(redstoneWall.getItemBlock());
-//		GameRegistry.registerBlock(redstoneHalfSlab, ItemBlockCustomSlab.class, "redstone_half_slab", redstoneHalfSlab, redstoneDoubleSlab);
-//		GameRegistry.registerBlock(redstoneDoubleSlab, ItemBlockCustomSlab.class, "redstone_double_slab", redstoneHalfSlab, redstoneDoubleSlab);
-//
+        GameRegistry.register(redstoneHalfSlab);
+        GameRegistry.register(new ItemSlab(redstoneHalfSlab, redstoneHalfSlab, redstoneDoubleSlab).setRegistryName("redstone_half_slab"));
+        GameRegistry.register(redstoneDoubleSlab);
+
 		GameRegistry.register(redstoneDoor);
 		GameRegistry.register(redstoneDoorBlock);
 		GameRegistry.register(redstoneTrapdoor);
@@ -487,9 +492,10 @@ public class ModEmeraldMaterial {
         GameRegistry.register(goldStairs.getItemBlock());
 		GameRegistry.register(goldWall);
         GameRegistry.register(goldWall.getItemBlock());
-//		GameRegistry.registerBlock(goldHalfSlab, ItemBlockCustomSlab.class, "gold_half_slab", goldHalfSlab, goldDoubleSlab);
-//		GameRegistry.registerBlock(goldDoubleSlab, ItemBlockCustomSlab.class, "gold_double_slab", goldHalfSlab, goldDoubleSlab);
-//
+        GameRegistry.register(goldHalfSlab);
+        GameRegistry.register(new ItemSlab(goldHalfSlab, goldHalfSlab, goldDoubleSlab).setRegistryName("gold_half_slab"));
+        GameRegistry.register(goldDoubleSlab);
+
 		GameRegistry.register(goldDoor);
 		GameRegistry.register(goldDoorBlock);
 		GameRegistry.register(goldTrapdoor);
@@ -515,8 +521,9 @@ public class ModEmeraldMaterial {
         GameRegistry.register(ironStairs.getItemBlock());
 		GameRegistry.register(ironWall);
         GameRegistry.register(ironWall.getItemBlock());
-//		GameRegistry.registerBlock(ironHalfSlab, ItemBlockCustomSlab.class, "iron_half_slab", ironHalfSlab, ironDoubleSlab);
-//		GameRegistry.registerBlock(ironDoubleSlab, ItemBlockCustomSlab.class, "iron_double_slab", ironHalfSlab, ironDoubleSlab);
+        GameRegistry.register(ironHalfSlab);
+        GameRegistry.register(new ItemSlab(ironHalfSlab, ironHalfSlab, ironDoubleSlab).setRegistryName("iron_half_slab"));
+        GameRegistry.register(ironDoubleSlab);
 
 		
 		/* **************    Diamond Blocks   ********************* */
@@ -544,11 +551,9 @@ public class ModEmeraldMaterial {
 		GameRegistry.register(diamondStairs.getItemBlock());
         GameRegistry.register(diamondWall);
 		GameRegistry.register(diamondWall.getItemBlock());
-//		GameRegistry.registerBlock(diamondHalfSlab, ItemBlockCustomSlab.class, "diamond_half_slab", diamondHalfSlab, diamondDoubleSlab);
-//		GameRegistry.registerBlock(diamondDoubleSlab, ItemBlockCustomSlab.class, "diamond_double_slab", diamondHalfSlab, diamondDoubleSlab);
-//		GameRegistry.register(diamondHalfSlab);
-//        GameRegistry.register(diamondHalfSlab.getItemBlock());
-//        GameRegistry.register(diamondDoubleSlab);
+		GameRegistry.register(diamondHalfSlab);
+        GameRegistry.register(diamondDoubleSlab);
+        GameRegistry.register(new ItemSlab(diamondHalfSlab, diamondHalfSlab, diamondDoubleSlab).setRegistryName("diamond_half_slab"));
 
 		GameRegistry.register(diamondDoor);
 		GameRegistry.register(diamondDoorBlock);
@@ -618,11 +623,9 @@ public class ModEmeraldMaterial {
         GameRegistry.register(diamondObsidianStairs.getItemBlock());
         GameRegistry.register(diamondObsidianWall);
         GameRegistry.register(diamondObsidianWall.getItemBlock());
-//      GameRegistry.registerBlock(diamondHalfSlab, ItemBlockCustomSlab.class, "diamond_half_slab", diamondHalfSlab, diamondDoubleSlab);
-//      GameRegistry.registerBlock(diamondDoubleSlab, ItemBlockCustomSlab.class, "diamond_double_slab", diamondHalfSlab, diamondDoubleSlab);
-//        GameRegistry.register(diamondObsidianHalfSlab);
-//        GameRegistry.register(diamondObsidianHalfSlab.getItemBlock());
-//        GameRegistry.register(diamondObsidianDoubleSlab);
+        GameRegistry.register(diamondObsidianHalfSlab);
+        GameRegistry.register(new ItemSlab(diamondObsidianHalfSlab, diamondObsidianHalfSlab, diamondObsidianDoubleSlab).setRegistryName("diamond-obsidian_half_slab"));
+        GameRegistry.register(diamondObsidianDoubleSlab);
 
         GameRegistry.register(diamondObsidianDoor);
         GameRegistry.register(diamondObsidianDoorBlock);
@@ -685,7 +688,8 @@ public class ModEmeraldMaterial {
 	private void addMiscRecipes(Item recipeItem, Item door) {
 		addMiscRecipes(new ItemStack(recipeItem), door);
 	}
-	private void addMiscRecipes(Block recipeBlock, Item door) {
+	@SuppressWarnings("unused") // Possible future use
+    private void addMiscRecipes(Block recipeBlock, Item door) {
 		addMiscRecipes(new ItemStack(recipeBlock), door);
 	}
 	private void addMiscRecipes(ItemStack recipeItemStack, Item door) {
@@ -703,6 +707,7 @@ public class ModEmeraldMaterial {
 		}
 	}
 
+    @SuppressWarnings("unused") // Possible future use
 	private void addBlockRecipes(Item recipeItem, Block stairs, Block wall, Block halfSlab) {
 		addBlockRecipes(new ItemStack(recipeItem), stairs, wall, halfSlab);
 	}
@@ -756,6 +761,7 @@ public class ModEmeraldMaterial {
 	private void addWeaponRecipes(Item recipeItem, Item sword, Item broadsword, Item bow) {
 		addWeaponRecipes(new ItemStack(recipeItem), sword, broadsword, bow);
 	}
+    @SuppressWarnings("unused") // Possible future use
 	private void addWeaponRecipes(Block recipeBlock, Item sword, Item broadsword, Item bow) {
 		addWeaponRecipes(new ItemStack(recipeBlock), sword, broadsword, bow);
 	}
@@ -797,6 +803,7 @@ public class ModEmeraldMaterial {
 	private void addToolRecipes(Item recipeItem, Item axe, Item hoe, Item pickaxe, Item spade) {
 		addToolRecipes(new ItemStack(recipeItem), axe, hoe, pickaxe, spade);
 	}
+    @SuppressWarnings("unused") // Possible future use
 	private void addToolRecipes(Block recipeBlock, Item axe, Item hoe, Item pickaxe, Item spade) {
 		addToolRecipes(new ItemStack(recipeBlock), axe, hoe, pickaxe, spade);
 	}
@@ -850,6 +857,7 @@ public class ModEmeraldMaterial {
 	private void addArmorRecipes(Item recipeItem, Item helmet, Item chest, Item pants, Item boots) {
 		addArmorRecipes(new ItemStack(recipeItem), helmet, chest, pants, boots);
 	}
+    @SuppressWarnings("unused") // Possible future use
 	private void addArmorRecipes(Block recipeBlock, Item helmet, Item chest, Item pants, Item boots) {
 		addArmorRecipes(new ItemStack(recipeBlock), helmet, chest, pants, boots);
 	}

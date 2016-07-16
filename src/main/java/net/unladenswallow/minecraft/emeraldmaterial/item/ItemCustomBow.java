@@ -24,7 +24,6 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.unladenswallow.minecraft.emeraldmaterial.EMLogger;
 import net.unladenswallow.minecraft.emeraldmaterial.ModEmeraldMaterial;
 
 public class ItemCustomBow extends ItemBow {
@@ -37,7 +36,8 @@ public class ItemCustomBow extends ItemBow {
 		/*
 		 * The following property override is copied nearly verbatim from ItemBow.  But in ItemBow
 		 * it specifically checks to see if the item in use is Items.bow, so we need to make
-		 * it more broad to match our custom bows.
+		 * it more broad to match our custom bows.  Without this property override, a custom
+		 * bow's model overrides won't work properly.
 		 */
         this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
         {

@@ -1,6 +1,5 @@
 package net.unladenswallow.minecraft.emeraldmaterial.item;
 
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSpade;
 
 /**

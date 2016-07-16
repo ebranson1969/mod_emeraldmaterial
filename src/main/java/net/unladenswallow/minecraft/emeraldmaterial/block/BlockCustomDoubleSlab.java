@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class BlockCustomDoubleSlab extends BlockCustomSlab {
 
@@ -28,11 +27,5 @@ public class BlockCustomDoubleSlab extends BlockCustomSlab {
     {
         return Item.getItemFromBlock(this.halfSlabPartner);
     }
-
-    @Override
-    public Comparable<?> getTypeForItem(ItemStack stack) {
-        return "thereAreNoVariants";
-    }
-
 
 }

@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "mod_emeraldmaterial:blocks/block.diamond-obsidian",
+        "top": "mod_emeraldmaterial:blocks/block.diamond-obsidian",
+        "side": "mod_emeraldmaterial:blocks/block.diamond-obsidian"
+    }
+}

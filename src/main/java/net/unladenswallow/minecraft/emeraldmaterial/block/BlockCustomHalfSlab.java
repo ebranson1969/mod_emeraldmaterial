@@ -1,7 +1,6 @@
 package net.unladenswallow.minecraft.emeraldmaterial.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 
 public class BlockCustomHalfSlab extends BlockCustomSlab {
 
@@ -15,10 +14,5 @@ public class BlockCustomHalfSlab extends BlockCustomSlab {
 	public boolean isDouble() {
 		return false;
 	}
-
-    @Override
-    public Comparable<?> getTypeForItem(ItemStack stack) {
-        return "thereAreNoVariants";
-    }
 
 }

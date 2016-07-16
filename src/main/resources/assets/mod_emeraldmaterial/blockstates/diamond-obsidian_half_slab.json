@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "half=bottom,variant=true": { "model": "mod_emeraldmaterial:diamond-obsidian_half_slab" },
+        "half=top,variant=true": { "model": "mod_emeraldmaterial:diamond-obsidian_upper_slab" },
+        "half=bottom,variant=false": { "model": "mod_emeraldmaterial:diamond-obsidian_half_slab" },
+        "half=top,variant=false": { "model": "mod_emeraldmaterial:diamond-obsidian_upper_slab" }
+    }
+}

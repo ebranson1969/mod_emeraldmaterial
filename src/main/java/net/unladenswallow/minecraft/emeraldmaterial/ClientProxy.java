@@ -35,8 +35,8 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.emeraldStairs);
         registerItemModel(ModEmeraldMaterial.emeraldWall);
-//        registerItemFromBlock(ModEmeraldMaterial.emeraldHalfSlab);
-//
+        registerItemModel(ModEmeraldMaterial.emeraldHalfSlab);
+
         registerItemModel(ModEmeraldMaterial.emeraldDoor);
         registerItemModel(ModEmeraldMaterial.emeraldTrapdoor);
 
@@ -57,8 +57,8 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.obsidianStairs);
         registerItemModel(ModEmeraldMaterial.obsidianWall);
-//        registerItemFromBlock(ModEmeraldMaterial.obsidianHalfSlab);
-//
+        registerItemModel(ModEmeraldMaterial.obsidianHalfSlab);
+
         registerItemModel(ModEmeraldMaterial.obsidianDoor);
         registerItemModel(ModEmeraldMaterial.obsidianTrapdoor);
 
@@ -81,8 +81,8 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.lapisStairs);
         registerItemModel(ModEmeraldMaterial.lapisWall);
-//        registerItemFromBlock(ModEmeraldMaterial.lapisHalfSlab);
-//
+        registerItemModel(ModEmeraldMaterial.lapisHalfSlab);
+
         registerItemModel(ModEmeraldMaterial.lapisDoor);
         registerItemModel(ModEmeraldMaterial.lapisTrapdoor);
 
@@ -104,7 +104,7 @@ public class ClientProxy extends CommonProxy {
         registerItemModel(ModEmeraldMaterial.redstoneStairs);
         registerItemModel(ModEmeraldMaterial.redstoneWall);
         registerItemModel(ModEmeraldMaterial.redstoneHalfSlab);
-//
+
         registerItemModel(ModEmeraldMaterial.redstoneDoor);
         registerItemModel(ModEmeraldMaterial.redstoneTrapdoor);
 
@@ -114,8 +114,8 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.goldStairs);
         registerItemModel(ModEmeraldMaterial.goldWall);
-//        registerItemFromBlock(ModEmeraldMaterial.goldHalfSlab);
-//
+        registerItemModel(ModEmeraldMaterial.goldHalfSlab);
+
         registerItemModel(ModEmeraldMaterial.goldDoor);
         registerItemModel(ModEmeraldMaterial.goldTrapdoor);
 
@@ -125,7 +125,7 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.ironStairs);
         registerItemModel(ModEmeraldMaterial.ironWall);
-//        registerItemFromBlock(ModEmeraldMaterial.ironHalfSlab);
+        registerItemModel(ModEmeraldMaterial.ironHalfSlab);
 
         
         registerItemModel(ModEmeraldMaterial.diamondBroadsword);
@@ -157,8 +157,8 @@ public class ClientProxy extends CommonProxy {
 
         registerItemModel(ModEmeraldMaterial.diamondObsidianStairs);
         registerItemModel(ModEmeraldMaterial.diamondObsidianWall);
-//      registerItemFromBlock(ModEmeraldMaterial.diamondObsidianHalfSlab);
-//
+        registerItemModel(ModEmeraldMaterial.diamondObsidianHalfSlab);
+
         registerItemModel(ModEmeraldMaterial.diamondObsidianDoor);
         registerItemModel(ModEmeraldMaterial.diamondObsidianTrapdoor);
 
