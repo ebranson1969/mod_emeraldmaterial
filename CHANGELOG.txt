@@ -1,3 +1,14 @@
+1.9-2.1
+=======
+Updated for 1.9
+Some missing blocks and recipes added
+
+1.8-2.0
+=======
+Renamed to mOre Usable Materials Mod
+Additional materials and items added
+Updated to support 1.8.9
+
 1.8-1.2
 =======
 Make tools, items and armor repairable with emeralds on an anvil.

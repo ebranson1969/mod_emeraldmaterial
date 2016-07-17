@@ -1,5 +1,9 @@
-This Minecraft mod, Emerald Material Mod, including all parts herein except as noted below,
-is licensed under the GNU LGPL v2.1 or later.
+This Minecraft mod, mOre UsableMaterials Mod, including all parts herein except
+as noted below, is licensed under the GNU LGPL v2.1 or later.
+
+All art assets included in this mod are licensed under Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International
+http://creativecommons.org/licenses/by-nc-sa/4.0/
 
 This software requires the Minecraft, Minecraft Forge and Forge Mod Loader software
 in order to function.  Those programs contain their own license terms.
