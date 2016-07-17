@@ -670,6 +670,11 @@ public class ModEmeraldMaterial {
 		addMiscRecipes(Items.redstone, redstoneDoor);
 
 		addWeaponRecipes(Items.iron_ingot, null, ironBroadsword, ironBow);
+        addBlockRecipes(Blocks.iron_block, ironStairs, ironWall, ironHalfSlab);
+
+        addWeaponRecipes(Items.gold_ingot, null, goldBroadsword, goldBow);
+        addBlockRecipes(Blocks.gold_block, goldStairs, goldWall, goldHalfSlab);
+        addMiscRecipes(Items.gold_ingot, goldDoor);
 
 		addWeaponRecipes(Items.diamond, null, diamondBroadsword, diamondBow);
         addBlockRecipes(Blocks.diamond_block, diamondStairs, diamondWall, diamondHalfSlab);
