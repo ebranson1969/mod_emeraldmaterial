@@ -23,7 +23,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
 	protected static final PropertyBool VARIANT = PropertyBool.create("variant");
 	
 	public BlockCustomSlab(Block sourceBlock) {
-		super(sourceBlock.getMaterial(sourceBlock.getDefaultState()));
+		super(sourceBlock.getDefaultState().getMaterial());
 //		EMLogger.info("BlockCustomSlab <init>: %s guesses: hardness = %f; resistance = %f",
 //				(new ItemStack(sourceBlock)).getDisplayName(),
 //				ItemMaterials.guessHardness(sourceBlock),
@@ -39,7 +39,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
         }
 
         this.setDefaultState(iblockstate.withProperty(VARIANT, false));
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 
 		this.useNeighborBrightness = !this.isDouble();
 	}

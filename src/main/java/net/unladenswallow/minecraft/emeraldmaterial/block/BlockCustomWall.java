@@ -109,7 +109,7 @@ public class BlockCustomWall extends BlockWall {
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
-        return block == Blocks.barrier ? false : (block != this && !(block instanceof BlockFenceGate) ? (block.getMaterial(block.getDefaultState()).isOpaque() && iblockstate.isFullCube() ? block.getMaterial(block.getDefaultState()) != Material.gourd : false) : true);
+        return block == Blocks.BARRIER ? false : (block != this && !(block instanceof BlockFenceGate) ? (block.getDefaultState().getMaterial().isOpaque() && iblockstate.isFullCube() ? block.getDefaultState().getMaterial() != Material.GOURD : false) : true);
     }
 
     public ItemBlock getItemBlock() {

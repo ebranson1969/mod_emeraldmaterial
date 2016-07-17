@@ -32,11 +32,12 @@ public class ItemMaterials {
 			20,
 			new int[] {3, 7, 5, 3},
 			30,
-			SoundEvents.item_armor_equip_diamond);
+			SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+			0);
 	static {
-		emeraldToolMaterial.setRepairItem(new ItemStack(Items.emerald));
-		emeraldBroadswordMaterial.setRepairItem(new ItemStack(Items.emerald));
-		emeraldArmorMaterial.customCraftingMaterial = Items.emerald;
+		emeraldToolMaterial.setRepairItem(new ItemStack(Items.EMERALD));
+		emeraldBroadswordMaterial.setRepairItem(new ItemStack(Items.EMERALD));
+		emeraldArmorMaterial.customCraftingMaterial = Items.EMERALD;
 	}
 
 	public static ToolMaterial obsidianToolMaterial = EnumHelper.addToolMaterial(
@@ -61,7 +62,8 @@ public class ItemMaterials {
 			60,
 			new int[] {2, 6, 5, 2},
 			30,
-            SoundEvents.item_armor_equip_diamond);
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+            1);
 	static {
 		obsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
 		obsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
@@ -90,11 +92,12 @@ public class ItemMaterials {
 			15,
 			new int[] {2, 5, 4, 1},
 			30,
-            SoundEvents.item_armor_equip_diamond);
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+            0);
 	static {
-		lapisToolMaterial.setRepairItem(new ItemStack(Items.dye, 1, 4));
-		lapisBroadswordMaterial.setRepairItem(new ItemStack(Items.dye, 1, 4));
-		lapisArmorMaterial.customCraftingMaterial = (new ItemStack(Items.dye, 1, 4)).getItem();
+		lapisToolMaterial.setRepairItem(new ItemStack(Items.DYE, 1, 4));
+		lapisBroadswordMaterial.setRepairItem(new ItemStack(Items.DYE, 1, 4));
+		lapisArmorMaterial.customCraftingMaterial = (new ItemStack(Items.DYE, 1, 4)).getItem();
 	}
 	
 	public static ToolMaterial redstoneToolMaterial = EnumHelper.addToolMaterial(
@@ -119,11 +122,12 @@ public class ItemMaterials {
 			15,
 			new int[] {2, 5, 4, 1},
 			30,
-            SoundEvents.item_armor_equip_diamond);
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+            0);
 	static {
-		redstoneToolMaterial.setRepairItem(new ItemStack(Items.redstone));
-		redstoneBroadswordMaterial.setRepairItem(new ItemStack(Items.redstone));
-		redstoneArmorMaterial.customCraftingMaterial = Items.redstone;
+		redstoneToolMaterial.setRepairItem(new ItemStack(Items.REDSTONE));
+		redstoneBroadswordMaterial.setRepairItem(new ItemStack(Items.REDSTONE));
+		redstoneArmorMaterial.customCraftingMaterial = Items.REDSTONE;
 	}
 	
 	/* This is a copy of ToolMaterial.GOLD values with damage increased by 1.0 */
@@ -136,7 +140,7 @@ public class ItemMaterials {
 			22
 			);
 	static {
-		goldBroadswordMaterial.setRepairItem(new ItemStack(Items.gold_ingot));
+		goldBroadswordMaterial.setRepairItem(new ItemStack(Items.GOLD_INGOT));
 	}
 
 
@@ -150,7 +154,7 @@ public class ItemMaterials {
 			14
 			);
 	static {
-		ironBroadswordMaterial.setRepairItem(new ItemStack(Items.iron_ingot));
+		ironBroadswordMaterial.setRepairItem(new ItemStack(Items.IRON_INGOT));
 	}
 
 
@@ -164,7 +168,7 @@ public class ItemMaterials {
 			10
 			);
 	static {
-		diamondBroadswordMaterial.setRepairItem(new ItemStack(Items.diamond));
+		diamondBroadswordMaterial.setRepairItem(new ItemStack(Items.DIAMOND));
 	}
 
 	
@@ -190,7 +194,8 @@ public class ItemMaterials {
 			60,
 			new int[] {3, 8, 6, 3},
 			30,
-            SoundEvents.item_armor_equip_diamond);
+            SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
+            3);
 	static {
 		diamondObsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
 		diamondObsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
@@ -199,7 +204,7 @@ public class ItemMaterials {
 	
 
 	public static float getBlockHardness(Block sourceBlock) {
-	    return sourceBlock.getBlockHardness(null, null, null);
+	    return sourceBlock.getDefaultState().getBlockHardness(null, null);
 	}
 	
     /* Best guess reverse-engineered value of resistance value based on the explosion

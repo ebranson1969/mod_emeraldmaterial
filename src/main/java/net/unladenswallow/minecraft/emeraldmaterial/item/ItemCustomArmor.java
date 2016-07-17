@@ -16,7 +16,7 @@ public class ItemCustomArmor extends ItemArmor {
 	public ItemCustomArmor(String unlocalizedName, int renderIndex, EntityEquipmentSlot armorType, ArmorMaterial material, Potion fullSetEffect) {
 		super(material, renderIndex, armorType);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabs.tabCombat);
+		this.setCreativeTab(CreativeTabs.COMBAT);
 		this.setUnlocalizedName(unlocalizedName);
 		this.setRegistryName(unlocalizedName);
 		this.fullSetEffect = fullSetEffect;

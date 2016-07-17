@@ -13,7 +13,7 @@ public class BlockCustomBlock extends Block {
 		this.setRegistryName(unlocalizedName);
         this.setHardness(hardness);
         this.setResistance(resistance);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
     public ItemBlock getItemBlock() {

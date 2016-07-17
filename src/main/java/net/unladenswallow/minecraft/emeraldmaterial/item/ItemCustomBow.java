@@ -32,7 +32,7 @@ public class ItemCustomBow extends ItemBow {
 		super();
 		this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(ModEmeraldMaterial.MODID, unlocalizedName);
-		this.setCreativeTab(CreativeTabs.tabCombat);
+		this.setCreativeTab(CreativeTabs.COMBAT);
 		/*
 		 * The following property override is copied nearly verbatim from ItemBow.  But in ItemBow
 		 * it specifically checks to see if the item in use is Items.bow, so we need to make
@@ -81,7 +81,7 @@ public class ItemCustomBow extends ItemBow {
 	}
 
     protected boolean hasInfiniteArrows(ItemStack itemStackIn, EntityPlayer playerIn) {
-    	return (EnchantmentHelper.getEnchantmentLevel(Enchantments.infinity, itemStackIn) > 0)
+    	return (EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, itemStackIn) > 0)
     			|| playerIn.capabilities.isCreativeMode;
     }
     
@@ -122,18 +122,18 @@ public class ItemCustomBow extends ItemBow {
 
 	            takeDamage(1, stack, player);
 
-	            worldIn.playSound(player.posX, player.posY, player.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.HOSTILE, 1.0F, (1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowDamage * 0.5F), true);
+	            worldIn.playSound(player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.HOSTILE, 1.0F, (1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + arrowDamage * 0.5F), true);
 
 	            if (hasInfiniteArrows(stack, player))
 	            {
-	                entityarrow.canBePickedUp = EntityArrow.PickupStatus.CREATIVE_ONLY;
+	                entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 	            }
 	            else
 	            {
 	                this.consumeAmmo(stack, worldIn, player);
 	            }
 
-	            player.addStat(StatList.func_188057_b(this));
+	            player.addStat(StatList.getObjectUseStats(this));
 
 	            if (!worldIn.isRemote)
 	            {
@@ -144,7 +144,7 @@ public class ItemCustomBow extends ItemBow {
     }
 
 	protected void initializeArrowVelocity(EntityArrow entityarrow, EntityPlayer player, float arrowDamage) {
-        entityarrow.func_184547_a(player, player.rotationPitch, player.rotationYaw, 0.0F, arrowDamage * 3.0F, 1.0F);
+        entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, arrowDamage * 3.0F, 1.0F);
     }
 
     protected void consumeAmmo(ItemStack stack, World worldIn, EntityPlayer playerIn) {
@@ -163,21 +163,21 @@ public class ItemCustomBow extends ItemBow {
 	 * @param stack
 	 */
 	protected void applyEnchantments(EntityArrow entityarrow, ItemStack stack) {
-        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.power, stack);
+        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
 
         if (j > 0)
         {
             entityarrow.setDamage(entityarrow.getDamage() + (double)j * 0.5D + 0.5D);
         }
 
-        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.punch, stack);
+        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
 
         if (k > 0)
         {
             entityarrow.setKnockbackStrength(k);
         }
 
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.flame, stack) > 0)
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
         {
             entityarrow.setFire(100);
         }
@@ -300,7 +300,7 @@ public class ItemCustomBow extends ItemBow {
 	}
 
 	protected Item getItemUsedByBow() {
-		return Items.arrow;
+		return Items.ARROW;
 	}
 
 }

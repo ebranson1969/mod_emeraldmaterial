@@ -24,13 +24,13 @@ public class BlockCustomDoor extends BlockDoor {
 	private boolean interactive = false;
 	
 	public BlockCustomDoor(Block sourceBlock, String unlocalizedName) {
-		super(sourceBlock.getMaterial(sourceBlock.getDefaultState()));
+		super(sourceBlock.getDefaultState().getMaterial());
 		this.setUnlocalizedName(unlocalizedName);
 		this.setRegistryName(unlocalizedName);
 		this.setHardness(ItemMaterials.getBlockHardness(sourceBlock));
         this.setResistance(ItemMaterials.guessResistance(sourceBlock));
-		this.setStepSound(sourceBlock.getStepSound());
-        if (this.blockMaterial == Material.iron)
+        this.setSoundType(sourceBlock.getSoundType());
+        if (this.blockMaterial == Material.IRON)
         {
             this.interactive = true;
         }
@@ -76,7 +76,7 @@ public class BlockCustomDoor extends BlockDoor {
                 state = iblockstate1.cycleProperty(OPEN);
                 worldIn.setBlockState(blockpos1, state, 2);
                 worldIn.markBlockRangeForRenderUpdate(blockpos1, pos);
-                worldIn.playAuxSFXAtEntity(playerIn, ((Boolean)state.getValue(OPEN)).booleanValue() ? 1003 : 1006, pos, 0);
+                worldIn.playEvent(playerIn, ((Boolean)state.getValue(OPEN)).booleanValue() ? this.getOpenSound() : this.getCloseSound(), pos, 0);
                 return true;
             }
         }
@@ -85,4 +85,15 @@ public class BlockCustomDoor extends BlockDoor {
     protected boolean allowInteract() {
     	return this.interactive;
     }
+
+    /* Copied from IronDoor because they are private */
+    private int getCloseSound()
+    {
+        return this.blockMaterial == Material.IRON ? 1011 : 1012;
+    }
+    private int getOpenSound()
+    {
+        return this.blockMaterial == Material.IRON ? 1005 : 1006;
+    }
+
 }
