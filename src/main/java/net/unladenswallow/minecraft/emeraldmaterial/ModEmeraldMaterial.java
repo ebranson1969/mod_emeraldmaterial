@@ -36,7 +36,7 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemGoldBow;
 
 
-@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.9,1.10)", acceptableRemoteVersions="[1.9,1.10)")
+@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="1.9", acceptableRemoteVersions="1.9")
 public class ModEmeraldMaterial {
 
 	public static final String MODID = "mod_emeraldmaterial";
