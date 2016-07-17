@@ -2,6 +2,7 @@ package net.unladenswallow.minecraft.emeraldmaterial;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemHoe;
@@ -22,6 +23,8 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomBow;
  *
  */
 public class EMEventHandler {
+
+    private static final int FIRST_ARMOR_INVENTORY_SLOT = 36;
 
 /*	private Enchantment[] toolEnchantments = 
 		{ Enchantment.fortune, Enchantment.silkTouch, Enchantment.efficiency, Enchantment.unbreaking };
@@ -65,7 +68,7 @@ public class EMEventHandler {
 			int numObsidianArmorPieces = getNumMatchingArmorPieces((EntityPlayer)event.getEntityLiving(), ItemMaterials.obsidianArmorMaterial)
 					+ numDOArmorPieces;
 //			EMLogger.info("EMEventHanlder onLivingAttachEvent:  tick = %d; numDOArmorPieces = %d; numObsidianArmorPieces = %d",
-//					event.entityLiving.worldObj.getWorldTime(), numDOArmorPieces, numObsidianArmorPieces);
+//					event.getEntityLiving().worldObj.getWorldTime(), numDOArmorPieces, numObsidianArmorPieces);
 			float newDamage = event.getAmount();
 			if (numDOArmorPieces > 0) {
 				// Each Diamond-Infused Obsidian Armor piece reduces all damage by 10%, as a workaround to make
@@ -100,11 +103,16 @@ public class EMEventHandler {
 	}
 
 	private int getNumMatchingArmorPieces(EntityPlayer player, ArmorMaterial armorMaterial) {
-		return ((player.inventory.armorItemInSlot(0) != null && ((ItemArmor)(player.inventory.armorItemInSlot(0).getItem())).getArmorMaterial() == armorMaterial) ? 1 : 0)
-			 + ((player.inventory.armorItemInSlot(1) != null && ((ItemArmor)(player.inventory.armorItemInSlot(1).getItem())).getArmorMaterial() == armorMaterial) ? 1 : 0)
-			 + ((player.inventory.armorItemInSlot(2) != null && ((ItemArmor)(player.inventory.armorItemInSlot(2).getItem())).getArmorMaterial() == armorMaterial) ? 1 : 0)
-			 + ((player.inventory.armorItemInSlot(3) != null && ((ItemArmor)(player.inventory.armorItemInSlot(3).getItem())).getArmorMaterial() == armorMaterial) ? 1 : 0)
-			 ;
+        return (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+1, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+2, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+3, armorMaterial) ? 1 : 0);
 	}
+
+    private boolean inventorySlotContainsArmor(InventoryPlayer inventory, int inventorySlot, ArmorMaterial armorMaterial) {
+        return inventory.getStackInSlot(inventorySlot) != null
+                && inventory.getStackInSlot(inventorySlot).getItem() instanceof ItemArmor
+                && ((ItemArmor)inventory.getStackInSlot(inventorySlot).getItem()).getArmorMaterial() == armorMaterial;
+    }
 
 }
