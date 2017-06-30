@@ -37,7 +37,7 @@ public class ItemMaterials {
 	static {
 		emeraldToolMaterial.setRepairItem(new ItemStack(Items.EMERALD));
 		emeraldBroadswordMaterial.setRepairItem(new ItemStack(Items.EMERALD));
-		emeraldArmorMaterial.customCraftingMaterial = Items.EMERALD;
+		emeraldArmorMaterial.setRepairItem(new ItemStack(Items.EMERALD));
 	}
 
 	public static ToolMaterial obsidianToolMaterial = EnumHelper.addToolMaterial(
@@ -67,7 +67,7 @@ public class ItemMaterials {
 	static {
 		obsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
 		obsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
-		obsidianArmorMaterial.customCraftingMaterial = ModEmeraldMaterial.obsidianIngot;
+		obsidianArmorMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.obsidianIngot));
 	}
 	
 	public static ToolMaterial lapisToolMaterial = EnumHelper.addToolMaterial(
@@ -97,7 +97,7 @@ public class ItemMaterials {
 	static {
 		lapisToolMaterial.setRepairItem(new ItemStack(Items.DYE, 1, 4));
 		lapisBroadswordMaterial.setRepairItem(new ItemStack(Items.DYE, 1, 4));
-		lapisArmorMaterial.customCraftingMaterial = (new ItemStack(Items.DYE, 1, 4)).getItem();
+		lapisArmorMaterial.setRepairItem(new ItemStack(Items.DYE, 1, 4));
 	}
 	
 	public static ToolMaterial redstoneToolMaterial = EnumHelper.addToolMaterial(
@@ -127,7 +127,7 @@ public class ItemMaterials {
 	static {
 		redstoneToolMaterial.setRepairItem(new ItemStack(Items.REDSTONE));
 		redstoneBroadswordMaterial.setRepairItem(new ItemStack(Items.REDSTONE));
-		redstoneArmorMaterial.customCraftingMaterial = Items.REDSTONE;
+		redstoneArmorMaterial.setRepairItem(new ItemStack(Items.REDSTONE));
 	}
 	
 	/* This is a copy of ToolMaterial.GOLD values with damage increased by 1.0 */
@@ -199,7 +199,7 @@ public class ItemMaterials {
 	static {
 		diamondObsidianToolMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
 		diamondObsidianBroadswordMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
-		diamondObsidianArmorMaterial.customCraftingMaterial = ModEmeraldMaterial.diamondObsidianIngot;
+		diamondObsidianArmorMaterial.setRepairItem(new ItemStack(ModEmeraldMaterial.diamondObsidianIngot));
 	}
 	
 

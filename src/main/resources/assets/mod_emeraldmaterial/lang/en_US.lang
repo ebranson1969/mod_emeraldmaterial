@@ -13,7 +13,7 @@ tile.emerald_stairs.name=Emerald Stairs
 tile.emerald_wall.name=Emerald Wall
 tile.emerald_half_slab.name=Emerald Slab
 item.emerald_door.name=Emerald Door
-item.emerald_trapdoor.name=Emerald Trapdoor
+tile.emerald_trapdoor.name=Emerald Trapdoor
 
 item.obsidian_ingot.name=Obsidian Ingot
 item.obsidian_helmet.name=Obsidian Helmet
@@ -31,7 +31,7 @@ tile.obsidian_stairs.name=Obsidian Stairs
 tile.obsidian_wall.name=Obsidian Wall
 tile.obsidian_half_slab.name=Obsidian Slab
 item.obsidian_door.name=Obsidian Door
-item.obsidian_trapdoor.name=Obsidian Trapdoor
+tile.obsidian_trapdoor.name=Obsidian Trapdoor
 tile.polished_obsidian.name=Polished Obsidian
 
 item.lapis_helmet.name=Lapis Helmet
@@ -49,7 +49,7 @@ tile.lapis_stairs.name=Lapis Stairs
 tile.lapis_wall.name=Lapis Wall
 tile.lapis_half_slab.name=Lapis Slab
 item.lapis_door.name=Lapis Door
-item.lapis_trapdoor.name=Lapis Trapdoor
+tile.lapis_trapdoor.name=Lapis Trapdoor
 
 item.redstone_helmet.name=Redstone Helmet
 item.redstone_chest.name=Redstone Chestplate
@@ -66,7 +66,7 @@ tile.redstone_stairs.name=Redstone Stairs
 tile.redstone_wall.name=Redstone Wall
 tile.redstone_half_slab.name=Redstone Slab
 item.redstone_door.name=Redstone Door
-item.redstone_trapdoor.name=Redstone Trapdoor
+tile.redstone_trapdoor.name=Redstone Trapdoor
 
 item.gold_broadsword.name=Gold Broadsword
 item.gold_bow.name=Gold Bow
@@ -74,7 +74,7 @@ tile.gold_stairs.name=Gold Stairs
 tile.gold_wall.name=Gold Wall
 tile.gold_half_slab.name=Gold Slab
 item.gold_door.name=Gold Door
-item.gold_trapdoor.name=Gold Trapdoor
+tile.gold_trapdoor.name=Gold Trapdoor
 
 item.iron_broadsword.name=Iron Broadsword
 item.iron_bow.name=Iron Bow
@@ -88,7 +88,7 @@ tile.diamond_stairs.name=Diamond Stairs
 tile.diamond_wall.name=Diamond Wall
 tile.diamond_half_slab.name=Diamond Slab
 item.diamond_door.name=Diamond Door
-item.diamond_trapdoor.name=Diamond Trapdoor
+tile.diamond_trapdoor.name=Diamond Trapdoor
 
 tile.diamond-obsidian_block.name=Diamond-Infused Obsidian Ore
 item.diamond-obsidian_ingot.name=Diamond-Infused Obsidian Ingot
@@ -107,4 +107,4 @@ tile.diamond-obsidian_stairs.name=Diamond-Infused Obsidian Stairs
 tile.diamond-obsidian_wall.name=Diamond-Infused Obsidian Wall
 tile.diamond-obsidian_half_slab.name=Diamond-Infused Obsidian Slab
 item.diamond-obsidian_door.name=Diamond-Infused Obsidian Door
-item.diamond-obsidian_trapdoor.name=Diamond-Infused Obsidian Trapdoor
+tile.diamond-obsidian_trapdoor.name=Diamond-Infused Obsidian Trapdoor

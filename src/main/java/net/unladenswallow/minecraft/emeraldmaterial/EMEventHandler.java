@@ -24,8 +24,6 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemCustomBow;
  */
 public class EMEventHandler {
 
-    private static final int FIRST_ARMOR_INVENTORY_SLOT = 36;
-
 /*	private Enchantment[] toolEnchantments = 
 		{ Enchantment.fortune, Enchantment.silkTouch, Enchantment.efficiency, Enchantment.unbreaking };
 	private Enchantment[] armorEnchantments = 
@@ -42,7 +40,7 @@ public class EMEventHandler {
 	@SubscribeEvent
 	public void onItemCraftedEvent(ItemCraftedEvent event) {
 		if (event.crafting != null 
-				&& !event.player.worldObj.isRemote
+				&& !event.player.world.isRemote
 				&& (event.crafting.getItem() instanceof ItemCustomBow
 						|| event.crafting.getItem() instanceof ItemCustomArmor
 						|| event.crafting.getItem() instanceof ItemTool
@@ -52,7 +50,7 @@ public class EMEventHandler {
 			){
 //			EMLogger.info("EMEventhandler onItemCraftedEvent: Crafting a lapis item: %s [worldTime = %d]",
 //					event.crafting.getDisplayName(), event.player.worldObj.getWorldTime());
-			EnchantmentHelper.addRandomEnchantment(event.player.worldObj.rand, event.crafting, 1, false);
+			EnchantmentHelper.addRandomEnchantment(event.player.world.rand, event.crafting, 1, false);
 			// TODO: Figure out how to do this so that server and client are in sync
 //			((EntityPlayerMP)(event.player)).playerNetServerHandler.sendPacket(new S43PacketCamera());
 		}
@@ -77,7 +75,7 @@ public class EMEventHandler {
 //				EMLogger.info("EMEventHandler onLivingAttackEvent:  tick = %d; DOArmor reduced %s damage to %f", 
 //						event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
 			}
-			if (event.getSource().isExplosion() || event.getSource() == DamageSource.onFire) { 
+			if (event.getSource().isExplosion() || event.getSource() == DamageSource.ON_FIRE) { 
 				// Each Obsidian Armor piece reduces onFire and explosion damage by 22%.  A full set results
 				// in near immunity to onFire and explosions.  Standing in fire and lava will still damage.
 				if (numObsidianArmorPieces > 0) {
@@ -86,7 +84,7 @@ public class EMEventHandler {
 //							event.entityLiving.worldObj.getWorldTime(), event.source.getDamageType(), newDamage);
 				}
 			}
-			if (event.getSource() == DamageSource.lava) {
+			if (event.getSource() == DamageSource.LAVA) {
 				// Each Obsidian Armor piece reduces lava damage by 15%.
 				if (numObsidianArmorPieces > 0) {
 					newDamage = newDamage - ((float)numObsidianArmorPieces * 0.15f * newDamage);
@@ -103,10 +101,11 @@ public class EMEventHandler {
 	}
 
 	private int getNumMatchingArmorPieces(EntityPlayer player, ArmorMaterial armorMaterial) {
-        return (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT, armorMaterial) ? 1 : 0)
-                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+1, armorMaterial) ? 1 : 0)
-                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+2, armorMaterial) ? 1 : 0)
-                + (inventorySlotContainsArmor(player.inventory, FIRST_ARMOR_INVENTORY_SLOT+3, armorMaterial) ? 1 : 0);
+        int firstArmorInventorySlot = player.inventory.mainInventory.size();
+        return (inventorySlotContainsArmor(player.inventory, firstArmorInventorySlot, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, firstArmorInventorySlot+1, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, firstArmorInventorySlot+2, armorMaterial) ? 1 : 0)
+                + (inventorySlotContainsArmor(player.inventory, firstArmorInventorySlot+3, armorMaterial) ? 1 : 0);
 	}
 
     private boolean inventorySlotContainsArmor(InventoryPlayer inventory, int inventorySlot, ArmorMaterial armorMaterial) {

@@ -137,7 +137,7 @@ public class ItemCustomBow extends ItemBow {
 
 	            if (!worldIn.isRemote)
 	            {
-	                worldIn.spawnEntityInWorld(entityarrow);
+	                worldIn.spawnEntity(entityarrow);
 	            }
 	        }
 	    }

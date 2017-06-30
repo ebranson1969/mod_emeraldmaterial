@@ -36,7 +36,7 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemGoldBow;
 
 
-@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.10,1.11)", acceptableRemoteVersions="1.10,1.11)")
+@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.11,1.12)", acceptableRemoteVersions="1.10,1.11)")
 public class ModEmeraldMaterial {
 
 	public static final String MODID = "mod_emeraldmaterial";
@@ -221,10 +221,12 @@ public class ModEmeraldMaterial {
 		        .setCreativeTab(CreativeTabs.MATERIALS);
 
 		/* **************    Emerald Items and Blocks   ********************* */
-		emeraldHelmet = new ItemCustomArmor("emerald_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.emeraldArmorMaterial, MobEffects.SPEED);
-		emeraldChest = new ItemCustomArmor("emerald_chest", 1, EntityEquipmentSlot.CHEST, ItemMaterials.emeraldArmorMaterial, MobEffects.SPEED);
-		emeraldPants = new ItemCustomArmor("emerald_pants", 2, EntityEquipmentSlot.LEGS, ItemMaterials.emeraldArmorMaterial, MobEffects.SPEED);
-		emeraldBoots = new ItemCustomArmor("emerald_boots", 1, EntityEquipmentSlot.FEET, ItemMaterials.emeraldArmorMaterial, MobEffects.SPEED);
+		emeraldHelmet = new ItemCustomArmor("emerald_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.emeraldArmorMaterial, null);
+		emeraldChest = new ItemCustomArmor("emerald_chest", 1, EntityEquipmentSlot.CHEST, ItemMaterials.emeraldArmorMaterial, null);
+		emeraldPants = new ItemCustomArmor("emerald_pants", 2, EntityEquipmentSlot.LEGS, ItemMaterials.emeraldArmorMaterial, null);
+		emeraldBoots = new ItemCustomArmor("emerald_boots", 1, EntityEquipmentSlot.FEET, ItemMaterials.emeraldArmorMaterial, null);
+		((ItemCustomArmor)emeraldHelmet).addFullSetEffect(MobEffects.SPEED);
+        ((ItemCustomArmor)emeraldHelmet).addFullSetEffect(MobEffects.HASTE);
 
 		emeraldSword = (new ItemSword(ItemMaterials.emeraldToolMaterial))
 		        .setUnlocalizedName("emerald_sword")
@@ -350,10 +352,12 @@ public class ModEmeraldMaterial {
 
 		
 		/* **************    Lapis Items and Blocks   ********************* */
-		lapisHelmet = new ItemCustomArmor("lapis_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.lapisArmorMaterial, MobEffects.WATER_BREATHING);
+		lapisHelmet = new ItemCustomArmor("lapis_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.lapisArmorMaterial, null);
 		lapisChest = new ItemCustomArmor("lapis_chest", 1, EntityEquipmentSlot.CHEST, ItemMaterials.lapisArmorMaterial, null);
 		lapisPants = new ItemCustomArmor("lapis_pants", 2, EntityEquipmentSlot.LEGS, ItemMaterials.lapisArmorMaterial, null);
 		lapisBoots = new ItemCustomArmor("lapis_boots", 1, EntityEquipmentSlot.FEET, ItemMaterials.lapisArmorMaterial, null);
+        ((ItemCustomArmor)lapisHelmet).addFullSetEffect(MobEffects.WATER_BREATHING);
+        ((ItemCustomArmor)lapisHelmet).addFullSetEffect(MobEffects.LUCK);
 
 		lapisAxe = new ItemCustomAxe(ItemMaterials.lapisToolMaterial, "lapis_axe");
 		lapisHoe = new ItemCustomHoe(ItemMaterials.lapisToolMaterial, "lapis_hoe");
@@ -409,10 +413,11 @@ public class ModEmeraldMaterial {
 		
 		
 		/* **************    Redstone Items and Blocks   ********************* */
-		redstoneHelmet = new ItemCustomArmor("redstone_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.redstoneArmorMaterial, MobEffects.NIGHT_VISION);
+		redstoneHelmet = new ItemCustomArmor("redstone_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.redstoneArmorMaterial, null);
 		redstoneChest = new ItemCustomArmor("redstone_chest", 1, EntityEquipmentSlot.CHEST, ItemMaterials.redstoneArmorMaterial, null);
 		redstonePants = new ItemCustomArmor("redstone_pants", 2, EntityEquipmentSlot.LEGS, ItemMaterials.redstoneArmorMaterial, null);
 		redstoneBoots = new ItemCustomArmor("redstone_boots", 1, EntityEquipmentSlot.FEET, ItemMaterials.redstoneArmorMaterial, null);
+        ((ItemCustomArmor)redstoneHelmet).addFullSetEffect(MobEffects.NIGHT_VISION);
 
 		redstoneAxe = new ItemCustomAxe(ItemMaterials.redstoneToolMaterial, "redstone_axe");
 		redstoneHoe = new ItemCustomHoe(ItemMaterials.redstoneToolMaterial, "redstone_hoe");
