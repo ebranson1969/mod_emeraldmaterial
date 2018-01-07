@@ -12,12 +12,16 @@ import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomBlock;
 import net.unladenswallow.minecraft.emeraldmaterial.block.BlockCustomDoor;
@@ -36,10 +40,11 @@ import net.unladenswallow.minecraft.emeraldmaterial.item.ItemEmeraldBow;
 import net.unladenswallow.minecraft.emeraldmaterial.item.ItemGoldBow;
 
 
-@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.11,1.12)", acceptableRemoteVersions="1.10,1.11)")
+@Mod(modid = ModEmeraldMaterial.MODID, useMetadata = true, acceptedMinecraftVersions="[1.12,1.13)", acceptableRemoteVersions="1.12,1.13)")
 public class ModEmeraldMaterial {
 
 	public static final String MODID = "mod_emeraldmaterial";
+	public static final String RECIPE_GROUP_NAME = "mOre Materials";
 	
 	@SidedProxy(clientSide="net.unladenswallow.minecraft.emeraldmaterial.ClientProxy", serverSide="net.unladenswallow.minecraft.emeraldmaterial.ServerProxy")
 	public static CommonProxy proxy;
@@ -208,6 +213,7 @@ public class ModEmeraldMaterial {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent preInitEvent) {
+        MinecraftForge.EVENT_BUS.register(this);
 		ModEmeraldMaterial.proxy.preInit(preInitEvent);
 
 		/* Items that are referenced by ItemMaterials must be defined before we use ItemMaterials */
@@ -253,32 +259,6 @@ public class ModEmeraldMaterial {
 		emeraldDoorBlock.setDropItem(emeraldDoor);
 		emeraldTrapdoor = new BlockCustomTrapDoor(Blocks.EMERALD_BLOCK, "emerald_trapdoor");
 
-		GameRegistry.register(emeraldHelmet);
-		GameRegistry.register(emeraldChest);
-		GameRegistry.register(emeraldPants);
-		GameRegistry.register(emeraldBoots);
-		
-		GameRegistry.register(emeraldSword);
-		GameRegistry.register(emeraldBroadsword);
-		GameRegistry.register(emeraldBow);
-		
-		GameRegistry.register(emeraldAxe);
-		GameRegistry.register(emeraldHoe);
-		GameRegistry.register(emeraldPickaxe);
-		GameRegistry.register(emeraldSpade);
-		
-		GameRegistry.register(emeraldStairs);
-        GameRegistry.register(emeraldStairs.getItemBlock());
-		GameRegistry.register(emeraldWall);
-        GameRegistry.register(emeraldWall.getItemBlock());
-        GameRegistry.register(emeraldHalfSlab);
-        GameRegistry.register(new ItemSlab(emeraldHalfSlab, emeraldHalfSlab, emeraldDoubleSlab).setRegistryName("emerald_half_slab"));
-        GameRegistry.register(emeraldDoubleSlab);
-
-		GameRegistry.register(emeraldDoor);
-		GameRegistry.register(emeraldDoorBlock);
-		GameRegistry.register(emeraldTrapdoor);
-        GameRegistry.register(emeraldTrapdoor.getItemBlock());
 		
 
 		//		GameRegistry.register(emeraldHorseArmor, "emerald_horse_armor");
@@ -320,35 +300,6 @@ public class ModEmeraldMaterial {
 		    .setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
 		    .setHardness(ItemMaterials.getBlockHardness(Blocks.OBSIDIAN));
 		
-		GameRegistry.register(obsidianIngot);
-		GameRegistry.register(obsidianHelmet);
-		GameRegistry.register(obsidianChest);
-		GameRegistry.register(obsidianPants);
-		GameRegistry.register(obsidianBoots);
-		
-		GameRegistry.register(obsidianSword);
-		GameRegistry.register(obsidianBroadsword);
-		GameRegistry.register(obsidianBow);
-
-		GameRegistry.register(obsidianAxe);
-		GameRegistry.register(obsidianHoe);
-		GameRegistry.register(obsidianPickaxe);
-		GameRegistry.register(obsidianSpade);
-
-		GameRegistry.register(obsidianStairs);
-        GameRegistry.register(obsidianStairs.getItemBlock());
-		GameRegistry.register(obsidianWall);
-        GameRegistry.register(obsidianWall.getItemBlock());
-        GameRegistry.register(obsidianHalfSlab);
-        GameRegistry.register(new ItemSlab(obsidianHalfSlab, obsidianHalfSlab, obsidianDoubleSlab).setRegistryName("obsidian_half_slab"));
-        GameRegistry.register(obsidianDoubleSlab);
-
-		GameRegistry.register(obsidianDoor);
-		GameRegistry.register(obsidianDoorBlock);
-		GameRegistry.register(obsidianTrapdoor);
-        GameRegistry.register(obsidianTrapdoor.getItemBlock());
-		
-		GameRegistry.register(polishedObsidian);
 
 		
 		/* **************    Lapis Items and Blocks   ********************* */
@@ -384,33 +335,6 @@ public class ModEmeraldMaterial {
 		lapisDoorBlock.setDropItem(lapisDoor);
 		lapisTrapdoor = new BlockCustomTrapDoor(Blocks.LAPIS_BLOCK, "lapis_trapdoor");
 
-		GameRegistry.register(lapisHelmet);
-		GameRegistry.register(lapisChest);
-		GameRegistry.register(lapisPants);
-		GameRegistry.register(lapisBoots);
-		
-		GameRegistry.register(lapisSword);
-		GameRegistry.register(lapisBroadsword);
-		GameRegistry.register(lapisBow);
-
-		GameRegistry.register(lapisAxe);
-		GameRegistry.register(lapisHoe);
-		GameRegistry.register(lapisPickaxe);
-		GameRegistry.register(lapisSpade);
-
-		GameRegistry.register(lapisStairs);
-        GameRegistry.register(lapisStairs.getItemBlock());
-		GameRegistry.register(lapisWall);
-        GameRegistry.register(lapisWall.getItemBlock());
-        GameRegistry.register(lapisHalfSlab);
-        GameRegistry.register(new ItemSlab(lapisHalfSlab, lapisHalfSlab, lapisDoubleSlab).setRegistryName("lapis_half_slab"));
-        GameRegistry.register(lapisDoubleSlab);
-
-		GameRegistry.register(lapisDoor);
-		GameRegistry.register(lapisDoorBlock);
-		GameRegistry.register(lapisTrapdoor);
-        GameRegistry.register(lapisTrapdoor.getItemBlock());
-		
 		
 		/* **************    Redstone Items and Blocks   ********************* */
 		redstoneHelmet = new ItemCustomArmor("redstone_helmet", 1, EntityEquipmentSlot.HEAD, ItemMaterials.redstoneArmorMaterial, null);
@@ -444,33 +368,6 @@ public class ModEmeraldMaterial {
 		redstoneDoorBlock.setDropItem(redstoneDoor);
 		redstoneTrapdoor = new BlockCustomTrapDoor(Blocks.REDSTONE_BLOCK, "redstone_trapdoor");
 
-		GameRegistry.register(redstoneHelmet);
-		GameRegistry.register(redstoneChest);
-		GameRegistry.register(redstonePants);
-		GameRegistry.register(redstoneBoots);
-		
-		GameRegistry.register(redstoneSword);
-		GameRegistry.register(redstoneBroadsword);
-		GameRegistry.register(redstoneBow);
-
-		GameRegistry.register(redstoneAxe);
-		GameRegistry.register(redstoneHoe);
-		GameRegistry.register(redstonePickaxe);
-		GameRegistry.register(redstoneSpade);
-
-		GameRegistry.register(redstoneStairs);
-        GameRegistry.register(redstoneStairs.getItemBlock());
-		GameRegistry.register(redstoneWall);
-        GameRegistry.register(redstoneWall.getItemBlock());
-        GameRegistry.register(redstoneHalfSlab);
-        GameRegistry.register(new ItemSlab(redstoneHalfSlab, redstoneHalfSlab, redstoneDoubleSlab).setRegistryName("redstone_half_slab"));
-        GameRegistry.register(redstoneDoubleSlab);
-
-		GameRegistry.register(redstoneDoor);
-		GameRegistry.register(redstoneDoorBlock);
-		GameRegistry.register(redstoneTrapdoor);
-        GameRegistry.register(redstoneTrapdoor.getItemBlock());
-		
 		
 		/* **************    Gold Blocks   ********************* */
 		goldBroadsword = (new ItemSword(ItemMaterials.goldBroadswordMaterial))
@@ -490,22 +387,6 @@ public class ModEmeraldMaterial {
 		goldDoorBlock.setDropItem(goldDoor);
 		goldTrapdoor = new BlockCustomTrapDoor(Blocks.GOLD_BLOCK, "gold_trapdoor");
 
-		GameRegistry.register(goldBroadsword);
-		GameRegistry.register(goldBow);
-
-		GameRegistry.register(goldStairs);
-        GameRegistry.register(goldStairs.getItemBlock());
-		GameRegistry.register(goldWall);
-        GameRegistry.register(goldWall.getItemBlock());
-        GameRegistry.register(goldHalfSlab);
-        GameRegistry.register(new ItemSlab(goldHalfSlab, goldHalfSlab, goldDoubleSlab).setRegistryName("gold_half_slab"));
-        GameRegistry.register(goldDoubleSlab);
-
-		GameRegistry.register(goldDoor);
-		GameRegistry.register(goldDoorBlock);
-		GameRegistry.register(goldTrapdoor);
-        GameRegistry.register(goldTrapdoor.getItemBlock());
-		
 		
 		
 		/* **************    Iron Blocks   ********************* */
@@ -518,17 +399,6 @@ public class ModEmeraldMaterial {
 		ironWall = new BlockCustomWall(Blocks.IRON_BLOCK, "iron_wall");
 		ironHalfSlab = new BlockCustomHalfSlab(Blocks.IRON_BLOCK, "iron_half_slab");
 		ironDoubleSlab = new BlockCustomDoubleSlab(Blocks.IRON_BLOCK, ironHalfSlab, "iron_double_slab");
-
-		GameRegistry.register(ironBroadsword);
-		GameRegistry.register(ironBow);
-
-		GameRegistry.register(ironStairs);
-        GameRegistry.register(ironStairs.getItemBlock());
-		GameRegistry.register(ironWall);
-        GameRegistry.register(ironWall.getItemBlock());
-        GameRegistry.register(ironHalfSlab);
-        GameRegistry.register(new ItemSlab(ironHalfSlab, ironHalfSlab, ironDoubleSlab).setRegistryName("iron_half_slab"));
-        GameRegistry.register(ironDoubleSlab);
 
 		
 		/* **************    Diamond Blocks   ********************* */
@@ -548,22 +418,6 @@ public class ModEmeraldMaterial {
 		    .setRegistryName("diamond_door");
 		diamondDoorBlock.setDropItem(diamondDoor);
 		diamondTrapdoor = new BlockCustomTrapDoor(Blocks.DIAMOND_BLOCK, "diamond_trapdoor");
-
-		GameRegistry.register(diamondBroadsword);
-		GameRegistry.register(diamondBow);
-
-		GameRegistry.register(diamondStairs);
-		GameRegistry.register(diamondStairs.getItemBlock());
-        GameRegistry.register(diamondWall);
-		GameRegistry.register(diamondWall.getItemBlock());
-		GameRegistry.register(diamondHalfSlab);
-        GameRegistry.register(diamondDoubleSlab);
-        GameRegistry.register(new ItemSlab(diamondHalfSlab, diamondHalfSlab, diamondDoubleSlab).setRegistryName("diamond_half_slab"));
-
-		GameRegistry.register(diamondDoor);
-		GameRegistry.register(diamondDoorBlock);
-		GameRegistry.register(diamondTrapdoor);
-        GameRegistry.register(diamondTrapdoor.getItemBlock());
 
 		
 		/* **************    Diamond-Infused Obsidian Items and Blocks   ********************* */
@@ -607,39 +461,214 @@ public class ModEmeraldMaterial {
         diamondObsidianDoorBlock.setDropItem(diamondObsidianDoor);
         diamondObsidianTrapdoor = new BlockCustomTrapDoor(diamondObsidianBlock, "diamond-obsidian_trapdoor");
 
-		GameRegistry.register(diamondObsidianBlock);
-        GameRegistry.register(diamondObsidianBlock.getItemBlock());
-		GameRegistry.register(diamondObsidianIngot);
-		GameRegistry.register(diamondObsidianHelmet);
-		GameRegistry.register(diamondObsidianChest);
-		GameRegistry.register(diamondObsidianPants);
-		GameRegistry.register(diamondObsidianBoots);
-		
-		GameRegistry.register(diamondObsidianSword);
-		GameRegistry.register(diamondObsidianBroadsword);
-		GameRegistry.register(diamondObsidianBow);
-
-		GameRegistry.register(diamondObsidianAxe);
-		GameRegistry.register(diamondObsidianHoe);
-		GameRegistry.register(diamondObsidianPickaxe);
-		GameRegistry.register(diamondObsidianSpade);
-
-        GameRegistry.register(diamondObsidianStairs);
-        GameRegistry.register(diamondObsidianStairs.getItemBlock());
-        GameRegistry.register(diamondObsidianWall);
-        GameRegistry.register(diamondObsidianWall.getItemBlock());
-        GameRegistry.register(diamondObsidianHalfSlab);
-        GameRegistry.register(new ItemSlab(diamondObsidianHalfSlab, diamondObsidianHalfSlab, diamondObsidianDoubleSlab).setRegistryName("diamond-obsidian_half_slab"));
-        GameRegistry.register(diamondObsidianDoubleSlab);
-
-        GameRegistry.register(diamondObsidianDoor);
-        GameRegistry.register(diamondObsidianDoorBlock);
-        GameRegistry.register(diamondObsidianTrapdoor);
-        GameRegistry.register(diamondObsidianTrapdoor.getItemBlock());
-
 		MinecraftForge.EVENT_BUS.register(eventHandler);
 	}
 	
+   @SubscribeEvent
+    public void registerItems(RegistryEvent.Register<Item> event) {
+       event.getRegistry().register(emeraldHelmet);
+       event.getRegistry().register(emeraldChest);
+       event.getRegistry().register(emeraldPants);
+       event.getRegistry().register(emeraldBoots);
+       
+       event.getRegistry().register(emeraldSword);
+       event.getRegistry().register(emeraldBroadsword);
+       event.getRegistry().register(emeraldBow);
+       
+       event.getRegistry().register(emeraldAxe);
+       event.getRegistry().register(emeraldHoe);
+       event.getRegistry().register(emeraldPickaxe);
+       event.getRegistry().register(emeraldSpade);
+       
+       event.getRegistry().register(emeraldStairs.getItemBlock());
+       event.getRegistry().register(emeraldWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(emeraldHalfSlab, emeraldHalfSlab, emeraldDoubleSlab).setRegistryName("emerald_half_slab"));
+
+       event.getRegistry().register(emeraldDoor);
+       event.getRegistry().register(emeraldTrapdoor.getItemBlock());
+
+       
+       event.getRegistry().register(obsidianIngot);
+       event.getRegistry().register(obsidianHelmet);
+       event.getRegistry().register(obsidianChest);
+       event.getRegistry().register(obsidianPants);
+       event.getRegistry().register(obsidianBoots);
+       
+       event.getRegistry().register(obsidianSword);
+       event.getRegistry().register(obsidianBroadsword);
+       event.getRegistry().register(obsidianBow);
+
+       event.getRegistry().register(obsidianAxe);
+       event.getRegistry().register(obsidianHoe);
+       event.getRegistry().register(obsidianPickaxe);
+       event.getRegistry().register(obsidianSpade);
+
+       event.getRegistry().register(obsidianStairs.getItemBlock());
+       event.getRegistry().register(obsidianWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(obsidianHalfSlab, obsidianHalfSlab, obsidianDoubleSlab).setRegistryName("obsidian_half_slab"));
+
+       event.getRegistry().register(obsidianDoor);
+       event.getRegistry().register(obsidianTrapdoor.getItemBlock());
+       
+       
+       event.getRegistry().register(lapisHelmet);
+       event.getRegistry().register(lapisChest);
+       event.getRegistry().register(lapisPants);
+       event.getRegistry().register(lapisBoots);
+       
+       event.getRegistry().register(lapisSword);
+       event.getRegistry().register(lapisBroadsword);
+       event.getRegistry().register(lapisBow);
+
+       event.getRegistry().register(lapisAxe);
+       event.getRegistry().register(lapisHoe);
+       event.getRegistry().register(lapisPickaxe);
+       event.getRegistry().register(lapisSpade);
+
+       event.getRegistry().register(lapisStairs.getItemBlock());
+       event.getRegistry().register(lapisWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(lapisHalfSlab, lapisHalfSlab, lapisDoubleSlab).setRegistryName("lapis_half_slab"));
+
+       event.getRegistry().register(lapisDoor);
+       event.getRegistry().register(lapisTrapdoor.getItemBlock());
+       
+
+       event.getRegistry().register(redstoneHelmet);
+       event.getRegistry().register(redstoneChest);
+       event.getRegistry().register(redstonePants);
+       event.getRegistry().register(redstoneBoots);
+       
+       event.getRegistry().register(redstoneSword);
+       event.getRegistry().register(redstoneBroadsword);
+       event.getRegistry().register(redstoneBow);
+
+       event.getRegistry().register(redstoneAxe);
+       event.getRegistry().register(redstoneHoe);
+       event.getRegistry().register(redstonePickaxe);
+       event.getRegistry().register(redstoneSpade);
+
+       event.getRegistry().register(redstoneStairs.getItemBlock());
+       event.getRegistry().register(redstoneWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(redstoneHalfSlab, redstoneHalfSlab, redstoneDoubleSlab).setRegistryName("redstone_half_slab"));
+
+       event.getRegistry().register(redstoneDoor);
+       event.getRegistry().register(redstoneTrapdoor.getItemBlock());
+       
+       
+       event.getRegistry().register(goldBroadsword);
+       event.getRegistry().register(goldBow);
+
+       event.getRegistry().register(goldStairs.getItemBlock());
+       event.getRegistry().register(goldWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(goldHalfSlab, goldHalfSlab, goldDoubleSlab).setRegistryName("gold_half_slab"));
+
+       event.getRegistry().register(goldDoor);
+       event.getRegistry().register(goldTrapdoor.getItemBlock());
+       
+
+       event.getRegistry().register(ironBroadsword);
+       event.getRegistry().register(ironBow);
+
+       event.getRegistry().register(ironStairs.getItemBlock());
+       event.getRegistry().register(ironWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(ironHalfSlab, ironHalfSlab, ironDoubleSlab).setRegistryName("iron_half_slab"));
+
+       
+       event.getRegistry().register(diamondBroadsword);
+       event.getRegistry().register(diamondBow);
+
+       event.getRegistry().register(diamondStairs.getItemBlock());
+       event.getRegistry().register(diamondWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(diamondHalfSlab, diamondHalfSlab, diamondDoubleSlab).setRegistryName("diamond_half_slab"));
+
+       event.getRegistry().register(diamondDoor);
+       event.getRegistry().register(diamondTrapdoor.getItemBlock());
+
+
+       event.getRegistry().register(diamondObsidianBlock.getItemBlock());
+       event.getRegistry().register(diamondObsidianIngot);
+       event.getRegistry().register(diamondObsidianHelmet);
+       event.getRegistry().register(diamondObsidianChest);
+       event.getRegistry().register(diamondObsidianPants);
+       event.getRegistry().register(diamondObsidianBoots);
+       
+       event.getRegistry().register(diamondObsidianSword);
+       event.getRegistry().register(diamondObsidianBroadsword);
+       event.getRegistry().register(diamondObsidianBow);
+
+       event.getRegistry().register(diamondObsidianAxe);
+       event.getRegistry().register(diamondObsidianHoe);
+       event.getRegistry().register(diamondObsidianPickaxe);
+       event.getRegistry().register(diamondObsidianSpade);
+
+       event.getRegistry().register(diamondObsidianStairs.getItemBlock());
+       event.getRegistry().register(diamondObsidianWall.getItemBlock());
+       event.getRegistry().register(new ItemSlab(diamondObsidianHalfSlab, diamondObsidianHalfSlab, diamondObsidianDoubleSlab).setRegistryName("diamond-obsidian_half_slab"));
+
+       event.getRegistry().register(diamondObsidianDoor);
+       event.getRegistry().register(diamondObsidianTrapdoor.getItemBlock());
+
+   }
+
+    @SubscribeEvent
+    public void registerBlocks(RegistryEvent.Register<Block> event) {
+        event.getRegistry().register(emeraldStairs);
+        event.getRegistry().register(emeraldWall);
+        event.getRegistry().register(emeraldHalfSlab);
+        event.getRegistry().register(emeraldDoubleSlab);
+        event.getRegistry().register(emeraldDoorBlock);
+        event.getRegistry().register(emeraldTrapdoor);
+        
+        event.getRegistry().register(obsidianStairs);
+        event.getRegistry().register(obsidianWall);
+        event.getRegistry().register(obsidianHalfSlab);
+        event.getRegistry().register(obsidianDoubleSlab);
+        event.getRegistry().register(obsidianDoorBlock);
+        event.getRegistry().register(obsidianTrapdoor);
+        event.getRegistry().register(polishedObsidian);
+
+        event.getRegistry().register(lapisStairs);
+        event.getRegistry().register(lapisWall);
+        event.getRegistry().register(lapisHalfSlab);
+        event.getRegistry().register(lapisDoubleSlab);
+        event.getRegistry().register(lapisDoorBlock);
+        event.getRegistry().register(lapisTrapdoor);
+
+        event.getRegistry().register(redstoneStairs);
+        event.getRegistry().register(redstoneWall);
+        event.getRegistry().register(redstoneHalfSlab);
+        event.getRegistry().register(redstoneDoubleSlab);
+        event.getRegistry().register(redstoneDoorBlock);
+        event.getRegistry().register(redstoneTrapdoor);
+
+        event.getRegistry().register(goldStairs);
+        event.getRegistry().register(goldWall);
+        event.getRegistry().register(goldHalfSlab);
+        event.getRegistry().register(goldDoubleSlab);
+        event.getRegistry().register(goldDoorBlock);
+        event.getRegistry().register(goldTrapdoor);
+
+        event.getRegistry().register(ironStairs);
+        event.getRegistry().register(ironWall);
+        event.getRegistry().register(ironHalfSlab);
+        event.getRegistry().register(ironDoubleSlab);
+
+        event.getRegistry().register(diamondStairs);
+        event.getRegistry().register(diamondWall);
+        event.getRegistry().register(diamondHalfSlab);
+        event.getRegistry().register(diamondDoubleSlab);
+        event.getRegistry().register(diamondDoorBlock);
+        event.getRegistry().register(diamondTrapdoor);
+
+        event.getRegistry().register(diamondObsidianBlock);
+        event.getRegistry().register(diamondObsidianStairs);
+        event.getRegistry().register(diamondObsidianWall);
+        event.getRegistry().register(diamondObsidianHalfSlab);
+        event.getRegistry().register(diamondObsidianDoubleSlab);
+        event.getRegistry().register(diamondObsidianDoorBlock);
+        event.getRegistry().register(diamondObsidianTrapdoor);
+    }
+   
 	@EventHandler
 	public void init (FMLInitializationEvent event) {
 		ModEmeraldMaterial.proxy.init(event);
@@ -691,9 +720,23 @@ public class ModEmeraldMaterial {
         addBlockRecipes(diamondObsidianBlock, diamondObsidianStairs, diamondObsidianWall, diamondObsidianHalfSlab);
         addMiscRecipes(diamondObsidianIngot, diamondObsidianDoor);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(diamondObsidianBlock), Blocks.OBSIDIAN, Items.DIAMOND, Items.QUARTZ);
+		GameRegistry.addShapelessRecipe(diamondObsidianBlock.getRegistryName(), new ResourceLocation(""), new ItemStack(diamondObsidianBlock), Ingredient.func_193369_a(new ItemStack(Blocks.OBSIDIAN)), Ingredient.func_193367_a(Items.DIAMOND), Ingredient.func_193367_a(Items.QUARTZ));
 		
 	}
+	
+	/**
+	 * Add a Shaped Recipe using GameRegistry.
+	 * 
+	 * Creating recipes via GameRegistry is deprecated in 1.12, but heck if I'm going to
+	 * create a hundred JSON files when I already have code to do it.
+	 * 
+	 * @param stack
+	 * @param params
+	 */
+	private void addShapedRecipe(ItemStack output, Object... params) {
+	    GameRegistry.addShapedRecipe(output.getItem().getRegistryName(), new ResourceLocation(RECIPE_GROUP_NAME), output, params);
+	}
+	
 	
 	private void addMiscRecipes(Item recipeItem, Item door) {
 		addMiscRecipes(new ItemStack(recipeItem), door);
@@ -704,15 +747,10 @@ public class ModEmeraldMaterial {
 	}
 	private void addMiscRecipes(ItemStack recipeItemStack, Item door) {
 		if (door != null) {
-			GameRegistry.addRecipe(new ItemStack(door, 3),
-					" AA",
-					" AA",
-					" AA",
-					'A', recipeItemStack);
-			GameRegistry.addRecipe(new ItemStack(door, 3),
-					"AA ",
-					"AA ",
-					"AA ",
+			addShapedRecipe(new ItemStack(door, 3),
+					"AA",
+					"AA",
+					"AA",
 					'A', recipeItemStack);
 		}
 	}
@@ -726,41 +764,41 @@ public class ModEmeraldMaterial {
 	}
 	private void addBlockRecipes(ItemStack recipeItemStack, Block stairs, Block wall, Block halfSlab) {
 		if (halfSlab != null) {
-			GameRegistry.addRecipe(new ItemStack(halfSlab, 6),
+			addShapedRecipe(new ItemStack(halfSlab, 6),
 					"AAA",
 					"   ",
 					"   ",
 					'A', recipeItemStack);
-			GameRegistry.addRecipe(new ItemStack(halfSlab, 6),
+			addShapedRecipe(new ItemStack(halfSlab, 6),
 					"   ",
 					"AAA",
 					"   ",
 					'A', recipeItemStack);
-			GameRegistry.addRecipe(new ItemStack(halfSlab, 6),
+			addShapedRecipe(new ItemStack(halfSlab, 6),
 					"   ",
 					"   ",
 					"AAA",
 					'A', recipeItemStack);
 		}
 		if (stairs != null) {
-			GameRegistry.addRecipe(new ItemStack(stairs, 4),
+			addShapedRecipe(new ItemStack(stairs, 4),
 					"A  ",
 					"AA ",
 					"AAA",
 					'A', recipeItemStack);
-			GameRegistry.addRecipe(new ItemStack(stairs, 4),
+			addShapedRecipe(new ItemStack(stairs, 4),
 					"  A",
 					" AA",
 					"AAA",
 					'A', recipeItemStack);
 		}
 		if (wall != null) {
-			GameRegistry.addRecipe(new ItemStack(wall, 6),
+			addShapedRecipe(new ItemStack(wall, 6),
 					"   ",
 					"AAA",
 					"AAA",
 					'A', recipeItemStack);
-			GameRegistry.addRecipe(new ItemStack(wall, 6),
+			addShapedRecipe(new ItemStack(wall, 6),
 					"AAA",
 					"AAA",
 					"   ",
@@ -777,7 +815,7 @@ public class ModEmeraldMaterial {
 	}
 	private void addWeaponRecipes(ItemStack recipeItemStack, Item sword, Item broadsword, Item bow) {
 		if (sword != null) {
-			GameRegistry.addRecipe(new ItemStack(sword),
+			addShapedRecipe(new ItemStack(sword),
 					" A ",
 					" A ",
 					" S ",
@@ -785,7 +823,7 @@ public class ModEmeraldMaterial {
 					'S', Items.STICK);
 		}
 		if (broadsword != null) {
-			GameRegistry.addRecipe(new ItemStack(broadsword),
+			addShapedRecipe(new ItemStack(broadsword),
 					"AAA",
 					"AAA",
 					" S ",
@@ -793,14 +831,14 @@ public class ModEmeraldMaterial {
 					'S', Items.STICK);
 		}
 		if (bow != null) {
-			GameRegistry.addRecipe(new ItemStack(bow),
+			addShapedRecipe(new ItemStack(bow),
 					"IS ",
 					"I A",
 					"IS ",
 					'A', recipeItemStack,
 					'S', Items.STICK,
 					'I', Items.STRING);
-			GameRegistry.addRecipe(new ItemStack(bow),
+			addShapedRecipe(new ItemStack(bow),
 					" SI",
 					"A I",
 					" SI",
@@ -819,13 +857,13 @@ public class ModEmeraldMaterial {
 	}
 	private void addToolRecipes(ItemStack recipeItemStack, Item axe, Item hoe, Item pickaxe, Item spade) {
 		if (axe != null) {
-			GameRegistry.addRecipe(new ItemStack(axe),
+			addShapedRecipe(new ItemStack(axe),
 					"AA ",
 					"AS ",
 					" S ",
 					'A', recipeItemStack,
 					'S', Items.STICK);
-			GameRegistry.addRecipe(new ItemStack(axe),
+			addShapedRecipe(new ItemStack(axe),
 					" AA",
 					" SA",
 					" S ",
@@ -833,13 +871,13 @@ public class ModEmeraldMaterial {
 					'S', Items.STICK);
 		}
 		if (hoe != null) {
-			GameRegistry.addRecipe(new ItemStack(hoe),
+			addShapedRecipe(new ItemStack(hoe),
 					"AA ",
 					" S ",
 					" S ",
 					'A', recipeItemStack,
 					'S', Items.STICK);
-			GameRegistry.addRecipe(new ItemStack(hoe),
+			addShapedRecipe(new ItemStack(hoe),
 					" AA",
 					" S ",
 					" S ",
@@ -847,7 +885,7 @@ public class ModEmeraldMaterial {
 					'S', Items.STICK);
 		}
 		if (pickaxe != null) {
-			GameRegistry.addRecipe(new ItemStack(pickaxe),
+			addShapedRecipe(new ItemStack(pickaxe),
 					"AAA",
 					" S ",
 					" S ",
@@ -855,7 +893,7 @@ public class ModEmeraldMaterial {
 					'S', Items.STICK);
 		}
 		if (spade != null) {
-			GameRegistry.addRecipe(new ItemStack(spade),
+			addShapedRecipe(new ItemStack(spade),
 					" A ",
 					" S ",
 					" S ",
@@ -873,28 +911,28 @@ public class ModEmeraldMaterial {
 	}
 	private void addArmorRecipes(ItemStack recipeItemStack, Item helmet, Item chest, Item pants, Item boots) {
 		if (helmet != null) {
-			GameRegistry.addRecipe(new ItemStack(helmet),
+			addShapedRecipe(new ItemStack(helmet),
 					"AAA",
 					"A A",
 					"   ",
 					'A', recipeItemStack);
 		}
 		if (chest != null) {
-			GameRegistry.addRecipe(new ItemStack(chest),
+			addShapedRecipe(new ItemStack(chest),
 					"A A",
 					"AAA",
 					"AAA",
 					'A', recipeItemStack);
 		}
 		if (pants != null) {
-			GameRegistry.addRecipe(new ItemStack(pants),
+			addShapedRecipe(new ItemStack(pants),
 					"AAA",
 					"A A",
 					"A A",
 					'A', recipeItemStack);
 		}
 		if (boots != null) {
-			GameRegistry.addRecipe(new ItemStack(boots),
+			addShapedRecipe(new ItemStack(boots),
 					"   ",
 					"A A",
 					"A A",

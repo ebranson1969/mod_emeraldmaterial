@@ -30,7 +30,7 @@ public class ItemMaterials {
 			"EmeraldArmor",
 			"mod_emeraldmaterial:armor.emerald",
 			20,
-			new int[] {3, 7, 5, 3},
+			new int[] {3, 5, 7, 3},
 			30,
 			SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
 			0);
@@ -60,7 +60,7 @@ public class ItemMaterials {
 			"ObsidianArmor",
 			"mod_emeraldmaterial:armor.obsidian",
 			60,
-			new int[] {2, 6, 5, 2},
+			new int[] {2, 5, 6, 2},
 			30,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
             1);
@@ -90,7 +90,7 @@ public class ItemMaterials {
 			"LapisArmor",
 			"mod_emeraldmaterial:armor.lapis",
 			15,
-			new int[] {2, 5, 4, 1},
+			new int[] {2, 4, 5, 1},
 			30,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
             0);
@@ -120,7 +120,7 @@ public class ItemMaterials {
 			"RedstoneArmor",
 			"mod_emeraldmaterial:armor.redstone",
 			15,
-			new int[] {2, 5, 4, 1},
+			new int[] {2, 4, 5, 1},
 			30,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
             0);
@@ -192,7 +192,7 @@ public class ItemMaterials {
 			"DiamondObsidianArmor",
 			"mod_emeraldmaterial:armor.diamond-obsidian",
 			60,
-			new int[] {3, 8, 6, 3},
+			new int[] {4, 7, 8, 4},
 			30,
             SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,
             3);
